@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Main Menu -->
+    <menuitem id="menu_product_lifecycle_root"
+              name="Product Lifecycle"
+              sequence="45"
+              web_icon="product_lifecycle,static/description/icon.png"/>
+
+    <!-- Lifecycles Menu -->
+    <menuitem id="menu_product_lifecycle_main"
+              name="Lifecycles"
+              parent="menu_product_lifecycle_root"
+              sequence="10"/>
+
+    <menuitem id="menu_product_lifecycle"
+              name="Lifecycles"
+              action="action_product_lifecycle"
+              parent="menu_product_lifecycle_main"
+              sequence="10"/>
+
+    <!-- Configuration Menu -->
+    <menuitem id="menu_product_lifecycle_config"
+              name="Configuration"
+              parent="menu_product_lifecycle_root"
+              sequence="100"
+              groups="product_lifecycle.group_plm_manager"/>
+
+    <menuitem id="menu_product_lifecycle_stages"
+              name="Lifecycle Stages"
+              action="action_product_lifecycle_stage"
+              parent="menu_product_lifecycle_config"
+              sequence="10"/>
+</odoo>

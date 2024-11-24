@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Product Lifecycle Views -->
+    <record id="view_product_lifecycle_form" model="ir.ui.view">
+        <field name="name">product.lifecycle.form</field>
+        <field name="model">product.lifecycle</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_start"
+                            string="Start"
+                            type="object"
+                            class="btn-primary"
+                            data-hotkey="s"
+                            invisible="state != 'draft'"/>
+                    <button name="action_complete"
+                            string="Complete"
+                            type="object"
+                            class="btn-primary"
+                            data-hotkey="c"
+                            invisible="state != 'in_progress'"/>
+                    <button name="action_cancel"
+                            string="Cancel"
+                            type="object"
+                            class="btn-secondary"
+                            data-hotkey="x"
+                            invisible="state in ('cancelled', 'completed')"/>
+                    <field name="current_stage_id" widget="statusbar"
+                           options="{'clickable': '1', 'fold_field': 'fold'}"
+                           domain="[('id', 'in', allowed_stage_ids)]"
+                           invisible="state not in ('in_progress', 'pending_approval')"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,in_progress,pending_approval,completed"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button"
+                                   options="{'terminology': 'archive'}"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="product_id"
+                                   readonly="state != 'draft'"/>
+                            <field name="current_stage_id"/>
+                            <field name="responsible_id" widget="many2one_avatar_user"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <group>
+                            <field name="start_date"/>
+                            <field name="planned_end_date"/>
+                            <field name="actual_end_date" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Stage History" name="stage_history">
+                            <field name="stage_history_ids" readonly="1">
+                                <list>
+                                    <field name="date"/>
+                                    <field name="stage_id"/>
+                                    <field name="user_id" widget="many2one_avatar_user"/>
+                                    <field name="notes"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Documents" name="documents">
+                            <field name="attachment_ids"
+                                   context="{
+                                       'default_res_model': 'product.lifecycle',
+                                       'default_res_id': id
+                                   }">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="document_type"/>
+                                    <field name="create_uid"/>
+                                    <field name="create_date"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_product_lifecycle_list" model="ir.ui.view">
+        <field name="name">product.lifecycle.list</field>
+        <field name="model">product.lifecycle</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="product_id"/>
+                <field name="current_stage_id"/>
+                <field name="responsible_id" widget="many2one_avatar_user"/>
+                <field name="start_date"/>
+                <field name="planned_end_date"/>
+                <field name="state" widget="badge"
+                       decoration-info="state == 'draft'"
+                       decoration-warning="state == 'in_progress'"
+                       decoration-danger="state == 'cancelled'"
+                       decoration-success="state == 'completed'"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_product_lifecycle_search" model="ir.ui.view">
+        <field name="name">product.lifecycle.search</field>
+        <field name="model">product.lifecycle</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="product_id"/>
+                <field name="current_stage_id"/>
+                <field name="responsible_id"/>
+                <filter string="Draft" name="draft" domain="[('state','=','draft')]"/>
+                <filter string="In Progress" name="in_progress" domain="[('state','=','in_progress')]"/>
+                <filter string="Pending Approval" name="pending_approval"
+                        domain="[('state','=','pending_approval')]"/>
+                <filter string="Completed" name="completed" domain="[('state','=','completed')]"/>
+                <separator/>
+                <filter string="My Lifecycles" name="my_lifecycles"
+                        domain="[('responsible_id', '=', uid)]"/>
+                <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Stage" name="group_stage"
+                            context="{'group_by':'current_stage_id'}"/>
+                    <filter string="State" name="group_state" context="{'group_by':'state'}"/>
+                    <filter string="Responsible" name="group_responsible"
+                            context="{'group_by':'responsible_id'}"/>
+                    <filter string="Company" name="group_company"
+                            context="{'group_by':'company_id'}"
+                            groups="base.group_multi_company"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action Window -->
+    <record id="action_product_lifecycle" model="ir.actions.act_window">
+        <field name="name">Product Lifecycles</field>
+        <field name="res_model">product.lifecycle</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_product_lifecycle_search"/>
+        <field name="context">{'search_default_my_lifecycles': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first product lifecycle!
+            </p>
+            <p>
+                Track and manage your product's lifecycle from conception to retirement.
+            </p>
+        </field>
+    </record>
+</odoo>

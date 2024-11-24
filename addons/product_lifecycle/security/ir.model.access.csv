@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_product_lifecycle_user,product.lifecycle.user,model_product_lifecycle,product_lifecycle.group_plm_user,1,1,1,0
+access_product_lifecycle_manager,product.lifecycle.manager,model_product_lifecycle,product_lifecycle.group_plm_manager,1,1,1,1
+access_product_lifecycle_stage_user,product.lifecycle.stage.user,model_product_lifecycle_stage,product_lifecycle.group_plm_user,1,1,1,0
+access_product_lifecycle_stage_manager,product.lifecycle.stage.manager,model_product_lifecycle_stage,product_lifecycle.group_plm_manager,1,1,1,1
+access_product_lifecycle_history_user,product.lifecycle.history.user,model_product_lifecycle_history,product_lifecycle.group_plm_user,1,1,1,0
+access_product_lifecycle_history_manager,product.lifecycle.history.manager,model_product_lifecycle_history,product_lifecycle.group_plm_manager,1,1,1,1
+access_ir_attachment_plm_user,ir.attachment.plm.user,base.model_ir_attachment,product_lifecycle.group_plm_user,1,1,1,0
+access_ir_attachment_plm_manager,ir.attachment.plm.manager,base.model_ir_attachment,product_lifecycle.group_plm_manager,1,1,1,1
