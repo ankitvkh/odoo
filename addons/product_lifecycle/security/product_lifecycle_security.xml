@@ -35,7 +35,7 @@
         <record id="plm_history_company_rule" model="ir.rule">
             <field name="name">Product Lifecycle History Multi-Company Rule</field>
             <field name="model_id" ref="model_product_lifecycle_history"/>
-            <field name="domain_force">['|', '|', ('company_id', '=', False), ('company_id', '=', company_id), ('company_id', 'in', company_ids)]</field>
+            <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
             <field name="global" eval="True"/>
         </record>
 
@@ -44,6 +44,49 @@
             <field name="name">PLM Attachment Multi-Company Rule</field>
             <field name="model_id" ref="base.model_ir_attachment"/>
             <field name="domain_force">['|', ('res_model', '!=', 'product.lifecycle'), '&amp;', ('res_model', '=', 'product.lifecycle'), ('company_id', 'in', company_ids)]</field>
+            <field name="groups" eval="[(4, ref('group_plm_user'))]"/>
+        </record>
+
+         <record id="plm_approval_access_rule" model="ir.rule">
+            <field name="name">Product Lifecycle Approval Access Rule</field>
+            <field name="model_id" ref="model_product_lifecycle"/>
+            <field name="domain_force">['|', '|', '|',
+                ('responsible_id', '=', user.id),
+                ('approver_id', '=', user.id),
+                ('create_uid', '=', user.id),
+                ('state', '!=', 'pending_approval')]</field>
+            <field name="groups" eval="[(4, ref('group_plm_user'))]"/>
+        </record>
+
+        <!-- Add specific rule for managers -->
+        <record id="plm_manager_full_access_rule" model="ir.rule">
+            <field name="name">Product Lifecycle Manager Full Access</field>
+            <field name="model_id" ref="model_product_lifecycle"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('group_plm_manager'))]"/>
+        </record>
+
+        <!-- Add access rule for related records -->
+        <record id="plm_record_rule" model="ir.rule">
+            <field name="name">Product Lifecycle Record Rule</field>
+            <field name="model_id" ref="model_product_lifecycle"/>
+            <field name="domain_force">['|', '|', '|',
+                ('responsible_id', '=', user.id),
+                ('approver_id', '=', user.id),
+                ('create_uid', '=', user.id),
+                ('state', '=', 'draft')]</field>
+            <field name="groups" eval="[(4, ref('group_plm_user'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <!-- Add read access rule for product template -->
+        <record id="plm_product_access_rule" model="ir.rule">
+            <field name="name">Product Access for PLM Users</field>
+            <field name="model_id" ref="product.model_product_template"/>
+            <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
             <field name="groups" eval="[(4, ref('group_plm_user'))]"/>
         </record>
     </data>

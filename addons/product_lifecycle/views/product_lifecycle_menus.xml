@@ -1,33 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Main Menu -->
+    <!-- Root Menu -->
     <menuitem id="menu_product_lifecycle_root"
               name="Product Lifecycle"
-              sequence="45"
+              sequence="50"
+              groups="group_plm_user"
               web_icon="product_lifecycle,static/description/icon.png"/>
 
-    <!-- Lifecycles Menu -->
+    <!-- Main Menu -->
     <menuitem id="menu_product_lifecycle_main"
               name="Lifecycles"
               parent="menu_product_lifecycle_root"
-              sequence="10"/>
-
-    <menuitem id="menu_product_lifecycle"
-              name="Lifecycles"
-              action="action_product_lifecycle"
-              parent="menu_product_lifecycle_main"
-              sequence="10"/>
+              sequence="10"
+              groups="group_plm_user"/>
 
     <!-- Configuration Menu -->
     <menuitem id="menu_product_lifecycle_config"
               name="Configuration"
               parent="menu_product_lifecycle_root"
               sequence="100"
-              groups="product_lifecycle.group_plm_manager"/>
+              groups="group_plm_manager"/>
 
-    <menuitem id="menu_product_lifecycle_stages"
-              name="Lifecycle Stages"
-              action="action_product_lifecycle_stage"
+    <!-- Lifecycle Menu Items -->
+    <menuitem id="menu_product_lifecycle_list"
+              name="Product Lifecycles"
+              parent="menu_product_lifecycle_main"
+              action="view_product_lifecycle_list_action"
+              sequence="10"
+              groups="group_plm_user"/>
+
+    <!-- Configuration Menu Items -->
+    <menuitem id="menu_product_lifecycle_stage_list"
+              name="Stages"
               parent="menu_product_lifecycle_config"
-              sequence="10"/>
+              action="view_product_lifecycle_stage_list_action"
+              sequence="10"
+              groups="group_plm_manager"/>
 </odoo>

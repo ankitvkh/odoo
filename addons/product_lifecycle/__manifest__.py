@@ -26,7 +26,8 @@ This module enables:
         'data/product_lifecycle_sequence.xml',
         'views/product_lifecycle_stage_views.xml',
         'views/product_lifecycle_views.xml',
-        'views/product_lifecycle_menus.xml',
+        'views/product_lifecycle_history_views.xml',
+        'views/product_lifecycle_menus.xml'
     ],
     'demo': [],
     'installable': True,

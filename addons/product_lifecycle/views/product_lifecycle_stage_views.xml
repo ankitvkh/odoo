@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+
+     <!-- Stage Action Window -->
+   <record id="view_product_lifecycle_stage_list_action" model="ir.actions.act_window">
+        <field name="name">Lifecycle Stages</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.lifecycle.stage</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first lifecycle stage!
+            </p>
+            <p>
+                Define stages to organize your product lifecycle workflow.
+            </p>
+        </field>
+    </record>
     <!-- Stage List View -->
     <record id="view_product_lifecycle_stage_list" model="ir.ui.view">
         <field name="name">product.lifecycle.stage.list</field>
@@ -11,6 +27,7 @@
                 <field name="is_initial"/>
                 <field name="is_final"/>
                 <field name="approval_required"/>
+                <field name="fold"/>
             </list>
         </field>
     </record>
@@ -29,13 +46,14 @@
                             <field name="is_initial"/>
                             <field name="is_final"/>
                             <field name="approval_required"/>
-                            <field name="approval_group_id"
-                                   invisible="not approval_required"/>
+                            <field name="fold"/>
+                            <field name="approval_group_id" invisible="not approval_required"/>
                         </group>
                         <group>
                             <field name="description"/>
                             <field name="allowed_next_stages" widget="many2many_tags"/>
-                            <field name="required_document_types" placeholder="e.g., Drawing,Specification,Test Report"/>
+                            <field name="required_document_types"
+                                   placeholder="e.g., Drawing,Specification,Test Report"/>
                         </group>
                     </group>
                 </sheet>
@@ -53,27 +71,16 @@
                 <filter string="Initial Stages" name="initial" domain="[('is_initial', '=', True)]"/>
                 <filter string="Final Stages" name="final" domain="[('is_final', '=', True)]"/>
                 <filter string="Requires Approval" name="approval" domain="[('approval_required', '=', True)]"/>
+                <filter string="Folded Stages" name="folded" domain="[('fold', '=', True)]"/>
                 <group expand="0" string="Group By">
-                    <filter string="Approval Required" name="group_approval" context="{'group_by': 'approval_required'}"/>
+                    <filter string="Approval Required" name="group_approval"
+                            context="{'group_by': 'approval_required'}"/>
+                    <filter string="Folded Status" name="group_fold"
+                            context="{'group_by': 'fold'}"/>
                 </group>
             </search>
         </field>
     </record>
 
-    <!-- Stage Action Window -->
-    <record id="action_product_lifecycle_stage" model="ir.actions.act_window">
-        <field name="name">Lifecycle Stages</field>
-        <field name="type">ir.actions.act_window</field>
-        <field name="res_model">product.lifecycle.stage</field>
-        <field name="view_mode">list,form</field>
-        <field name="help" type="html">
-            <p class="o_view_nocontent_smiling_face">
-                Create your first lifecycle stage!
-            </p>
-            <p>
-                Define stages to organize your product lifecycle workflow.
-                Each stage can have specific requirements and constraints.
-            </p>
-        </field>
-    </record>
+
 </odoo>
