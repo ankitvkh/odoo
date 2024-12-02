@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Product Lifecycle Model -->
+        <record id="model_product_lifecycle" model="ir.model">
+            <field name="name">Product Lifecycle</field>
+            <field name="model">product.lifecycle</field>
+            <field name="description">Product Lifecycle Management</field>
+        </record>
+
+        <!-- Product Lifecycle Stage Model -->
+        <record id="model_product_lifecycle_stage" model="ir.model">
+            <field name="name">Product Lifecycle Stage</field>
+            <field name="model">product.lifecycle.stage</field>
+            <field name="description">Product Lifecycle Stages</field>
+        </record>
+
+        <!-- Product Lifecycle History Model -->
+        <record id="model_product_lifecycle_history" model="ir.model">
+            <field name="name">Product Lifecycle History</field>
+            <field name="model">product.lifecycle.history</field>
+            <field name="description">Product Lifecycle History Records</field>
+        </record>
+    </data>
+</odoo>

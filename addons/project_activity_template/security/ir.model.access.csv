@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_project_activity_template_manager,project.activity.template.manager,model_project_activity_template,project.group_project_manager,1,1,1,1
+access_project_activity_template_user,project.activity.template.user,model_project_activity_template,project.group_project_user,1,0,0,0
+access_project_task_template_manager,project.task.template.manager,model_project_task_template,project.group_project_manager,1,1,1,1
+access_project_task_template_user,project.task.template.user,model_project_task_template,project.group_project_user,1,0,0,0
+access_project_apply_template_wizard_user,project.apply.activity.template.wizard.user,model_project_apply_activity_template_wizard,project.group_project_user,1,1,1,0

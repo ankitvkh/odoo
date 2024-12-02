@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+project_task_validation_manager,Task Validation Manager,project.model_project_task,project.group_project_manager,1,1,1,1
+project_task_validation_user,Task Validation User,project.model_project_task,project.group_project_user,1,1,1,0
+access_product_preferred_vendor_user,product.template preferred vendor user,model_product_template,purchase.group_purchase_user,1,0,0,0
+access_product_preferred_vendor_manager,product.template preferred vendor manager,model_product_template,purchase.group_purchase_manager,1,1,1,1

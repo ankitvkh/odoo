@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_template_preferred_vendor_form_view" model="ir.ui.view">
+        <field name="name">product.template.preferred.vendor.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='purchase']" position="inside">
+                <group string="Preferred Vendors" name="preferred_vendors">
+                    <field name="preferred_vendor_ids"
+                           widget="many2many_tags"
+                           options="{'no_create': True, 'no_edit': True}"
+                           domain="[('is_company', '=', True), ('supplier_rank', '>', 0)]"
+                           placeholder="Select preferred vendors..."/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Add to product search view -->
+    <record id="product_template_search_view_vendors" model="ir.ui.view">
+        <field name="name">product.template.search.vendor</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_search_view"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="preferred_vendor_ids"/>
+                <filter string="Has Preferred Vendors"
+                        name="has_preferred_vendors"
+                        domain="[('preferred_vendor_ids', '!=', False)]"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- Add to product list view -->
+    <record id="product_template_tree_vendors" model="ir.ui.view">
+        <field name="name">product.template.tree.vendor</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="preferred_vendor_ids"
+                       widget="many2many_tags"
+                       optional="show"/>
+            </field>
+        </field>
+    </record>
+</odoo>
