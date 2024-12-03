@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Make menu items load first -->
+    <menuitem id="menu_mrp_bom_import"
+              name="Import BOMs"
+              action="action_bom_import"
+              parent="mrp.menu_mrp_configuration"
+              sequence="6"/>
+
+    <!-- Import Action -->
+    <record id="action_bom_import" model="ir.actions.act_window">
+        <field name="name">Import Bills of Materials</field>
+        <field name="res_model">mrp.bom.import.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Wizard Form View -->
+    <record id="view_bom_import_wizard_form" model="ir.ui.view">
+        <field name="name">mrp.bom.import.wizard.form</field>
+        <field name="model">mrp.bom.import.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="alert alert-info" role="alert">
+                        <p><strong>How it works:</strong></p>
+                        <ol>
+                            <li>Upload your BOM data in CSV format</li>
+                            <li>Add any technical drawings</li>
+                            <li>Click "Preview &amp; Create" to open the BOM form</li>
+                            <li>Review and adjust the data if needed</li>
+                            <li>Save to create the BOM</li>
+                        </ol>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="file"
+                                   filename="filename"
+                                   widget="binary"
+                                   required="1"
+                                   options="{'accepted_file_extensions': '.csv'}"
+                                   help="Upload your BOM data file in CSV format"/>
+                            <field name="filename" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="drawing_files"
+                                   widget="many2many_binary"
+                                   options="{'accepted_file_extensions': '.pdf,.dxf,.dwg'}"
+                                   help="Upload technical drawings for the BOM"/>
+                        </group>
+                    </group>
+                    <div class="alert alert-info" role="alert">
+                        <p><strong>Expected CSV format:</strong></p>
+                        <ul>
+                            <li>product_code: Product internal reference</li>
+                            <li>product_name: Product name</li>
+                            <li>is_main_product: true for main product, false for components</li>
+                            <li>quantity: Component quantity</li>
+                        </ul>
+                    </div>
+                </sheet>
+                <footer>
+                    <button string="Preview &amp; Create"
+                            name="action_preview_bom"
+                            type="object"
+                            class="btn-primary"
+                            data-hotkey="q"/>
+                    <button string="Cancel"
+                            class="btn-secondary"
+                            special="cancel"
+                            data-hotkey="z"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

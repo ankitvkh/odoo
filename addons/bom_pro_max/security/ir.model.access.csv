@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mrp_bom_import_wizard_manager,mrp.bom.import.wizard manager,model_mrp_bom_import_wizard,mrp.group_mrp_manager,1,1,1,1
+access_mrp_bom_import_wizard_user,mrp.bom.import.wizard user,model_mrp_bom_import_wizard,mrp.group_mrp_user,1,1,1,0
+access_ir_attachment_bom_user,ir.attachment.bom.user,base.model_ir_attachment,mrp.group_mrp_user,1,1,1,1

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_mrp_bom_form_drawing_inherit" model="ir.ui.view">
+        <field name="name">mrp.bom.form.drawing.inherit</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+            <div name="button_box" position="after">
+                <field name="message_follower_ids" invisible="1"/>
+            </div>
+            <xpath expr="//notebook//page[@name='miscellaneous']" position="after">
+                <page string="Technical Drawings" name="technical_drawings">
+                    <group>
+                        <field name="drawing_attachment_ids"
+                               widget="many2many_binary"
+                               string="Technical Documentation"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
