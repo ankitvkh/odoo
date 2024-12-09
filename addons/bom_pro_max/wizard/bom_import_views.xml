@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Make menu items load first -->
-    <menuitem id="menu_mrp_bom_import"
-              name="Import BOMs"
-              action="action_bom_import"
-              parent="mrp.menu_mrp_configuration"
-              sequence="6"/>
 
     <!-- Import Action -->
     <record id="action_bom_import" model="ir.actions.act_window">
@@ -73,4 +67,11 @@
             </form>
         </field>
     </record>
+
+    <!-- Make menu items load first -->
+    <menuitem id="menu_mrp_bom_import"
+              name="Import BOMs"
+              action="action_bom_import"
+              parent="mrp.menu_mrp_configuration"
+              sequence="6"/>
 </odoo>
