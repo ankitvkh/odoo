@@ -11,6 +11,8 @@ set "PYTHON_EXE=C:\path\to\python.exe"     :: Replace with the full path to your
 set "PSQL_EXE=C:\Program Files\PostgreSQL\15\bin\psql.exe" :: Replace with the full path to your PostgreSQL `psql.exe`
 set "POSTGRES_USER=odoo"
 set "POSTGRES_PASSWORD=odoo"
+set "ADDONS_PATH=%ODOO_DIR%\addons"
+set "LOG_FILE=%ODOO_DIR%\odoo.log"
 
 :: Step 2: Unzip Custom Odoo Code
 echo Unzipping custom Odoo code...
@@ -55,15 +57,15 @@ if %errorlevel% neq 0 (
 )
 
 :: Step 6: Create Odoo Configuration File
-echo Creating Odoo configuration file...
+echo Creating Odoo configuration file with absolute paths...
 (
 echo [options]
-echo addons_path = addons
+echo addons_path = %ADDONS_PATH%
 echo db_host = localhost
 echo db_port = 5432
 echo db_user = %POSTGRES_USER%
 echo db_password = %POSTGRES_PASSWORD%
-echo logfile = odoo.log
+echo logfile = %LOG_FILE%
 ) > "%ODOO_DIR%\odoo.conf"
 
 :: Step 7: Start Odoo Server
