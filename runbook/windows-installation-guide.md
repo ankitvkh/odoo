@@ -29,3 +29,6 @@ Here’s a step-by-step guide to install and run Odoo on your Windows machine us
 
 1. **Execute install_odoo.bat**:
    - This script assumes you have the necessary prerequisites (Python, PostgreSQL, Node.js, and Wkhtmltopdf) installed and configured in your system's PATH.
+  
+2. **Star odoo**
+  - Execute start-odoo.bat
