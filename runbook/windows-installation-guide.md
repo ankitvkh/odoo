@@ -17,7 +17,7 @@ Here’s a step-by-step guide to install and run Odoo on your Windows machine us
    - Note the username (`postgres`) and password you set during installation.
    - Or use the script `install_pgsql.bat` to install. Below is an example of the arguments for the script
      ```bash
-     install_pgsql.bat 15.4 "C:\Users\username\OneDrive\Desktop\softwares"
+     install_pgsql.bat 15.4 mypassword "C:\Users\username\OneDrive\Desktop\softwares"
      ```
 
 3. **Install Node.js and Less Compiler**:
@@ -28,7 +28,7 @@ Here’s a step-by-step guide to install and run Odoo on your Windows machine us
      ```
    - OR use the script `install_nodejs.bat` to install. Below is an example of the arguments for the script
      ```bash
-     install_nodejs 9.5.1 "C:\Users\username\OneDrive\Desktop\softwares"
+     install_nodejs 18.16.0 "C:\Users\username\OneDrive\Desktop\softwares"
      ```
 
 4. **Install Wkhtmltopdf**:
