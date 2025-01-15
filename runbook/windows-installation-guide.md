@@ -12,7 +12,9 @@ Here’s a step-by-step guide to install and run Odoo on your Windows machine us
    - Download and install PostgreSQL from the [official PostgreSQL website](https://www.postgresql.org/).
    - Note the username (`postgres`) and password you set during installation.
    - Or use the script install_pgsql.bat with the below arguments
+     ```bash
      install_pgsql.bat 15.4 "C:\Users\username\OneDrive\Desktop\softwares"
+     ```
 
 3. **Install Node.js and Less Compiler**:
    - Download and install Node.js from the [official Node.js website](https://nodejs.org/).
