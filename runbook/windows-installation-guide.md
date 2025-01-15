@@ -7,7 +7,7 @@ Here’s a step-by-step guide to install and run Odoo on your Windows machine us
 1. **Install Python**:
    - Download and install Python 3.10 (compatible with your Odoo version) from the [official Python website](https://www.python.org/).
    - During installation, check **"Add Python to PATH"**.
-   - OR use the script install_python.bat to install. Below is an example of the arguments for the script
+   - OR use the script `install_python.bat` to install. Below is an example of the arguments for the script
      ```bash
      install_python.bat 3.10.11 "C:\Users\username\OneDrive\Desktop\softwares"
      ```
