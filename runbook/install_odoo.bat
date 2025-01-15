@@ -21,7 +21,7 @@ set "PSQL_EXE=psql"
 
 set "POSTGRES_USER=odoo"
 set "POSTGRES_PASSWORD=odoo"
-set "ADDONS_PATH=%ODOO_DIR%\addons"
+set "ADDONS_PATH=%ODOO_DIR%\odoo-demo\addons"
 set "LOG_FILE=%ODOO_DIR%\odoo.log"
 
 :: Step 2: Unzip Custom Odoo Code
@@ -60,12 +60,42 @@ if %errorlevel% neq 0 (
     exit /b 1
 )
 
+:: Step 4.1: Install Additional Odoo Dependencies
+pip install psycopg2-binary Werkzeug==2.0.2 Jinja2 Pillow lxml python-dateutil pytz polib PyPDF2 reportlab requests passlib docutils num2words babel decorator lxml_html_clean pywin32 zeep psutil rjsmin pyOpenSSL
+
+
+set DB_NAME=odoo_db
+
+:: Cleanup - Drop existing database and user
+echo Cleaning up existing PostgreSQL setup...
+
+set PGPASSWORD=postgres&& "%PSQL_EXE%" -U postgres -c "DROP DATABASE IF EXISTS %DB_NAME%;"
+if %errorlevel% neq 0 (
+    echo ERROR: Failed to drop the database. Ensure PostgreSQL is running and psql.exe is correctly set.
+    exit /b 1
+)
+
+set PGPASSWORD=postgres&& "%PSQL_EXE%" -U postgres -c "DROP USER IF EXISTS %POSTGRES_USER%;"
+if %errorlevel% neq 0 (
+    echo ERROR: Failed to drop the user. Ensure PostgreSQL is running and psql.exe is correctly set.
+    exit /b 1
+)
+
+
 :: Step 5: Configure PostgreSQL
 echo Configuring PostgreSQL database...
-"%PSQL_EXE%" -U postgres -c "CREATE USER %POSTGRES_USER% WITH PASSWORD '%POSTGRES_PASSWORD%';"
-"%PSQL_EXE%" -U postgres -c "ALTER USER %POSTGRES_USER% CREATEDB;"
+set PGPASSWORD=postgres&& "%PSQL_EXE%" -U postgres -c "CREATE USER %POSTGRES_USER% WITH PASSWORD '%POSTGRES_PASSWORD%';"
+set PGPASSWORD=postgres&& "%PSQL_EXE%" -U postgres -c "ALTER USER %POSTGRES_USER% CREATEDB;"
 if %errorlevel% neq 0 (
     echo ERROR: Failed to configure PostgreSQL. Ensure PostgreSQL is running and psql.exe is correctly set.
+    exit /b 1
+)
+
+:: Step 5.1: Create odoo_db database
+echo Creating database '"%DB_NAME%"'...
+set PGPASSWORD=postgres&& "%PSQL_EXE%" -U postgres -c "CREATE DATABASE %DB_NAME% OWNER %POSTGRES_USER%;"
+if %errorlevel% neq 0 (
+    echo ERROR: Failed to create '%DB_NAME%' database.
     exit /b 1
 )
 
@@ -84,7 +114,7 @@ echo logfile = %LOG_FILE%
 :: Step 7: Start Odoo Server
 echo Starting Odoo server...
 call "%VENV_DIR%\Scripts\activate"
-"%PYTHON_EXE%" "%ODOO_DIR%\odoo-demo\odoo-bin" --config="%ODOO_DIR%\odoo.conf"
+start /B "%PYTHON_EXE%" "%ODOO_DIR%\odoo-demo\odoo-bin" -d "%DB_NAME%" -i base --config="%ODOO_DIR%\odoo.conf"
 if %errorlevel% neq 0 (
     echo ERROR: Failed to start Odoo server. Check logs for details.
     exit /b 1
