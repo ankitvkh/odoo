@@ -4,11 +4,21 @@ echo Automating Odoo Installation and Setup on Windows
 echo ======================================================
 
 :: Step 1: Set Variables
-set "ODOO_DIR=C:\odoo-custom"
+
+:: set "ODOO_DIR=C:\odoo-custom"
+set "ODOO_DIR=%~1
+
 set "VENV_DIR=%ODOO_DIR%\odoo-venv"
-set "ZIP_FILE=C:\path\to\odoo-custom.zip"  :: Replace with the full path to your Odoo ZIP file
-set "PYTHON_EXE=C:\path\to\python.exe"     :: Replace with the full path to your Python executable
-set "PSQL_EXE=C:\Program Files\PostgreSQL\15\bin\psql.exe" :: Replace with the full path to your PostgreSQL `psql.exe`
+
+:: set "ZIP_FILE=C:\path\to\odoo-custom.zip"  :: Replace with the full path to your Odoo ZIP file
+set "ZIP_FILE=%~2
+
+:: set "PYTHON_EXE=C:\path\to\python.exe"     :: Replace with the full path to your Python executable
+set "PYTHON_EXE=python"
+
+:: set "PSQL_EXE=C:\Program Files\PostgreSQL\15\bin\psql.exe" :: Replace with the full path to your PostgreSQL `psql.exe`
+set "PSQL_EXE=psql"
+
 set "POSTGRES_USER=odoo"
 set "POSTGRES_PASSWORD=odoo"
 set "ADDONS_PATH=%ODOO_DIR%\addons"
@@ -39,9 +49,12 @@ if %errorlevel% neq 0 (
 call "%VENV_DIR%\Scripts\activate"
 "%PYTHON_EXE%" -m pip install --upgrade pip
 
+:: Install wheel and setuptools
+pip install --upgrade pip wheel setuptools
+
 :: Step 4: Install Odoo Dependencies
 echo Installing Python dependencies...
-pip install -r "%ODOO_DIR%\requirements.txt"
+pip install -r "%ODOO_DIR%\odoo-demo\requirements.txt"
 if %errorlevel% neq 0 (
     echo ERROR: Failed to install Python dependencies.
     exit /b 1
@@ -71,7 +84,7 @@ echo logfile = %LOG_FILE%
 :: Step 7: Start Odoo Server
 echo Starting Odoo server...
 call "%VENV_DIR%\Scripts\activate"
-"%PYTHON_EXE%" "%ODOO_DIR%\odoo-bin" --config="%ODOO_DIR%\odoo.conf"
+"%PYTHON_EXE%" "%ODOO_DIR%\odoo-demo\odoo-bin" --config="%ODOO_DIR%\odoo.conf"
 if %errorlevel% neq 0 (
     echo ERROR: Failed to start Odoo server. Check logs for details.
     exit /b 1
