@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- GSTR-1 Report Template -->
+    <record id="gstr1_report" model="ir.actions.report">
+        <field name="name">GSTR-1</field>
+        <field name="model">gst.report</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">l10n_in_gst_reports.report_gstr1</field>
+        <field name="report_file">l10n_in_gst_reports.report_gstr1</field>
+        <field name="binding_model_id" ref="model_gst_report"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_gstr1">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2 t-esc="'GSTR-1 Report'"/>
+                        <div class="row mt32 mb32">
+                            <div class="col-3">
+                                <strong>Period:</strong>
+                                <span t-field="o.date_from"/> to <span t-field="o.date_to"/>
+                            </div>
+                            <div class="col-3">
+                                <strong>GSTIN:</strong>
+                                <span t-field="o.company_id.vat"/>
+                            </div>
+                        </div>
+
+                        <!-- Summary Section -->
+                        <h3>Summary</h3>
+                        <table class="table table-sm">
+                            <tr>
+                                <td><strong>Total Taxable Value</strong></td>
+                                <td class="text-right">
+                                    <span t-field="o.total_taxable_value"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Total IGST</strong></td>
+                                <td class="text-right">
+                                    <span t-field="o.total_igst"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Total CGST</strong></td>
+                                <td class="text-right">
+                                    <span t-field="o.total_cgst"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Total SGST</strong></td>
+                                <td class="text-right">
+                                    <span t-field="o.total_sgst"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <!-- GSTR-3B Report Template -->
+    <record id="gstr3b_report" model="ir.actions.report">
+        <field name="name">GSTR-3B</field>
+        <field name="model">gst.report</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">l10n_in_gst_reports.report_gstr3b</field>
+        <field name="report_file">l10n_in_gst_reports.report_gstr3b</field>
+        <field name="binding_model_id" ref="model_gst_report"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_gstr3b">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2 t-esc="'GSTR-3B Report'"/>
+                        <div class="row mt32 mb32">
+                            <div class="col-3">
+                                <strong>Period:</strong>
+                                <span t-field="o.date_from"/> to <span t-field="o.date_to"/>
+                            </div>
+                            <div class="col-3">
+                                <strong>GSTIN:</strong>
+                                <span t-field="o.company_id.vat"/>
+                            </div>
+                        </div>
+
+                        <!-- Summary Section -->
+                        <h3>Summary</h3>
+                        <table class="table table-sm">
+                            <tr>
+                                <td><strong>Total Taxable Value</strong></td>
+                                <td class="text-right">
+                                    <span t-field="o.total_taxable_value"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Total IGST</strong></td>
+                                <td class="text-right">
+                                    <span t-field="o.total_igst"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Total CGST</strong></td>
+                                <td class="text-right">
+                                    <span t-field="o.total_cgst"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Total SGST</strong></td>
+                                <td class="text-right">
+                                    <span t-field="o.total_sgst"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
