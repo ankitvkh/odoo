@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="l10n_in_gst_reports.GSTReportHandler">
+        <div class="o_gst_report_handler">
+            <div class="d-flex justify-content-end mb-3">
+                <button class="btn btn-primary me-2"
+                        t-on-click="validateData"
+                        t-att-disabled="props.record.data.state !== 'draft'">
+                    Validate Data
+                </button>
+                <button class="btn btn-primary me-2"
+                        t-on-click="generateReport"
+                        t-att-disabled="props.record.data.state !== 'draft'">
+                    Generate Report
+                </button>
+                <button class="btn btn-secondary"
+                        t-on-click="downloadJSON"
+                        t-att-disabled="!props.record.data.json_file">
+                    Download JSON
+                </button>
+            </div>
+            <div t-if="props.record.data.state === 'generated'"
+                 class="alert alert-info">
+                <i class="fa fa-info-circle"/> Report has been generated and is ready for download.
+            </div>
+        </div>
+    </t>
+</templates>
