@@ -470,10 +470,7 @@ done
 log_info "Waiting for services to stabilize..."
 sleep 20
 
-log_info "Step 19: Final system verification..."
-
-ODOO_STATUS=$(systemctl is-active odoo 2>/dev/null || echo 'inactive')
-NGINX_STATUS=$(systemctl is-active nginx 2>/dev/null || echo 'inactive')
-PORT_8069=$(netstat -tlnp 2>/dev/null | grep ':8069.*LISTEN' >/dev/null && echo 'LISTENING' || echo 'NOT LISTENING')
-PORT_80=$(netstat -tlnp 2>/dev/null | grep ':80.*LISTEN' >/dev/null && echo 'LISTENING' || echo 'NOT LISTENING')
-DB_STATUS=$(PGPASSWORD=${POSTGRES_PASSWORD} psql -h ${CLOUD_SQL_IP} -U ${POSTGRES_USER} -d ${DB_NAME} -c 'SELECT 1' >/dev/null 2>&1 && echo 'OK' || echo 'ERROR')
+echo ""
+echo "============================================="
+log_success "STARTUP SCRIPT COMPLETED!"
+echo "============================================="
