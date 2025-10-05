@@ -131,3 +131,4 @@ fi
 CONNECTION_NAME=$(gcloud sql instances describe ${SQL_INSTANCE_NAME} --format='get(connectionName)')
 PRIVATE_IP=$(gcloud sql instances describe ${SQL_INSTANCE_NAME} --format='get(ipAddresses[0].ipAddress)')
 
+
