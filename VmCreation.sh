@@ -104,3 +104,7 @@ log_success "VM created successfully with Cloud SQL Odoo script"
 
 VM_EXTERNAL_IP=$(gcloud compute instances describe ${VM_NAME} --zone=${ZONE} --format='get(networkInterfaces[0].accessConfigs[0].natIP)')
 
+echo ""
+echo "============================================="
+log_success "VM CREATION COMPLETED!"
+echo "============================================="
