@@ -6,7 +6,7 @@ ZONE="us-central1-a"
 MACHINE_TYPE="e2-medium"                  
 NETWORK="default"                          
 RESERVED_IP_NAME="odoo-reserved-ip"        
-STARTUP_SCRIPT="./NewOdoo.sh"
+STARTUP_SCRIPT="./Startup_Script.sh"
 
 SQL_INSTANCE_NAME="odoo-postgres"       
 
@@ -103,3 +103,4 @@ log_success "VM created successfully with Cloud SQL Odoo script"
 
 
 VM_EXTERNAL_IP=$(gcloud compute instances describe ${VM_NAME} --zone=${ZONE} --format='get(networkInterfaces[0].accessConfigs[0].natIP)')
+
