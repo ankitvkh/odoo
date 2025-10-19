@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="view_mrp_bom_form_inherit_material_indent" model="ir.ui.view">
+    <field name="name">mrp.bom.form.material.indent</field>
+    <field name="model">mrp.bom</field>
+    <field name="inherit_id" ref="mrp.view_bom_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//sheet/notebook/page[@string='General Information']" position="inside">
+        <group>
+          <field name="bom_flow_type"/>
+          <field name="project_id"/>
+          <field name="project_reference"/>
+          <field name="indent_count" widget="statinfo"/>
+        </group>
+      </xpath>
+      <xpath expr="//header" position="inside">
+        <button name="action_create_indent" type="object" string="Create Material Indent" class="oe_highlight"/>
+      </xpath>
+    </field>
+  </record>
+</odoo>
