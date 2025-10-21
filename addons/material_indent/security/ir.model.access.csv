@@ -1,3 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_material_indent_user,access_material_indent_user,model_material_indent,,1,1,1,1
-access_material_indent_line_user,access_material_indent_line_user,model_material_indent_line,,1,1,1,1
+access_material_indent_user,access.material.indent.user,model_material_indent,stock.group_stock_user,1,1,1,0
+access_material_indent_manager,access.material.indent.manager,model_material_indent,purchase.group_purchase_manager,1,1,1,1
+access_material_indent_line_user,access.material.indent.line.user,model_material_indent_line,stock.group_stock_user,1,1,1,1
+access_material_indent_line_manager,access.material.indent.line.manager,model_material_indent_line,purchase.group_purchase_manager,1,1,1,1

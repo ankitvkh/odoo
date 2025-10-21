@@ -1,21 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>
+<odoo>  
   <record id="view_mrp_bom_form_inherit_material_indent" model="ir.ui.view">
     <field name="name">mrp.bom.form.material.indent</field>
     <field name="model">mrp.bom</field>
-    <field name="inherit_id" ref="mrp.view_bom_form"/>
+    <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
     <field name="arch" type="xml">
-      <xpath expr="//sheet/notebook/page[@string='General Information']" position="inside">
-        <group>
-          <field name="bom_flow_type"/>
-          <field name="project_id"/>
-          <field name="project_reference"/>
-          <field name="indent_count" widget="statinfo"/>
+      
+      <!-- Add smart button -->
+      <xpath expr="//div[@name='button_box']" position="inside">
+        <button name="action_view_indents" 
+                type="object" 
+                class="oe_stat_button" 
+                icon="fa-list">
+          <field name="indent_count" widget="statinfo" string="Indents"/>
+        </button>
+      </xpath>
+      
+      <!-- Add flow type and project fields -->
+      <xpath expr="//group[@name='general']" position="after">
+        <group name="material_indent_info" string="Material Indent Configuration">
+          <group>
+            <field name="bom_flow_type" widget="radio"/>
+            <field name="project_id" 
+                   invisible="bom_flow_type != 'project'"
+                   required="bom_flow_type == 'project'"/>
+            <field name="project_reference" 
+                   invisible="bom_flow_type != 'project'"
+                   placeholder="e.g., PROJ-2025-001"/>
+          </group>
+          <group>
+            <label for="bom_flow_type" string="Flow Type Help"/>
+            <div invisible="bom_flow_type != 'project'">
+              <span class="text-muted">
+                Project BOM: BOM can have custom names. Indent lines will use actual inventory product names.
+              </span>
+            </div>
+            <div invisible="bom_flow_type != 'spare'">
+              <span class="text-muted">
+                Spare Parts BOM: BOM name must exactly match product name throughout the process.
+              </span>
+            </div>
+          </group>
         </group>
       </xpath>
+      
+      <!-- Add Create Indent button in header -->
       <xpath expr="//header" position="inside">
-        <button name="action_create_indent" type="object" string="Create Material Indent" class="oe_highlight"/>
+        <button name="action_create_indent" 
+                type="object" 
+                string="Create Material Indent" 
+                class="oe_highlight"
+                help="Generate a material indent from this BOM"/>
       </xpath>
+      
     </field>
   </record>
 </odoo>
