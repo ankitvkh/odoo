@@ -1,6 +1,6 @@
 {
     'name': 'Material Indent',
-    'version': '18.0.1.0.0',
+    'version': '18.0.1.2.0',
     'summary': 'Dual-flow material requisition: project & spare parts',
     'description': '''
         Material indent module that supports project-based BOMs with custom names 
@@ -24,9 +24,7 @@
         'views/mrp_bom_views.xml',
         'views/material_indent_views.xml'
     ],
-    'demo': [
-        'data/demo_data.xml'
-    ],
+    'demo': [],
     'installable': True,
     'application': False,
     'auto_install': False,

@@ -28,23 +28,18 @@ class MaterialIndent(models.Model):
         'mrp.bom', 
         string='BOM', 
         required=True,
-        readonly=True,
-        states={'draft': [('readonly', False)]},
         tracking=True
     )
     
     bom_flow_type = fields.Selection(
         related='bom_id.bom_flow_type',
         string='Flow Type',
-        store=True,
         readonly=True
     )
     
     project_id = fields.Many2one(
         'project.project', 
         string='Project',
-        readonly=True,
-        states={'draft': [('readonly', False)]},
         tracking=True
     )
     
@@ -52,9 +47,7 @@ class MaterialIndent(models.Model):
         'material.indent.line', 
         'indent_id', 
         string='Indent Lines', 
-        copy=True,
-        readonly=True,
-        states={'draft': [('readonly', False)]}
+        copy=True
     )
     
     company_id = fields.Many2one(
@@ -72,7 +65,7 @@ class MaterialIndent(models.Model):
     )
     
     purchase_count = fields.Integer(
-        string='Purchase Orders',
+        string='PO Count',
         compute='_compute_purchase_orders'
     )
 

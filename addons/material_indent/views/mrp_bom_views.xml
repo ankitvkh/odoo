@@ -17,7 +17,7 @@
       </xpath>
       
       <!-- Add flow type and project fields -->
-      <xpath expr="//group[@name='general']" position="after">
+      <xpath expr="//group[last()]" position="after">
         <group name="material_indent_info" string="Material Indent Configuration">
           <group>
             <field name="bom_flow_type" widget="radio"/>
@@ -42,15 +42,56 @@
             </div>
           </group>
         </group>
+        
+        <!-- Material Indent Lines directly in BOM -->
+        <group name="material_indent_lines" string="Material Indent Lines">
+          <field name="material_indent_line_ids" nolabel="1">
+            <list editable="bottom" decoration-info="flow_type == 'project'" decoration-warning="flow_type == 'spare'">
+              <field name="indent_reference" string="Indent Ref"/>
+              <field name="custom_description" string="BOM Description" optional="show"/>
+              <field name="product_id" string="Inventory Product" domain="[('type', 'in', ['product', 'consu'])]"/>
+              <field name="product_name" string="Inventory Name" readonly="1"/>
+              <field name="product_qty"/>
+              <field name="uom_id"/>
+              <field name="flow_type" invisible="1"/>
+              <field name="state" widget="badge"/>
+            </list>
+          </field>
+        </group>
       </xpath>
       
-      <!-- Add Create Indent button in header -->
-      <xpath expr="//header" position="inside">
-        <button name="action_create_indent" 
-                type="object" 
-                string="Create Material Indent" 
-                class="oe_highlight"
-                help="Generate a material indent from this BOM"/>
+      <!-- Add Load from BOM button -->
+      <xpath expr="//group[@name='material_indent_lines']" position="after">
+        <group>
+          <button name="action_load_bom_components" 
+                  type="object" 
+                  string="Load Components from BOM" 
+                  class="btn-primary"
+                  help="Auto-populate material indent lines from BOM components"/>
+          <button name="action_generate_purchase_orders" 
+                  type="object" 
+                  string="Generate Purchase Orders" 
+                  class="btn-success"
+                  help="Create purchase orders from approved indent lines"/>
+        </group>
+      </xpath>
+      
+      <!-- Enhance BOM lines to show custom descriptions -->
+      <xpath expr="//field[@name='bom_line_ids']//list" position="attributes">
+        <attribute name="decoration-info">parent.bom_flow_type == 'project'</attribute>
+        <attribute name="decoration-warning">parent.bom_flow_type == 'spare'</attribute>
+      </xpath>
+      
+      <!-- Add custom fields to BOM lines -->
+      <xpath expr="//field[@name='bom_line_ids']//list//field[@name='product_id']" position="after">
+        <field name="custom_product_description" 
+               string="Custom Description"
+               optional="show"
+               help="Project BOM: Custom name (mapped to inventory). Spare BOM: Must match inventory exactly"/>
+        <field name="inventory_product_id" 
+               string="Inventory Product"
+               optional="hide"
+               help="Actual inventory product this maps to"/>
       </xpath>
       
     </field>

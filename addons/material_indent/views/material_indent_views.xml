@@ -4,7 +4,7 @@
     <field name="name">material.indent.tree</field>
     <field name="model">material.indent</field>
     <field name="arch" type="xml">
-      <tree decoration-info="state == 'draft'" 
+      <list decoration-info="state == 'draft'" 
             decoration-warning="state == 'submitted'" 
             decoration-success="state == 'approved'"
             decoration-muted="state == 'cancel'">
@@ -18,7 +18,7 @@
                decoration-warning="state == 'submitted'"
                decoration-success="state == 'approved'"/>
         <field name="company_id" groups="base.group_multi_company" optional="hide"/>
-      </tree>
+      </list>
     </field>
   </record>
 
@@ -110,7 +110,7 @@
           <notebook>
             <page string="Indent Lines" name="indent_lines">
               <field name="indent_line_ids" readonly="state != 'draft'">
-                <tree editable="bottom" decoration-danger="available_qty &lt; product_qty">
+                <list editable="bottom" decoration-danger="available_qty &lt; product_qty">
                   <field name="product_id" 
                          options="{'no_create': True}"
                          domain="[('type', 'in', ['product', 'consu'])]"/>
@@ -121,19 +121,19 @@
                   <field name="uom_id" groups="uom.group_uom"/>
                   <field name="available_qty" optional="show"/>
                   <field name="vendor_id" optional="show"/>
-                </tree>
+                </list>
               </field>
             </page>
             
             <page string="Purchase Orders" name="purchase_orders" invisible="purchase_count == 0">
               <field name="purchase_order_ids" readonly="1">
-                <tree>
+                <list>
                   <field name="name"/>
                   <field name="partner_id"/>
                   <field name="date_order"/>
                   <field name="amount_total"/>
                   <field name="state"/>
-                </tree>
+                </list>
               </field>
             </page>
           </notebook>
@@ -184,7 +184,7 @@
   <record id="action_material_indent" model="ir.actions.act_window">
     <field name="name">Material Indents</field>
     <field name="res_model">material.indent</field>
-    <field name="view_mode">tree,form</field>
+    <field name="view_mode">list,form</field>
     <field name="search_view_id" ref="view_material_indent_search"/>
     <field name="context">{'search_default_draft': 1}</field>
     <field name="help" type="html">
@@ -198,21 +198,6 @@
     </field>
   </record>
 
-  <!-- Menu Items -->
-  <menuitem id="menu_material_indent_root" 
-            name="Material Indent" 
-            sequence="90"
-            web_icon="material_indent,static/description/icon.png"/>
-  
-  <menuitem id="menu_material_indent_main" 
-            parent="menu_material_indent_root" 
-            name="Indents" 
-            action="action_material_indent"
-            sequence="10"/>
-  
-  <menuitem id="menu_material_indent_config" 
-            parent="menu_material_indent_root" 
-            name="Configuration" 
-            sequence="100"/>
+  <!-- No separate menu - integrated into BOM -->
 
 </odoo>
