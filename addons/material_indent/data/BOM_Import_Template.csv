@@ -1,0 +1,5 @@
+name,bom_id,project_id,state,indent_line_ids/product_id,indent_line_ids/product_name,indent_line_ids/product_qty,indent_line_ids/uom_id
+IND/PROJ-001,Steel Assembly,Alpha Project,draft,Steel Rod,Steel Rod,10,Units
+IND/PROJ-001,Steel Assembly,Alpha Project,draft,Welding Rod,Welding Rod,2,Kg
+IND/SPARE-001,Pump Kit,,draft,Bearing,Bearing,1,Units
+IND/SPARE-002,Motor Kit,,draft,Belt,Belt,1,Units
