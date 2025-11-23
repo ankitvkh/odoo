@@ -32,9 +32,13 @@
         'base',
         'hr',
         'web',
+        'sale',
+        'purchase',
+        'stock',
     ],
     'data': [
         'security/ir.model.access.csv',
+        'security/location_record_rules.xml',
         'views/location_master_views.xml',
         'views/res_users_views.xml',
         'views/menu_views.xml',
