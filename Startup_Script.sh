@@ -4,9 +4,7 @@ ODOO_VERSION="18.0"
 PYTHON_VERSION="3"
 NODEJS_VERSION="18"
 
-PROJECT_ID="hypnotic-bounty-469316-a6"
-SQL_INSTANCE_NAME="odoo-postgres"
-REGION="us-central1"
+PROJECT_ID="verdant-algebra-475509-c6"
 DB_NAME="odoo_db"
 POSTGRES_USER="odoo_user"
 POSTGRES_PASSWORD="odoo123"
@@ -14,7 +12,7 @@ POSTGRES_PASSWORD="odoo123"
 ODOO_USER="odoo"
 WORK_DIR="/opt/odoo"
 GITHUB_REPO="https://github.com/ankitvkh/odoo.git"
-GITHUB_BRANCH="demo"
+GITHUB_BRANCH="Anish-Kumar-09-patch-1"
 
 ADMIN_EMAIL="admin"
 ADMIN_PASSWORD="admin"
@@ -110,16 +108,9 @@ else
     SERVER_NAME="$EXTERNAL_IP"
 fi
 
-log_info "Getting Cloud SQL instance IP address..."
-CLOUD_SQL_IP=$(gcloud sql instances describe ${SQL_INSTANCE_NAME} --format='get(ipAddresses[0].ipAddress)' 2>/dev/null || echo "")
-
-if [[ -z "$CLOUD_SQL_IP" ]]; then
-    log_error "Failed to get Cloud SQL instance IP address"
-    log_error "Please ensure the Cloud SQL instance '${SQL_INSTANCE_NAME}' exists and is running"
-    exit 1
-fi
-
-log_success "Cloud SQL IP: $CLOUD_SQL_IP"
+log_info "Using local PostgreSQL instance inside VM"
+DB_HOST="127.0.0.1"
+log_info "DB host set to ${DB_HOST}"
 
 
 
@@ -144,7 +135,7 @@ apt-get update && apt-get upgrade -y
 log_info "Step 3: Installing all system dependencies..."
 ALL_PACKAGES="wget curl git vim nano unzip ca-certificates gnupg software-properties-common \
 python3 python3-dev python3-pip python3-venv build-essential pkg-config \
-postgresql-client libpq-dev \
+postgresql postgresql-client libpq-dev \
 libxml2-dev libxslt1-dev libldap2-dev libsasl2-dev libssl-dev libffi-dev \
 libtiff5-dev libjpeg-dev zlib1g-dev libfreetype6-dev liblcms2-dev libwebp-dev \
 libxcb1-dev libevent-dev fontconfig xfonts-75dpi xfonts-base \
@@ -163,12 +154,39 @@ else
 fi
 
 log_success "Core system dependencies installed successfully"
+log_info "Step 4: Ensure PostgreSQL is running and DB/user exist locally"
 
-log_info "Step 4: Testing Cloud SQL connection..."
+# Start and enable PostgreSQL service
+if systemctl is-active --quiet postgresql; then
+    log_info "PostgreSQL already running"
+else
+    log_info "Starting PostgreSQL service..."
+    systemctl enable --now postgresql
+    sleep 3
+fi
+
+# Create database user if it doesn't exist
+if ! sudo -u postgres psql -tAc "SELECT 1 FROM pg_roles WHERE rolname='${POSTGRES_USER}'" | grep -q 1; then
+    log_info "Creating Postgres user ${POSTGRES_USER}..."
+    sudo -u postgres psql -c "CREATE USER ${POSTGRES_USER} WITH PASSWORD '${POSTGRES_PASSWORD}';"
+    log_success "User ${POSTGRES_USER} created"
+else
+    log_info "Postgres user ${POSTGRES_USER} already exists"
+fi
+
+# Create database if it doesn't exist
+if ! sudo -u postgres psql -tAc "SELECT 1 FROM pg_database WHERE datname='${DB_NAME}'" | grep -q 1; then
+    log_info "Creating database ${DB_NAME}..."
+    sudo -u postgres psql -c "CREATE DATABASE ${DB_NAME} OWNER ${POSTGRES_USER};"
+    log_success "Database ${DB_NAME} created"
+else
+    log_info "Database ${DB_NAME} already exists"
+fi
+
 connection_success=false
 for i in {1..10}; do
-    if PGPASSWORD=${POSTGRES_PASSWORD} psql -h ${CLOUD_SQL_IP} -U ${POSTGRES_USER} -d ${DB_NAME} -c 'SELECT version()' >/dev/null 2>&1; then
-        log_success "Cloud SQL connection successful"
+    if PGPASSWORD=${POSTGRES_PASSWORD} psql -h ${DB_HOST} -U ${POSTGRES_USER} -d ${DB_NAME} -c 'SELECT version()' >/dev/null 2>&1; then
+        log_success "Local Postgres connection successful"
         connection_success=true
         break
     else
@@ -178,10 +196,10 @@ for i in {1..10}; do
 done
 
 if [[ "$connection_success" != "true" ]]; then
-    log_error "Failed to connect to Cloud SQL after 10 attempts"
+    log_error "Failed to connect to local Postgres after 10 attempts"
     log_error "Please verify:"
-    log_error "  1. Cloud SQL instance has a public/private IP"
-    log_error "  2. Firewall rules allow connection from this VM"
+    log_error "  1. Postgres service is running"
+    log_error "  2. Local firewall (ufw) allows connections or Odoo will connect over localhost"
     log_error "  3. Database credentials are correct"
     exit 1
 fi
@@ -302,7 +320,7 @@ fi
 log_info "Step 12: Creating Odoo configuration..."
 sudo -u ${ODOO_USER} cat > ${CONFIG_FILE} << EOF
 [options]
-db_host = ${CLOUD_SQL_IP}
+db_host = ${DB_HOST}
 db_port = 5432
 db_user = ${POSTGRES_USER}
 db_password = ${POSTGRES_PASSWORD}
@@ -411,15 +429,34 @@ else
 fi
 
 log_info "Step 16: Initializing Cloud SQL database..."
-sudo -u ${ODOO_USER} ${VENV_DIR}/bin/python ${ODOO_DIR}/odoo-bin -c ${CONFIG_FILE} \
-    -d ${DB_NAME} \
-    --db-filter=${DB_NAME} \
-    -i base \
-    --stop-after-init \
-    --without-demo=all || {
-    log_error "Database initialization failed"
+
+# First verify database connection
+log_info "Verifying database connection..."
+if ! PGPASSWORD=${POSTGRES_PASSWORD} psql -h ${DB_HOST} -U ${POSTGRES_USER} -d ${DB_NAME} -c '\l' >/dev/null 2>&1; then
+    log_error "Cannot connect to database. Please check credentials and permissions"
     exit 1
-}
+fi
+
+# Check if database is already initialized
+log_info "Checking if database needs initialization..."
+if PGPASSWORD=${POSTGRES_PASSWORD} psql -h ${DB_HOST} -U ${POSTGRES_USER} -d ${DB_NAME} -c "SELECT 1 FROM ir_module_module WHERE name='base' AND state='installed'" 2>/dev/null | grep -q 1; then
+    log_info "Database already initialized, skipping initialization"
+else
+    log_info "Initializing fresh database..."
+    # Try initialization with increased timeout
+    timeout 300s sudo -u ${ODOO_USER} ${VENV_DIR}/bin/python ${ODOO_DIR}/odoo-bin -c ${CONFIG_FILE} \
+        -d ${DB_NAME} \
+        --db-filter=${DB_NAME} \
+        -i base \
+        --stop-after-init \
+        --without-demo=all \
+        --log-level=debug || {
+        log_error "Database initialization failed"
+        log_error "Checking odoo.log for details..."
+        tail -n 50 ${LOG_FILE} || true
+        exit 1
+    }
+fi
 
 log_success "Database initialized successfully"
 
@@ -470,7 +507,10 @@ done
 log_info "Waiting for services to stabilize..."
 sleep 20
 
-echo ""
-echo "============================================="
-log_success "STARTUP SCRIPT COMPLETED!"
-echo "============================================="
+log_info "Step 19: Final system verification..."
+
+ODOO_STATUS=$(systemctl is-active odoo 2>/dev/null || echo 'inactive')
+NGINX_STATUS=$(systemctl is-active nginx 2>/dev/null || echo 'inactive')
+PORT_8069=$(netstat -tlnp 2>/dev/null | grep ':8069.*LISTEN' >/dev/null && echo 'LISTENING' || echo 'NOT LISTENING')
+PORT_80=$(netstat -tlnp 2>/dev/null | grep ':80.*LISTEN' >/dev/null && echo 'LISTENING' || echo 'NOT LISTENING')
+DB_STATUS=$(PGPASSWORD=${POSTGRES_PASSWORD} psql -h ${DB_HOST} -U ${POSTGRES_USER} -d ${DB_NAME} -c 'SELECT 1' >/dev/null 2>&1 && echo 'OK' || echo 'ERROR')
