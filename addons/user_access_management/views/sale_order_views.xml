@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- Add Location field to Sale Order Form -->
+    <record id="view_order_form_location" model="ir.ui.view">
+        <field name="name">sale.order.form.location</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="location_id" options="{'no_create': True}"/>
+            </xpath>
+        </field>
+    </record>
+    
+    <!-- Add Location field to Sale Order Tree -->
+    <record id="view_quotation_tree_location" model="ir.ui.view">
+        <field name="name">sale.order.tree.location</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="location_id" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+    
+    <!-- Add Location filter to Sale Order Search -->
+    <record id="view_sales_order_filter_location" model="ir.ui.view">
+        <field name="name">sale.order.search.location</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="location_id"/>
+            </xpath>
+            <xpath expr="//group" position="inside">
+                <filter string="Location" name="group_location" 
+                        context="{'group_by': 'location_id'}"/>
+            </xpath>
+        </field>
+    </record>
+    
+</odoo>

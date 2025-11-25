@@ -22,6 +22,12 @@ class LocationMaster(models.Model):
         required=True,
         help='Full name of the location'
     )
+    complete_name = fields.Char(
+        string='Complete Name',
+        compute='_compute_complete_name',
+        store=True,
+        help='Complete name with parent hierarchy'
+    )
     parent_id = fields.Many2one(
         'location.master',
         string='Parent Location',
@@ -65,6 +71,15 @@ class LocationMaster(models.Model):
     _sql_constraints = [
         ('code_unique', 'UNIQUE(code)', 'Location code must be unique!'),
     ]
+    
+    @api.depends('name', 'parent_id.complete_name')
+    def _compute_complete_name(self):
+        """Compute complete name with parent hierarchy"""
+        for location in self:
+            if location.parent_id:
+                location.complete_name = f"{location.parent_id.complete_name} / {location.name}"
+            else:
+                location.complete_name = location.name
     
     @api.depends('user_ids')
     def _compute_user_count(self):

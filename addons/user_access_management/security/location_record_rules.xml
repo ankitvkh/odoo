@@ -30,8 +30,8 @@
             <field name="model_id" ref="stock.model_stock_move"/>
             <field name="domain_force">[
                 '|',
-                ('location_id.location_id', '=', False),
-                ('location_id.location_id', 'in', user.get_accessible_locations())
+                ('org_location_id', '=', False),
+                ('org_location_id', 'in', user.get_accessible_locations())
             ]</field>
         </record>
 
