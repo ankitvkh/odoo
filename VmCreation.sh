@@ -79,6 +79,7 @@ gcloud compute instances create ${VM_NAME} \
     --image-family=ubuntu-2204-lts \
     --image-project=ubuntu-os-cloud \
     --boot-disk-size=30GB \
+    --scopes=storage-full \
     --metadata-from-file startup-script=${STARTUP_SCRIPT}
 
 log_success "VM created successfully with Cloud SQL Odoo script"
