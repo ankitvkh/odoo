@@ -46,6 +46,9 @@
         'views/stock_location_views.xml',
         'views/menu_views.xml',
     ],
+    'demo': [
+        'data/location_master_demo.xml',
+    ],
     'installable': True,
     'application': True,
     'auto_install': False,
