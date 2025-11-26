@@ -1,0 +1,36 @@
+# Translation for Indian Invoice Customization
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+#. module: account
+#: model:ir.model.fields,field_description:account.field_account_move__amount_untaxed
+msgid "Untaxed Amount"
+msgstr "Basic Amount"
+
+#. module: account
+#: model:ir.model.fields,field_description:account.field_account_move__amount_tax
+msgid "Tax"
+msgstr "GST (18%)"
+
+#. module: account
+msgid "Taxes"
+msgstr "GST (18%)"
+
+#. module: sale
+#: model:ir.model.fields,field_description:sale.field_sale_order__amount_untaxed
+msgid "Untaxed Amount"
+msgstr "Basic Amount"
+
+#. module: sale
+#: model:ir.model.fields,field_description:sale.field_sale_order__amount_tax
+msgid "Tax"
+msgstr "GST (18%)"
+
+#. module: account
+msgid "Invoice"
+msgstr "Tax Invoice"
+
+#. module: account
+msgid "Proforma Invoice"
+msgstr "Tax Invoice"
