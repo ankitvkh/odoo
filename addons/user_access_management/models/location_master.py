@@ -88,7 +88,7 @@ class LocationMaster(models.Model):
             location.user_count = len(location.user_ids)
     
     @api.constrains('parent_id')
-    def _check_recursion(self):
+    def _check_parent_recursion(self):
         """Prevent circular parent-child relationships"""
         if not self._check_recursion():
             raise ValidationError(_('Error! You cannot create recursive location hierarchies.'))
