@@ -1,0 +1,25 @@
+Product Name,Project Name,Component Name,Quantity,Unit,Flow Type,Indent Reference,Status
+Steel Structure Assembly,Alpha Construction Project,Steel Rod 12mm,50,Units,project,IND/PROJ-ALPHA-001,draft
+Steel Structure Assembly,Alpha Construction Project,Steel Plate 10mm,20,Units,project,IND/PROJ-ALPHA-001,draft
+Steel Structure Assembly,Alpha Construction Project,Welding Rod E6013,5,Kg,project,IND/PROJ-ALPHA-001,draft
+Steel Structure Assembly,Alpha Construction Project,Primer Paint,2,Liters,project,IND/PROJ-ALPHA-001,draft
+Concrete Foundation Mix,Alpha Construction Project,Portland Cement 50kg,15,Bags,project,IND/PROJ-ALPHA-002,draft
+Concrete Foundation Mix,Alpha Construction Project,River Sand Fine,0.5,Cubic Meter,project,IND/PROJ-ALPHA-002,draft
+Concrete Foundation Mix,Alpha Construction Project,Aggregate 20mm,0.8,Cubic Meter,project,IND/PROJ-ALPHA-002,draft
+Concrete Foundation Mix,Alpha Construction Project,Water,200,Liters,project,IND/PROJ-ALPHA-002,draft
+Electrical Panel Assembly,Beta Electrical Project,Distribution Board 12-way,1,Units,project,IND/PROJ-BETA-001,draft
+Electrical Panel Assembly,Beta Electrical Project,MCB 32A Single Pole,12,Units,project,IND/PROJ-BETA-001,draft
+Electrical Panel Assembly,Beta Electrical Project,Copper Wire 4mm²,50,Meters,project,IND/PROJ-BETA-001,draft
+Electrical Panel Assembly,Beta Electrical Project,Cable Gland 20mm,8,Units,project,IND/PROJ-BETA-001,draft
+Pump Motor Assembly,,SKF Bearing 6308,2,Units,spare,IND/SPARE-PUMP-001,draft
+Pump Motor Assembly,,Mechanical Seal 40mm,1,Units,spare,IND/SPARE-PUMP-001,draft
+Pump Motor Assembly,,V-Belt B50,1,Units,spare,IND/SPARE-PUMP-001,draft
+Pump Motor Assembly,,Lithium Grease 400g,2,Units,spare,IND/SPARE-PUMP-001,draft
+Conveyor Belt System,,Conveyor Belt 1200mm,10,Meters,spare,IND/SPARE-CONV-001,draft
+Conveyor Belt System,,Belt Fastener Clips,20,Units,spare,IND/SPARE-CONV-001,draft
+Conveyor Belt System,,Roller Bearing 6205,8,Units,spare,IND/SPARE-CONV-001,draft
+Conveyor Belt System,,Drive Chain 16B-1,5,Meters,spare,IND/SPARE-CONV-001,draft
+HVAC Unit Maintenance,,Air Filter 600x300,4,Units,spare,IND/SPARE-HVAC-001,draft
+HVAC Unit Maintenance,,Fan Belt A38,2,Units,spare,IND/SPARE-HVAC-001,draft
+HVAC Unit Maintenance,,Refrigerant R410A,2,Kg,spare,IND/SPARE-HVAC-001,draft
+HVAC Unit Maintenance,,Thermostat Digital,1,Units,spare,IND/SPARE-HVAC-001,draft

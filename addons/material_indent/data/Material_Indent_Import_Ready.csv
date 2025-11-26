@@ -1,0 +1,25 @@
+name,bom_id,project_id,state,indent_line_ids/product_id,indent_line_ids/product_name,indent_line_ids/product_qty,indent_line_ids/uom_id
+IND/PROJ-ALPHA-001,Steel Structure Assembly,Alpha Construction Project,draft,Steel Rod 12mm,Steel Rod 12mm,50,Units
+IND/PROJ-ALPHA-001,Steel Structure Assembly,Alpha Construction Project,draft,Steel Plate 10mm,Steel Plate 10mm,20,Units
+IND/PROJ-ALPHA-001,Steel Structure Assembly,Alpha Construction Project,draft,Welding Rod E6013,Welding Rod E6013,5,Kg
+IND/PROJ-ALPHA-001,Steel Structure Assembly,Alpha Construction Project,draft,Primer Paint,Primer Paint,2,Liters
+IND/PROJ-ALPHA-002,Concrete Foundation Mix,Alpha Construction Project,draft,Portland Cement 50kg,Portland Cement 50kg,15,Bags
+IND/PROJ-ALPHA-002,Concrete Foundation Mix,Alpha Construction Project,draft,River Sand Fine,River Sand Fine,0.5,Cubic Meter
+IND/PROJ-ALPHA-002,Concrete Foundation Mix,Alpha Construction Project,draft,Aggregate 20mm,Aggregate 20mm,0.8,Cubic Meter
+IND/PROJ-ALPHA-002,Concrete Foundation Mix,Alpha Construction Project,draft,Water,Water,200,Liters
+IND/PROJ-BETA-001,Electrical Panel Assembly,Beta Electrical Project,draft,Distribution Board 12-way,Distribution Board 12-way,1,Units
+IND/PROJ-BETA-001,Electrical Panel Assembly,Beta Electrical Project,draft,MCB 32A Single Pole,MCB 32A Single Pole,12,Units
+IND/PROJ-BETA-001,Electrical Panel Assembly,Beta Electrical Project,draft,Copper Wire 4mm²,Copper Wire 4mm²,50,Meters
+IND/PROJ-BETA-001,Electrical Panel Assembly,Beta Electrical Project,draft,Cable Gland 20mm,Cable Gland 20mm,8,Units
+IND/SPARE-PUMP-001,Pump Motor Assembly,,draft,SKF Bearing 6308,SKF Bearing 6308,2,Units
+IND/SPARE-PUMP-001,Pump Motor Assembly,,draft,Mechanical Seal 40mm,Mechanical Seal 40mm,1,Units
+IND/SPARE-PUMP-001,Pump Motor Assembly,,draft,V-Belt B50,V-Belt B50,1,Units
+IND/SPARE-PUMP-001,Pump Motor Assembly,,draft,Lithium Grease 400g,Lithium Grease 400g,2,Units
+IND/SPARE-CONV-001,Conveyor Belt System,,draft,Conveyor Belt 1200mm,Conveyor Belt 1200mm,10,Meters
+IND/SPARE-CONV-001,Conveyor Belt System,,draft,Belt Fastener Clips,Belt Fastener Clips,20,Units
+IND/SPARE-CONV-001,Conveyor Belt System,,draft,Roller Bearing 6205,Roller Bearing 6205,8,Units
+IND/SPARE-CONV-001,Conveyor Belt System,,draft,Drive Chain 16B-1,Drive Chain 16B-1,5,Meters
+IND/SPARE-HVAC-001,HVAC Unit Maintenance,,draft,Air Filter 600x300,Air Filter 600x300,4,Units
+IND/SPARE-HVAC-001,HVAC Unit Maintenance,,draft,Fan Belt A38,Fan Belt A38,2,Units
+IND/SPARE-HVAC-001,HVAC Unit Maintenance,,draft,Refrigerant R410A,Refrigerant R410A,2,Kg
+IND/SPARE-HVAC-001,HVAC Unit Maintenance,,draft,Thermostat Digital,Thermostat Digital,1,Units

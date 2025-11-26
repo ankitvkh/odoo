@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        
+        <!-- Demo Location Master Records -->
+        <record id="location_master_hq" model="location.master">
+            <field name="code">HQ</field>
+            <field name="name">Head Office</field>
+            <field name="address">123 Main Street, New York, NY 10001</field>
+            <field name="active">True</field>
+        </record>
+        
+        <record id="location_master_mumbai" model="location.master">
+            <field name="code">MUM</field>
+            <field name="name">Mumbai Office</field>
+            <field name="parent_id" ref="location_master_hq"/>
+            <field name="address">456 Marine Drive, Mumbai, MH 400001</field>
+            <field name="active">True</field>
+        </record>
+        
+        <record id="location_master_delhi" model="location.master">
+            <field name="code">DEL</field>
+            <field name="name">Delhi Office</field>
+            <field name="parent_id" ref="location_master_hq"/>
+            <field name="address">789 Connaught Place, New Delhi, DL 110001</field>
+            <field name="active">True</field>
+        </record>
+        
+        <record id="location_master_bangalore" model="location.master">
+            <field name="code">BLR</field>
+            <field name="name">Bangalore Office</field>
+            <field name="parent_id" ref="location_master_hq"/>
+            <field name="address">321 MG Road, Bangalore, KA 560001</field>
+            <field name="active">True</field>
+        </record>
+        
+        <!-- Assign locations to demo users -->
+        <record id="base.user_demo" model="res.users">
+            <field name="location_id" ref="location_master_mumbai"/>
+        </record>
+        
+        <record id="base.user_admin" model="res.users">
+            <field name="location_id" ref="location_master_hq"/>
+        </record>
+        
+        <!-- Assign organization locations to stock locations -->
+        <record id="stock.stock_location_stock" model="stock.location">
+            <field name="org_location_id" ref="location_master_hq"/>
+        </record>
+        
+        <record id="stock.stock_location_customers" model="stock.location">
+            <field name="org_location_id" ref="location_master_hq"/>
+        </record>
+        
+        <record id="stock.stock_location_suppliers" model="stock.location">
+            <field name="org_location_id" ref="location_master_hq"/>
+        </record>
+        
+    </data>
+</odoo>
