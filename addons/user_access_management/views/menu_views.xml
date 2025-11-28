@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- Menu Items -->
+    <menuitem id="menu_location_master"
+              name="Locations"
+              parent="base.menu_users"
+              action="action_location_master"
+              sequence="10"
+              groups="base.group_system"/>
+    
+</odoo>

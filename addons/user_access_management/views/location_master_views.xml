@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- Location Master Tree View -->
+    <record id="view_location_master_tree" model="ir.ui.view">
+        <field name="name">location.master.list</field>
+        <field name="model">location.master</field>
+        <field name="arch" type="xml">
+            <list string="Locations">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="parent_id"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="user_count"/>
+                <field name="active" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+    
+    <!-- Location Master Form View -->
+    <record id="view_location_master_form" model="ir.ui.view">
+        <field name="name">location.master.form</field>
+        <field name="model">location.master</field>
+        <field name="arch" type="xml">
+            <form string="Location">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_users" type="object" 
+                                class="oe_stat_button" icon="fa-users"
+                                invisible="user_count == 0">
+                            <field name="user_count" widget="statinfo" string="Users"/>
+                        </button>
+                    </div>
+                    <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" 
+                            invisible="active"/>
+                    <group>
+                        <group>
+                            <field name="code" placeholder="e.g., MUM, DEL"/>
+                            <field name="name" placeholder="e.g., Mumbai Office"/>
+                            <field name="parent_id"/>
+                        </group>
+                        <group>
+                            <field name="company_id" groups="base.group_multi_company" 
+                                   options="{'no_create': True}"/>
+                            <field name="active" invisible="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="address" placeholder="Full address of the location"/>
+                    </group>
+                    <notebook>
+                        <page string="Child Locations" name="child_locations">
+                            <field name="child_ids">
+                                <list>
+                                    <field name="code"/>
+                                    <field name="name"/>
+                                    <field name="user_count"/>
+                                    <field name="active" widget="boolean_toggle"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Users" name="users">
+                            <field name="user_ids">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="login"/>
+                                    <field name="access_level"/>
+                                    <field name="active" widget="boolean_toggle"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <!-- Location Master Search View -->
+    <record id="view_location_master_search" model="ir.ui.view">
+        <field name="name">location.master.search</field>
+        <field name="model">location.master</field>
+        <field name="arch" type="xml">
+            <search string="Search Locations">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="parent_id"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <separator/>
+                <filter string="Active" name="active" domain="[('active', '=', True)]"/>
+                <filter string="Inactive" name="inactive" domain="[('active', '=', False)]"/>
+                <separator/>
+                <filter string="Top Level" name="top_level" domain="[('parent_id', '=', False)]"/>
+                <filter string="Has Users" name="has_users" domain="[('user_count', '>', 0)]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Parent Location" name="group_parent" 
+                            context="{'group_by': 'parent_id'}"/>
+                    <filter string="Company" name="group_company" 
+                            context="{'group_by': 'company_id'}" 
+                            groups="base.group_multi_company"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    
+    <!-- Location Master Action -->
+    <record id="action_location_master" model="ir.actions.act_window">
+        <field name="name">Locations</field>
+        <field name="res_model">location.master</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_active': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first location
+            </p>
+            <p>
+                Locations are used to organize your users and control data access.
+                Create a location hierarchy to match your organizational structure.
+            </p>
+        </field>
+    </record>
+    
+</odoo>

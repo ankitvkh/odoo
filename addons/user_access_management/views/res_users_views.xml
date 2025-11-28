@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- Extended User Form View -->
+    <record id="view_users_form_inherit" model="ir.ui.view">
+        <field name="name">res.users.form.inherit</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            
+            <!-- Add button to view accessible locations -->
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_accessible_locations" type="object" 
+                        class="oe_stat_button" icon="fa-map-marker"
+                        invisible="not location_id">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_text">Accessible</span>
+                        <span class="o_stat_text">Locations</span>
+                    </div>
+                </button>
+            </xpath>
+            
+            <!-- Add location fields after company_id -->
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field name="location_id" options="{'no_create': True, 'no_open': True}"/>
+                <field name="access_level" readonly="1"/>
+            </xpath>
+            
+            <!-- Add new notebook page for Location & Access -->
+            <xpath expr="//notebook" position="inside">
+                <page string="Location &amp; Access" name="location_access">
+                    <group>
+                        <group string="Location Assignment">
+                            <field name="location_id" options="{'no_create': True}"/>
+                            <field name="group_code" readonly="1"/>
+                            <field name="secondary_location_ids" widget="many2many_tags" 
+                                   options="{'no_create': True}"/>
+                        </group>
+                        <group string="Department Assignment">
+                            <field name="department_ids" widget="many2many_tags" 
+                                   options="{'no_create': True}"/>
+                        </group>
+                    </group>
+                    <group string="Access Level">
+                        <field name="access_level" readonly="1"/>
+                        <p class="text-muted">
+                            Access level is automatically determined based on assigned security groups.
+                        </p>
+                    </group>
+                </page>
+            </xpath>
+            
+        </field>
+    </record>
+    
+    <!-- Extended User Search View -->
+    <record id="view_users_search_inherit" model="ir.ui.view">
+        <field name="name">res.users.search.inherit</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="location_id"/>
+                <field name="group_code"/>
+            </xpath>
+            <xpath expr="//search" position="inside">
+                <filter string="Has Location" name="has_location" 
+                        domain="[('location_id', '!=', False)]"/>
+                <filter string="No Location" name="no_location" 
+                        domain="[('location_id', '=', False)]"/>
+                <filter string="Administrators" name="administrators" 
+                        domain="[('access_level', '=', 'admin')]"/>
+                <filter string="Managers" name="managers" 
+                        domain="[('access_level', '=', 'manager')]"/>
+                <filter string="Users" name="users" 
+                        domain="[('access_level', '=', 'user')]"/>
+                <filter string="Viewers" name="viewers" 
+                        domain="[('access_level', '=', 'viewer')]"/>
+                <filter string="Location" name="group_location" 
+                        context="{'group_by': 'location_id'}"/>
+                <filter string="Access Level" name="group_access_level" 
+                        context="{'group_by': 'access_level'}"/>
+            </xpath>
+        </field>
+    </record>
+    
+</odoo>

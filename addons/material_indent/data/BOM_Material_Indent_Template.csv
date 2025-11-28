@@ -1,0 +1,5 @@
+material_indent_line_ids/indent_reference,material_indent_line_ids/product_id,material_indent_line_ids/product_qty,material_indent_line_ids/state
+IND/PROJ-001,Steel Rod,10,draft
+IND/PROJ-001,Welding Rod,2,draft
+IND/SPARE-001,Bearing,1,draft
+IND/SPARE-002,Belt,1,draft

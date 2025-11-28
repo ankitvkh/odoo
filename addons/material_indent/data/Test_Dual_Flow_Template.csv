@@ -1,0 +1,5 @@
+name,code,bom_flow_type,project_id,bom_line_ids/custom_product_description,bom_line_ids/product_id,bom_line_ids/inventory_product_id,bom_line_ids/product_qty
+Steel Assembly,BOM-STEEL-001,project,Alpha Project,Custom Steel Reinforcement,Steel Rod,Steel Rod,10
+Steel Assembly,BOM-STEEL-001,project,Alpha Project,Project Welding Material,Welding Rod,Welding Rod,2
+Pump Kit,BOM-PUMP-001,spare,,SKF Bearing 6308,SKF Bearing 6308,SKF Bearing 6308,1
+Motor Kit,BOM-MOTOR-001,spare,,V-Belt A50,V-Belt A50,V-Belt A50,1
