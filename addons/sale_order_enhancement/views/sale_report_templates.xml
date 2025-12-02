@@ -28,7 +28,7 @@
         <!-- Body: Unit Price -->
         <xpath expr="//td[@name='td_priceunit']" position="replace">
             <td name="td_priceunit" class="text-end text-nowrap">
-                <span t-if="doc.offer_type == 'technical'">Quoted Price</span>
+                <span t-if="doc.offer_type == 'technical'">Quoted</span>
                 <span t-else="" t-field="line.price_unit"/>
             </td>
         </xpath>
@@ -36,7 +36,7 @@
         <!-- Body: Taxes -->
         <xpath expr="//td[@name='td_taxes']" position="replace">
             <td name="td_taxes" class="text-end">
-                <span t-if="doc.offer_type == 'technical'">Quoted Price</span>
+                <span t-if="doc.offer_type == 'technical'">Quoted</span>
                 <span t-else="" t-out="', '.join([(tax.invoice_label or tax.name) for tax in line.tax_id])"/>
             </td>
         </xpath>
@@ -44,12 +44,37 @@
         <!-- Body: Subtotal -->
         <xpath expr="//td[@name='td_subtotal']" position="replace">
             <td name="td_subtotal" class="text-end o_price_total">
-                <span t-if="doc.offer_type == 'technical'">Quoted Price</span>
+                <span t-if="doc.offer_type == 'technical'">Quoted</span>
                 <span t-else="" t-field="line.price_subtotal"/>
             </td>
         </xpath>
         
-        <!-- Section Subtotal -->
+        <!-- Add Serial Number header as first column -->
+        <xpath expr="//th[@name='th_description']" position="before">
+            <th name="th_serial" class="text-center" style="width: 5%;">Sr. No.</th>
+        </xpath>
+        
+        <!-- Add Serial Number cell for product lines -->
+        <xpath expr="//td[@name='td_name']" position="before">
+            <td name="td_serial" class="text-center">
+                <span t-out="line_index + 1"/>
+            </td>
+        </xpath>
+        
+        <!-- Adjust section line colspan to account for new column -->
+        <xpath expr="//td[@name='td_section_line']" position="attributes">
+            <attribute name="colspan">100</attribute>
+        </xpath>
+        
+        <!-- Adjust note line colspan to account for new column -->
+        <xpath expr="//td[@name='td_note_line']" position="attributes">
+            <attribute name="colspan">100</attribute>
+        </xpath>
+        
+        <!-- Adjust section subtotal colspan to account for new column -->
+        <xpath expr="//td[@name='td_section_subtotal']" position="attributes">
+            <attribute name="colspan">100</attribute>
+        </xpath>
         <xpath expr="//td[@name='td_section_subtotal']/span" position="replace">
              <span t-if="doc.offer_type == 'technical'">Quoted Price</span>
              <span t-else="" t-out="current_subtotal" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
@@ -65,7 +90,7 @@
                                 <tr class="border-black o_total">
                                     <td><strong>Total</strong></td>
                                     <td class="text-end">
-                                        <span class="text-nowrap">Quoted Price</span>
+                                        <span class="text-nowrap">Quoted</span>
                                     </td>
                                 </tr>
                             </table>

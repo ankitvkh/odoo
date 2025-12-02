@@ -22,6 +22,11 @@
                 }</attribute>
             </xpath>
 
+            <!-- Add Serial Number column as first column in order_line -->
+            <xpath expr="//field[@name='order_line']/list//field[@name='sequence']" position="after">
+                <field name="serial_no" string="Sr. No." readonly="1"/>
+            </xpath>
+
             <!-- Replace fields in the inline tree view of order_line -->
             <xpath expr="//field[@name='order_line']/list//field[@name='price_unit']" position="replace">
                 <field name="offer_type" column_invisible="True"/>

@@ -83,9 +83,9 @@ class SaleOrder(models.Model):
         """
         for order in self:
             if order.offer_type == 'technical':
-                order.amount_untaxed_display = 'Quoted Price'
-                order.amount_tax_display = 'Quoted Price'
-                order.amount_total_display = 'Quoted Price'
+                order.amount_untaxed_display = 'Quoted'
+                order.amount_tax_display = 'Quoted'
+                order.amount_total_display = 'Quoted'
             else:
                 # Format amounts with currency
                 currency = order.currency_id or order.company_id.currency_id
@@ -236,6 +236,29 @@ class SaleOrderLine(models.Model):
         readonly=True
     )
     
+    serial_no = fields.Integer(
+        string='Sr. No.',
+        compute='_compute_serial_no',
+        store=False
+    )
+    
+    @api.depends('order_id', 'order_id.order_line')
+    def _compute_serial_no(self):
+        for line in self:
+            if line.order_id:
+                # Get all lines in the order, sorted by sequence
+                lines = line.order_id.order_line.sorted('sequence')
+                # Calculate serial number based on position in the list
+                serial = 1
+                for idx, order_line in enumerate(lines, start=1):
+                    if order_line == line:
+                        serial = idx
+                        break
+                line.serial_no = serial
+            else:
+                line.serial_no = 0
+
+    
     @api.depends('order_id.offer_type')
     def _compute_offer_type(self):
         for line in self:
@@ -275,10 +298,10 @@ class SaleOrderLine(models.Model):
         """
         for line in self:
             if line.offer_type == 'technical':
-                line.price_unit_display = 'Quoted Price'
-                line.price_subtotal_display = 'Quoted Price'
-                line.price_tax_display = 'Quoted Price'
-                line.price_total_display = 'Quoted Price'
+                line.price_unit_display = 'Quoted'
+                line.price_subtotal_display = 'Quoted'
+                line.price_tax_display = 'Quoted'
+                line.price_total_display = 'Quoted'
             else:
                 # Format amounts with currency
                 currency = line.currency_id or line.company_id.currency_id
@@ -341,10 +364,10 @@ class SaleOrderOption(models.Model):
         """
         for line in self:
             if line.offer_type == 'technical':
-                line.price_unit_display = 'Quoted Price'
-                line.price_subtotal_display = 'Quoted Price'
-                line.price_tax_display = 'Quoted Price'
-                line.price_total_display = 'Quoted Price'
+                line.price_unit_display = 'Quoted'
+                line.price_subtotal_display = 'Quoted'
+                line.price_tax_display = 'Quoted'
+                line.price_total_display = 'Quoted'
             else:
                 # Format amounts with currency
                 # sale.order.option doesn't have currency_id, use order_id's currency
