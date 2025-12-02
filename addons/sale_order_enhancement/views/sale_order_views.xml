@@ -50,13 +50,72 @@
                 <attribute name="context">{
                     'default_order_id': id,
                     'default_offer_type': offer_type,
+                    'tree_view_ref': 'sale_order_enhancement.view_sale_order_option_tree_enhanced',
                 }</attribute>
             </xpath>
             
-            <!-- Replace fields in the inline tree view of sale_order_option_ids -->
-            <xpath expr="//field[@name='sale_order_option_ids']/list//field[@name='price_unit']" position="replace">
-                <field name="offer_type" column_invisible="True"/>
-                <field name="price_unit_display" string="Unit Price"/>
+            <xpath expr="//field[@name='sale_order_option_ids']" position="inside">
+                <list string="Optional Products" editable="bottom"
+                      decoration-bf="display_type == 'line_section'"
+                      decoration-info="display_type == 'line_note'">
+                    <control>
+                        <create string="Add a product"/>
+                        <create string="Add a section" context="{'default_display_type': 'line_section'}"/>
+                        <create string="Add a note" context="{'default_display_type': 'line_note'}"/>
+                    </control>
+                    
+                    <field name="display_type" column_invisible="True"/>
+                    <field name="sequence" widget="handle"/>
+                    <field name="serial_no" string="Sr. No." readonly="1" invisible="display_type in ('line_section', 'line_note')"/>
+                    
+                    <!-- Section/Note display -->
+                    <field name="name" widget="section_and_note_text" optional="show"/>
+                    
+                    <!-- Product fields -->
+                    <field name="product_id" 
+                           optional="show"
+                           invisible="display_type in ('line_section', 'line_note')"
+                           required="not display_type"
+                           context="{'partner_id': parent.partner_id, 'quantity': quantity, 'pricelist': parent.pricelist_id, 'company_id': parent.company_id, 'uom': uom_id}"
+                           readonly="0"
+                           domain="[('sale_ok', '=', True)]"/>
+                    
+                    <field name="quantity" 
+                           optional="show"
+                           context="{'partner_id': parent.partner_id, 'quantity': quantity, 'pricelist': parent.pricelist_id, 'uom': uom_id, 'company_id': parent.company_id}"
+                           readonly="0"
+                           invisible="display_type in ('line_section', 'line_note')"/>
+                    
+                    <field name="uom_id" 
+                           optional="show"
+                           invisible="display_type in ('line_section', 'line_note')"
+                           readonly="0"
+                           groups="uom.group_uom"/>
+                    
+                    <!-- Invisible offer_type for compute dependency -->
+                    <field name="offer_type" column_invisible="True"/>
+                    
+                    <field name="price_unit_display" string="Unit Price" invisible="display_type in ('line_section', 'line_note')"/>
+                    
+                    <field name="tax_id" 
+                           widget="many2many_tags" 
+                           optional="show"
+                           invisible="display_type in ('line_section', 'line_note')"
+                           readonly="0"
+                           context="{'active_test': True}"
+                           domain="[('type_tax_use', '=', 'sale'), ('company_id', '=', parent.company_id)]"/>
+                    
+                    <field name="discount" 
+                           optional="show"
+                           invisible="display_type in ('line_section', 'line_note')"
+                           readonly="0"/>
+                    
+                    <field name="price_subtotal_display" string="Subtotal" invisible="display_type in ('line_section', 'line_note')"/>
+                    
+                    <field name="price_tax_display" string="Taxes" invisible="display_type in ('line_section', 'line_note')"/>
+                    
+                    <field name="price_total_display" string="Total" invisible="display_type in ('line_section', 'line_note')"/>
+                </list>
             </xpath>
             
             <!-- Add totals summary below Order Lines -->
@@ -152,8 +211,7 @@
                 <field name="discount" 
                        optional="show"
                        invisible="display_type in ('line_section', 'line_note')"
-                       readonly="state in ('sale', 'done', 'cancel')"
-                       groups="product.group_discount_per_so_line"/>
+                       readonly="state in ('sale', 'done', 'cancel')"/>
                 
                 <field name="price_subtotal_display" string="Subtotal"/>
                 
@@ -182,6 +240,7 @@
                 
                 <field name="display_type" column_invisible="True"/>
                 <field name="sequence" widget="handle"/>
+                <field name="serial_no" string="Sr. No." readonly="1"/>
                 
                 <!-- Section/Note display -->
                 <field name="name" widget="section_and_note_text" optional="show"/>
@@ -223,8 +282,7 @@
                 <field name="discount" 
                        optional="show"
                        invisible="display_type in ('line_section', 'line_note')"
-                       readonly="0"
-                       groups="product.group_discount_per_so_line"/>
+                       readonly="0"/>
                 
                 <field name="price_subtotal_display" string="Subtotal"/>
                 

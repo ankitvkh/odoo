@@ -325,6 +325,79 @@ class SaleOrderOption(models.Model):
         readonly=True
     )
     
+    serial_no = fields.Integer(
+        string='Sr. No.',
+        compute='_compute_serial_no',
+        store=False
+    )
+    
+    display_type = fields.Selection([
+        ('line_section', "Section"),
+        ('line_note', "Note")], default=False, help="Technical field for UX purpose.")
+
+    price_subtotal = fields.Monetary(compute='_compute_amount', string='Subtotal', readonly=True, store=True)
+    price_tax = fields.Float(compute='_compute_amount', string='Total Tax', readonly=True, store=True)
+    price_total = fields.Monetary(compute='_compute_amount', string='Total', readonly=True, store=True)
+    currency_id = fields.Many2one(related='order_id.currency_id', depends=['order_id.currency_id'], store=True, string='Currency')
+
+    @api.depends('order_id', 'order_id.sale_order_option_ids')
+    def _compute_serial_no(self):
+        for line in self:
+            if line.order_id:
+                # Get all option lines in the order, sorted by sequence
+                lines = line.order_id.sale_order_option_ids.sorted('sequence')
+                # Calculate serial number based on position in the list
+                serial = 1
+                for idx, option_line in enumerate(lines, start=1):
+                    if option_line == line:
+                        serial = idx
+                        break
+                line.serial_no = serial
+            else:
+                line.serial_no = 0
+
+    @api.depends('quantity', 'discount', 'price_unit', 'tax_id')
+    def _compute_amount(self):
+        """
+        Compute the amounts of the SO option line.
+        """
+        for line in self:
+            tax_results = line.tax_id.compute_all(
+                line.price_unit,
+                line.order_id.currency_id,
+                line.quantity,
+                line.product_id,
+                line.order_id.partner_id
+            )
+            amount_untaxed = tax_results['total_excluded']
+            amount_tax = tax_results['total_included'] - amount_untaxed
+
+            line.update({
+                'price_subtotal': amount_untaxed,
+                'price_tax': amount_tax,
+                'price_total': tax_results['total_included'],
+            })
+
+    def _convert_to_tax_base_line_dict(self):
+        """ Convert the current record to a dictionary in order to use the generic taxes computation method
+        defined on account.tax.
+
+        :return: A python dictionary.
+        """
+        self.ensure_one()
+        return self.env['account.tax']._convert_to_tax_base_line_dict(
+            self,
+            partner=self.order_id.partner_id,
+            currency=self.order_id.currency_id,
+            product=self.product_id,
+            taxes=self.tax_id,
+            price_unit=self.price_unit,
+            quantity=self.quantity,
+            discount=self.discount,
+            price_subtotal=self.price_subtotal,
+        )
+
+    
     @api.depends('order_id.offer_type')
     def _compute_offer_type(self):
         for line in self:
@@ -371,18 +444,13 @@ class SaleOrderOption(models.Model):
             else:
                 # Format amounts with currency
                 # sale.order.option doesn't have currency_id, use order_id's currency
-                currency = line.order_id.currency_id or line.order_id.company_id.currency_id
+                currency = line.currency_id or line.company_id.currency_id
                 line.price_unit_display = f"{currency.symbol} {line.price_unit:,.2f}"
-                # Note: sale.order.option doesn't have price_subtotal/price_tax/price_total stored fields in standard Odoo
-                # But they might be computed. Let's check if they exist or compute them.
-                # Standard Odoo sale.order.option has price_unit. 
-                # Our view shows price_subtotal, price_tax, price_total, so they must exist or be added by us.
-                # Assuming they exist based on previous view edits.
                 
-                # Safe access with fallback
-                subtotal = getattr(line, 'price_subtotal', 0.0)
-                tax = getattr(line, 'price_tax', 0.0)
-                total = getattr(line, 'price_total', 0.0)
+                # Use the new computed fields
+                subtotal = line.price_subtotal
+                tax = line.price_tax
+                total = line.price_total
                 
                 line.price_subtotal_display = f"{currency.symbol} {subtotal:,.2f}"
                 line.price_tax_display = f"{currency.symbol} {tax:,.2f}"
