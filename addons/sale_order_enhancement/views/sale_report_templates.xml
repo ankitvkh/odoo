@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_saleorder_document_enhanced" inherit_id="sale.report_saleorder_document">
+        <!-- Header: Unit Price -->
+        <xpath expr="//th[@name='th_priceunit']" position="replace">
+            <th name="th_priceunit" class="text-end text-nowrap">
+                <span t-if="doc.offer_type == 'technical'">Unit Price</span>
+                <span t-else="">Unit Price</span>
+            </th>
+        </xpath>
+        
+        <!-- Header: Taxes -->
+        <xpath expr="//th[@name='th_taxes']" position="replace">
+            <th name="th_taxes" class="text-end">
+                <span t-if="doc.offer_type == 'technical'">Taxes</span>
+                <span t-else="">Taxes</span>
+            </th>
+        </xpath>
+
+        <!-- Header: Amount -->
+        <xpath expr="//th[@name='th_subtotal']" position="replace">
+            <th name="th_subtotal" class="text-end">
+                <span t-if="doc.offer_type == 'technical'">Amount</span>
+                <span t-else="">Amount</span>
+            </th>
+        </xpath>
+
+        <!-- Body: Unit Price -->
+        <xpath expr="//td[@name='td_priceunit']" position="replace">
+            <td name="td_priceunit" class="text-end text-nowrap">
+                <span t-if="doc.offer_type == 'technical'">Quoted Price</span>
+                <span t-else="" t-field="line.price_unit"/>
+            </td>
+        </xpath>
+
+        <!-- Body: Taxes -->
+        <xpath expr="//td[@name='td_taxes']" position="replace">
+            <td name="td_taxes" class="text-end">
+                <span t-if="doc.offer_type == 'technical'">Quoted Price</span>
+                <span t-else="" t-out="', '.join([(tax.invoice_label or tax.name) for tax in line.tax_id])"/>
+            </td>
+        </xpath>
+
+        <!-- Body: Subtotal -->
+        <xpath expr="//td[@name='td_subtotal']" position="replace">
+            <td name="td_subtotal" class="text-end o_price_total">
+                <span t-if="doc.offer_type == 'technical'">Quoted Price</span>
+                <span t-else="" t-field="line.price_subtotal"/>
+            </td>
+        </xpath>
+        
+        <!-- Section Subtotal -->
+        <xpath expr="//td[@name='td_section_subtotal']/span" position="replace">
+             <span t-if="doc.offer_type == 'technical'">Quoted Price</span>
+             <span t-else="" t-out="current_subtotal" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+        </xpath>
+
+        <!-- Totals Summary -->
+        <xpath expr="//div[@name='so_total_summary']" position="replace">
+            <div class="clearfix" name="so_total_summary">
+                <div id="total" class="row mt-n3" name="total">
+                    <div t-attf-class="#{'col-6' if report_type != 'html' else 'col-sm-7 col-md-6'} ms-auto">
+                        <t t-if="doc.offer_type == 'technical'">
+                            <table class="table table-sm table-borderless">
+                                <tr class="border-black o_total">
+                                    <td><strong>Total</strong></td>
+                                    <td class="text-end">
+                                        <span class="text-nowrap">Quoted Price</span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </t>
+                        <t t-else="">
+                            <table class="o_total_table table table-borderless">
+                                <t t-call="sale.document_tax_totals">
+                                    <t t-set="tax_totals" t-value="doc.tax_totals"/>
+                                    <t t-set="currency" t-value="doc.currency_id"/>
+                                </t>
+                            </table>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>

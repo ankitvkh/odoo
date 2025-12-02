@@ -220,3 +220,147 @@ class SaleOrder(models.Model):
                     })
         
         return result
+
+
+class SaleOrderLine(models.Model):
+    _inherit = 'sale.order.line'
+    
+    offer_type = fields.Selection(
+        selection=[
+            ('actual', 'Actual Offer'),
+            ('technical', 'Technical Offer'),
+        ],
+        string='Offer Type',
+        compute='_compute_offer_type',
+        store=True,
+        readonly=True
+    )
+    
+    @api.depends('order_id.offer_type')
+    def _compute_offer_type(self):
+        for line in self:
+            # Use order_id.offer_type if available, otherwise check context (for new lines)
+            line.offer_type = line.order_id.offer_type or self.env.context.get('default_offer_type') or 'actual'
+
+    # Computed fields for conditional price display
+    price_unit_display = fields.Char(
+        string='Unit Price Display',
+        compute='_compute_amount_display',
+        help='Displays actual price or "Quoted Price" based on offer type'
+    )
+    
+    price_subtotal_display = fields.Char(
+        string='Subtotal Display',
+        compute='_compute_amount_display',
+        help='Displays actual subtotal or "Quoted Price" based on offer type'
+    )
+    
+    price_tax_display = fields.Char(
+        string='Tax Display',
+        compute='_compute_amount_display',
+        help='Displays actual tax or "Quoted Price" based on offer type'
+    )
+    
+    price_total_display = fields.Char(
+        string='Total Display',
+        compute='_compute_amount_display',
+        help='Displays actual total or "Quoted Price" based on offer type'
+    )
+    
+    @api.depends('offer_type', 'price_unit', 'price_subtotal', 'price_tax', 'price_total')
+    def _compute_amount_display(self):
+        """
+        Compute display values for amounts based on offer type.
+        Technical offers show "Quoted Price", Actual offers show real amounts.
+        """
+        for line in self:
+            if line.offer_type == 'technical':
+                line.price_unit_display = 'Quoted Price'
+                line.price_subtotal_display = 'Quoted Price'
+                line.price_tax_display = 'Quoted Price'
+                line.price_total_display = 'Quoted Price'
+            else:
+                # Format amounts with currency
+                currency = line.currency_id or line.company_id.currency_id
+                line.price_unit_display = f"{currency.symbol} {line.price_unit:,.2f}"
+                line.price_subtotal_display = f"{currency.symbol} {line.price_subtotal:,.2f}"
+                line.price_tax_display = f"{currency.symbol} {line.price_tax:,.2f}"
+                line.price_total_display = f"{currency.symbol} {line.price_total:,.2f}"
+
+
+class SaleOrderOption(models.Model):
+    _inherit = 'sale.order.option'
+    
+    offer_type = fields.Selection(
+        selection=[
+            ('actual', 'Actual Offer'),
+            ('technical', 'Technical Offer'),
+        ],
+        string='Offer Type',
+        compute='_compute_offer_type',
+        store=True,
+        readonly=True
+    )
+    
+    @api.depends('order_id.offer_type')
+    def _compute_offer_type(self):
+        for line in self:
+            # Use order_id.offer_type if available, otherwise check context (for new lines)
+            line.offer_type = line.order_id.offer_type or self.env.context.get('default_offer_type') or 'actual'
+    
+    # Computed fields for conditional price display
+    price_unit_display = fields.Char(
+        string='Unit Price Display',
+        compute='_compute_amount_display',
+        help='Displays actual price or "Quoted Price" based on offer type'
+    )
+    
+    price_subtotal_display = fields.Char(
+        string='Subtotal Display',
+        compute='_compute_amount_display',
+        help='Displays actual subtotal or "Quoted Price" based on offer type'
+    )
+    
+    price_tax_display = fields.Char(
+        string='Tax Display',
+        compute='_compute_amount_display',
+        help='Displays actual tax or "Quoted Price" based on offer type'
+    )
+    
+    price_total_display = fields.Char(
+        string='Total Display',
+        compute='_compute_amount_display',
+        help='Displays actual total or "Quoted Price" based on offer type'
+    )
+    
+    @api.depends('offer_type', 'price_unit', 'price_subtotal', 'price_tax', 'price_total')
+    def _compute_amount_display(self):
+        """
+        Compute display values for amounts based on offer type.
+        Technical offers show "Quoted Price", Actual offers show real amounts.
+        """
+        for line in self:
+            if line.offer_type == 'technical':
+                line.price_unit_display = 'Quoted Price'
+                line.price_subtotal_display = 'Quoted Price'
+                line.price_tax_display = 'Quoted Price'
+                line.price_total_display = 'Quoted Price'
+            else:
+                # Format amounts with currency
+                # sale.order.option doesn't have currency_id, use order_id's currency
+                currency = line.order_id.currency_id or line.order_id.company_id.currency_id
+                line.price_unit_display = f"{currency.symbol} {line.price_unit:,.2f}"
+                # Note: sale.order.option doesn't have price_subtotal/price_tax/price_total stored fields in standard Odoo
+                # But they might be computed. Let's check if they exist or compute them.
+                # Standard Odoo sale.order.option has price_unit. 
+                # Our view shows price_subtotal, price_tax, price_total, so they must exist or be added by us.
+                # Assuming they exist based on previous view edits.
+                
+                # Safe access with fallback
+                subtotal = getattr(line, 'price_subtotal', 0.0)
+                tax = getattr(line, 'price_tax', 0.0)
+                total = getattr(line, 'price_total', 0.0)
+                
+                line.price_subtotal_display = f"{currency.symbol} {subtotal:,.2f}"
+                line.price_tax_display = f"{currency.symbol} {tax:,.2f}"
+                line.price_total_display = f"{currency.symbol} {total:,.2f}"

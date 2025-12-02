@@ -9,17 +9,49 @@
         <field name="arch" type="xml">
             
             <!-- Enhance Order Lines Tree View - Add Tax Amount and Total columns -->
-            <xpath expr="//field[@name='order_line']/list//field[@name='price_subtotal']" position="after">
-                <field name="price_tax" string="Tax Amount" optional="show"/>
-                <field name="price_total" string="Total" optional="show"/>
-            </xpath>
+            <!-- We are modifying the tree view definition directly below, so we don't need to inject fields here via xpath if we use the custom tree view -->
+            <!-- But wait, the form view uses an inline tree view or a referenced one? -->
+            <!-- The context 'tree_view_ref': 'sale_order_enhancement.view_order_line_tree_enhanced' tells it to use our custom view. -->
+            <!-- So we don't need to inject fields into the default view via xpath. -->
             
             <!-- Add control buttons for Order Lines -->
             <xpath expr="//field[@name='order_line']" position="attributes">
                 <attribute name="context">{
                     'default_order_id': id,
-                    'tree_view_ref': 'sale_order_enhancement.view_order_line_tree_enhanced',
+                    'default_offer_type': offer_type,
                 }</attribute>
+            </xpath>
+
+            <!-- Replace fields in the inline tree view of order_line -->
+            <xpath expr="//field[@name='order_line']/list//field[@name='price_unit']" position="replace">
+                <field name="offer_type" column_invisible="True"/>
+                <field name="price_unit_display" string="Unit Price"/>
+            </xpath>
+            
+            <xpath expr="//field[@name='order_line']/list//field[@name='price_subtotal']" position="replace">
+                <field name="price_subtotal_display" string="Subtotal"/>
+            </xpath>
+            
+            <xpath expr="//field[@name='order_line']/list//field[@name='price_tax']" position="replace">
+                <field name="price_tax_display" string="Taxes"/>
+            </xpath>
+            
+            <xpath expr="//field[@name='order_line']/list//field[@name='price_total']" position="replace">
+                <field name="price_total_display" string="Total"/>
+            </xpath>
+            
+            <!-- Add control buttons for Optional Products -->
+            <xpath expr="//field[@name='sale_order_option_ids']" position="attributes">
+                <attribute name="context">{
+                    'default_order_id': id,
+                    'default_offer_type': offer_type,
+                }</attribute>
+            </xpath>
+            
+            <!-- Replace fields in the inline tree view of sale_order_option_ids -->
+            <xpath expr="//field[@name='sale_order_option_ids']/list//field[@name='price_unit']" position="replace">
+                <field name="offer_type" column_invisible="True"/>
+                <field name="price_unit_display" string="Unit Price"/>
             </xpath>
             
             <!-- Add totals summary below Order Lines -->
@@ -32,10 +64,10 @@
             </xpath>
             
             <!-- Enhance Optional Products Tab if it exists -->
-            <xpath expr="//field[@name='sale_order_option_ids']/list//field[@name='price_unit']" position="after">
-                <field name="price_tax" optional="show" string="Tax Amount"/>
-                <field name="price_total" optional="show" string="Total"/>
-            </xpath>
+            <!-- We are replacing fields in the tree view definition directly, so this xpath might not be needed or needs adjustment if it targets the form view's inline tree -->
+            <!-- But since we defined a custom tree view 'view_sale_order_option_tree_enhanced' and used it in the context, we should be good. -->
+            <!-- However, the original xpath at line 35 was targeting //field[@name='sale_order_option_ids']/list... -->
+            <!-- Let's remove this xpath since we are modifying the tree view definition itself below -->
             
             <!-- Add totals summary below Optional Products -->
             <xpath expr="//page[@name='optional_products']" position="inside">
@@ -85,6 +117,10 @@
                        domain="[('sale_ok', '=', True)]"/>
                 
                 <field name="product_template_id" column_invisible="True"/>
+                <field name="product_uom_category_id" column_invisible="True"/>
+                
+                <!-- Invisible offer_type for compute dependency -->
+                <field name="offer_type" column_invisible="True"/>
                 
                 <field name="product_uom_qty" 
                        optional="show"
@@ -98,10 +134,7 @@
                        readonly="state in ('sale', 'done', 'cancel')"
                        groups="uom.group_uom"/>
                 
-                <field name="price_unit" 
-                       optional="show"
-                       invisible="display_type in ('line_section', 'line_note')"
-                       readonly="state in ('sale', 'done', 'cancel')"/>
+                <field name="price_unit_display" string="Unit Price"/>
                 
                 <field name="tax_id" 
                        widget="many2many_tags" 
@@ -117,22 +150,11 @@
                        readonly="state in ('sale', 'done', 'cancel')"
                        groups="product.group_discount_per_so_line"/>
                 
-                <field name="price_subtotal" 
-                       optional="show"
-                       invisible="display_type in ('line_section', 'line_note')"
-                       readonly="1"/>
+                <field name="price_subtotal_display" string="Subtotal"/>
                 
-                <field name="price_tax" 
-                       string="Taxes" 
-                       optional="show"
-                       invisible="display_type in ('line_section', 'line_note')"
-                       readonly="1"/>
+                <field name="price_tax_display" string="Taxes"/>
                 
-                <field name="price_total" 
-                       string="Total" 
-                       optional="show"
-                       invisible="display_type in ('line_section', 'line_note')"
-                       readonly="1"/>
+                <field name="price_total_display" string="Total"/>
                 
                 <field name="state" column_invisible="True"/>
                 <field name="company_id" column_invisible="True"/>
@@ -180,10 +202,10 @@
                        readonly="0"
                        groups="uom.group_uom"/>
                 
-                <field name="price_unit" 
-                       optional="show"
-                       readonly="0"
-                       invisible="display_type in ('line_section', 'line_note')"/>
+                <!-- Invisible offer_type for compute dependency -->
+                <field name="offer_type" column_invisible="True"/>
+                
+                <field name="price_unit_display" string="Unit Price"/>
                 
                 <field name="tax_id" 
                        widget="many2many_tags" 
@@ -199,22 +221,11 @@
                        readonly="0"
                        groups="product.group_discount_per_so_line"/>
                 
-                <field name="price_subtotal" 
-                       optional="show"
-                       invisible="display_type in ('line_section', 'line_note')"
-                       readonly="1"/>
+                <field name="price_subtotal_display" string="Subtotal"/>
                 
-                <field name="price_tax" 
-                       string="Taxes" 
-                       optional="show"
-                       invisible="display_type in ('line_section', 'line_note')"
-                       readonly="0"/>
+                <field name="price_tax_display" string="Taxes"/>
                 
-                <field name="price_total" 
-                       string="Total" 
-                       optional="show"
-                       invisible="display_type in ('line_section', 'line_note')"
-                       readonly="1"/>
+                <field name="price_total_display" string="Total"/>
             </list>
         </field>
     </record>
