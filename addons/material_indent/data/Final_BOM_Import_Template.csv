@@ -1,5 +1,0 @@
-bom_flow_type,project_id,material_indent_line_ids/indent_reference,material_indent_line_ids/product_id,material_indent_line_ids/product_qty,material_indent_line_ids/state
-project,Alpha Project,IND/PROJ-001,Steel Rod,10,draft
-project,Alpha Project,IND/PROJ-001,Welding Rod,2,draft
-spare,,IND/SPARE-001,Bearing,1,draft
-spare,,IND/SPARE-002,Belt,1,draft

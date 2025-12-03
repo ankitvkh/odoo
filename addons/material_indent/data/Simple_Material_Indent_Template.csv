@@ -1,8 +1,0 @@
-Indent Reference,BOM Code,Project Code,Status,Product Code,Product Description,Quantity,Unit,Remarks
-IND/2025/001,BOM-CONST-001,PROJ-ALPHA,draft,STEEL-ROD-12,Steel Reinforcement Rod 12mm,50,Units,High tensile strength
-IND/2025/001,BOM-CONST-001,PROJ-ALPHA,draft,CEMENT-OPC-50,Ordinary Portland Cement 50kg,20,Bags,Grade 53
-IND/2025/001,BOM-CONST-001,PROJ-ALPHA,draft,SAND-RIVER-FINE,Fine River Sand,3,Cubic Meter,Washed and graded
-IND/2025/002,BOM-ELEC-001,PROJ-BETA,draft,WIRE-CU-2.5,Copper Wire 2.5mm² Single Core,200,Meter,IS 694 Standard
-IND/2025/002,BOM-ELEC-001,PROJ-BETA,draft,CONDUIT-PVC-25,PVC Conduit Pipe 25mm,30,Meter,Heavy duty grade
-IND/2025/003,BOM-SPARE-PUMP,MAINT-001,draft,BEARING-6308,Deep Groove Ball Bearing 6308,2,Units,SKF or equivalent
-IND/2025/003,BOM-SPARE-PUMP,MAINT-001,draft,SEAL-MECH-40,Mechanical Seal 40mm,1,Units,Carbon-Ceramic-NBR

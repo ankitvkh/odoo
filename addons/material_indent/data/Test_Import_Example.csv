@@ -1,8 +1,0 @@
-name,bom_id,project_id,state,indent_line_ids/product_id,indent_line_ids/product_name,indent_line_ids/product_qty,indent_line_ids/uom_id
-IND/TEST-PROJ-001,Construction Assembly,Test Project Alpha,draft,Steel Rod 12mm,Steel Rod 12mm,10,Units
-IND/TEST-PROJ-001,Construction Assembly,Test Project Alpha,draft,Cement 50kg,Cement 50kg,5,Bags
-IND/TEST-PROJ-001,Construction Assembly,Test Project Alpha,draft,Sand Fine,Sand Fine,2,Cubic Meter
-IND/SPARE-001,Pump Maintenance Kit,,draft,Bearing 6205,Bearing 6205,2,Units
-IND/SPARE-001,Pump Maintenance Kit,,draft,Oil Seal 40mm,Oil Seal 40mm,1,Units
-IND/SPARE-002,Motor Maintenance Kit,,draft,V-Belt A50,V-Belt A50,1,Units
-IND/SPARE-002,Motor Maintenance Kit,,draft,Grease Tube,Grease Tube,2,Units

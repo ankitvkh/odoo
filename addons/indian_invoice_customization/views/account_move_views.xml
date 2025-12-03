@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    
-    <!-- This file contains view customizations for Indian invoices -->
-    <!-- The actual label changes are handled through translations in i18n/en.po -->
-    
-</odoo>

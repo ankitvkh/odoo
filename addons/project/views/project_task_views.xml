@@ -558,18 +558,18 @@
                                 </list>
                             </field>
                         </page>
-                        <page name="extra_info" string="Extra Info" >
+                        <page name="extra_info" string="Extra Info" groups="base.group_no_one">
                             <group>
                                 <group>
-                                    <field name="parent_id"  context="{'search_view_ref' : 'project.view_task_search_form','search_default_project_id': project_id, 'search_default_open_tasks': 1}"/>
+                                    <field name="parent_id" groups="base.group_no_one" context="{'search_view_ref' : 'project.view_task_search_form','search_default_project_id': project_id, 'search_default_open_tasks': 1}"/>
                                     <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
-                                    <field name="sequence" />
-                                    <field name="email_cc" />
-                                    <field name="displayed_image_id"  options="{'no_create': True}"/>
+                                    <field name="sequence" groups="base.group_no_one"/>
+                                    <field name="email_cc" groups="base.group_no_one"/>
+                                    <field name="displayed_image_id" groups="base.group_no_one" options="{'no_create': True}"/>
                                 </group>
                                 <group>
-                                    <field name="date_assign" />
-                                    <field name="date_last_stage_update" />
+                                    <field name="date_assign" groups="base.group_no_one"/>
+                                    <field name="date_last_stage_update" groups="base.group_no_one"/>
                                 </group>
                                 <group string="Working Time to Assign" invisible="working_hours_open == 0.0">
                                     <field name="working_hours_open" widget="float_time" string="Hours"/>
