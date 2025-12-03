@@ -233,7 +233,7 @@ class SaleOrder(models.Model):
         string="Order Lines",
         copy=True, auto_join=True)
 
-    amount_untaxed = fields.Monetary(string="Untaxed Amount", store=True, compute='_compute_amounts', tracking=5)
+    amount_untaxed = fields.Monetary(string="Basic Amount", store=True, compute='_compute_amounts', tracking=5)
     amount_tax = fields.Monetary(string="Taxes", store=True, compute='_compute_amounts')
     amount_total = fields.Monetary(string="Total", store=True, compute='_compute_amounts', tracking=4)
     amount_to_invoice = fields.Monetary(string="Un-invoiced Balance", compute='_compute_amount_to_invoice')
@@ -745,11 +745,15 @@ class SaleOrder(models.Model):
             base_lines = [line._prepare_base_line_for_taxes_computation() for line in order_lines]
             AccountTax._add_tax_details_in_base_lines(base_lines, order.company_id)
             AccountTax._round_base_lines_tax_details(base_lines, order.company_id)
-            order.tax_totals = AccountTax._get_tax_totals_summary(
+            tax_totals = AccountTax._get_tax_totals_summary(
                 base_lines=base_lines,
                 currency=order.currency_id or order.company_id.currency_id,
                 company=order.company_id,
             )
+            for subtotal in tax_totals.get('subtotals', []):
+                if subtotal.get('name') == _("Untaxed Amount"):
+                    subtotal['name'] = _("Basic Amount")
+            order.tax_totals = tax_totals
 
     @api.depends('state')
     def _compute_type_name(self):
