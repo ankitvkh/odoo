@@ -1,32 +1,34 @@
-[![Build Status](https://runbot.odoo.com/runbot/badge/flat/1/master.svg)](https://runbot.odoo.com/runbot)
-[![Tech Doc](https://img.shields.io/badge/master-docs-875A7B.svg?style=flat&colorA=8F8F8F)](https://www.odoo.com/documentation/master)
-[![Help](https://img.shields.io/badge/master-help-875A7B.svg?style=flat&colorA=8F8F8F)](https://www.odoo.com/forum/help-1)
-[![Nightly Builds](https://img.shields.io/badge/master-nightly-875A7B.svg?style=flat&colorA=8F8F8F)](https://nightly.odoo.com/)
+# Backup and Restore Scripts
+Execute the following scripts in order:
 
-Odoo
-----
+1. [backup_to_gcp_bucket.py](setup-scripts/backup-restore/backup_to_gcp_bucket.py)
+2. [restore_from_gcp_bucket.py](setup-scripts/backup-restore/restore_from_gcp_bucket.py)
 
-Odoo is a suite of web based open source business apps.
+# Create and setup VM with DNS
 
-The main Odoo Apps include an <a href="https://www.odoo.com/page/crm">Open Source CRM</a>,
-<a href="https://www.odoo.com/app/website">Website Builder</a>,
-<a href="https://www.odoo.com/app/ecommerce">eCommerce</a>,
-<a href="https://www.odoo.com/app/inventory">Warehouse Management</a>,
-<a href="https://www.odoo.com/app/project">Project Management</a>,
-<a href="https://www.odoo.com/app/accounting">Billing &amp; Accounting</a>,
-<a href="https://www.odoo.com/app/point-of-sale-shop">Point of Sale</a>,
-<a href="https://www.odoo.com/app/employees">Human Resources</a>,
-<a href="https://www.odoo.com/app/social-marketing">Marketing</a>,
-<a href="https://www.odoo.com/app/manufacturing">Manufacturing</a>,
-<a href="https://www.odoo.com/">...</a>
+Execute the following scripts in order:
 
-Odoo Apps can be used as stand-alone applications, but they also integrate seamlessly so you get
-a full-featured <a href="https://www.odoo.com">Open Source ERP</a> when you install several Apps.
+1. [1_dns_creation.sh](setup-scripts/1_dns_creation.sh)
+2. [2_vm_creation.sh](setup-scripts/2_vm_creation.sh)
 
-Getting started with Odoo
--------------------------
+# Odoo modules to enable
 
-For a standard installation please follow the <a href="https://www.odoo.com/documentation/master/administration/install/install.html">Setup instructions</a>
-from the documentation.
+```
+Sales (sale_management)
+Sale Order Enhancement (sale_order_enhancement)
+Inventory (stock)
+Manufacturing (mrp)
+Purchase (purchase)
+Project (project)
+Invoicing (account)
+Odoo 18 Accounting (om_account_accountant)
+Project Task Validations (project_task_validations)
+Project Activity Templates (project_activity_template)
+Manufacturing BOM Import (bom_pro_max) -- Currently disabled
+```
 
-To learn the software, we recommend the <a href="https://www.odoo.com/slides">Odoo eLearning</a>, or <a href="https://www.odoo.com/page/scale-up-business-game">Scale-up</a>, the <a href="https://www.odoo.com/page/scale-up-business-game">business game</a>. Developers can start with <a href="https://www.odoo.com/documentation/master/developer/howtos.html">the developer tutorials</a>
+# Manual settings to configure
+
+1. Add new language: Settings -> General Settings -> Languages -> Add English(IN)
+2. Enable task dependencies: Settings -> Project -> Task Dependencies (checkbox)
+3. Configure main currency: Settings -> Accounting -> Currencies -> Main Currency (dropdown)
