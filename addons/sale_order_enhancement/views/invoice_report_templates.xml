@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_invoice_document_enhanced" inherit_id="account.report_invoice_document">
+        <!-- Add Company Logo at the top of the document -->
+        <xpath expr="//t[@t-set='layout_document_title']" position="before">
+            <div class="row mb-3 text-center" t-if="o.company_id.logo">
+                <div class="col-12">
+                    <img t-att-src="image_data_uri(o.company_id.logo)" 
+                         style="max-height: 100px; max-width: 300px;" 
+                         alt="Company Logo"/>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>
+

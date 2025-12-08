@@ -1,12 +1,12 @@
 import os
 import subprocess
 
-POSTGRES_USER = "odoo_user"
-POSTGRES_PASSWORD = "odoo123"
-DATABASE_NAME = "odoo_db"
-BUCKET_NAME = "odoo-backup-store"
-GCS_FILE = "odoo_backups/odoo_backup_2025-11-25_10-33-41.dump"
-TEMP_DIR = "/tmp/odoo_restore"
+POSTGRES_USER = "erp_user"
+POSTGRES_PASSWORD = "powertek123"
+DATABASE_NAME = "erp_db"
+BUCKET_NAME = "erp-databackup"
+GCS_FILE = "erp_backup_2025-12-02_10-34-20.dump"
+TEMP_DIR = "/tmp/erp_restore"
 
 os.makedirs(TEMP_DIR, exist_ok=True)
 os.environ["PGPASSWORD"] = POSTGRES_PASSWORD

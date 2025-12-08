@@ -1,11 +1,11 @@
 #!/bin/bash
 
-PROJECT_ID="verdant-algebra-475509-c6"    
-VM_NAME="odoo-server-test"                      
-ZONE="us-central1-a"                       
+PROJECT_ID="magnetic-lore-480113-m4"    
+VM_NAME="erp-powertek"                      
+ZONE="asia-south1-a"                       
 MACHINE_TYPE="e2-medium"                  
 NETWORK="default"                          
-RESERVED_IP_NAME="odoo-reserved-ip"        
+RESERVED_IP_NAME="erp-reserved-ip"        
 STARTUP_SCRIPT="./Startup_Script.sh"
 
 RED='\033[0;31m'
@@ -27,19 +27,19 @@ gcloud services enable compute.googleapis.com
 
 log_info "Getting reserved IP from DNS setup..."
 REGION=$(echo $ZONE | sed 's/-[a-z]$//')
-# if ! RESERVED_IP=$(gcloud compute addresses describe $RESERVED_IP_NAME --region=$REGION --format="value(address)" 2>/dev/null); then
-#     log_error "Reserved IP not found. Please run ./DNS.sh first"
-#     exit 1
-# fi
-# log_success "Found reserved IP: $RESERVED_IP"
+if ! RESERVED_IP=$(gcloud compute addresses describe $RESERVED_IP_NAME --region=$REGION --format="value(address)" 2>/dev/null); then
+    log_error "Reserved IP not found. Please run ./DNS.sh first"
+    exit 1
+fi
+log_success "Found reserved IP: $RESERVED_IP"
 
 
 log_info "Setting up firewall rules for dual port access..."
 FIREWALL_RULES=(
     "allow-http:tcp:80"
     "allow-https:tcp:443"
-    "allow-odoo:tcp:8069"
-    "allow-odoo-longpolling:tcp:8072"
+    "allow-erp:tcp:8069"
+    "allow-erp-longpolling:tcp:8072"
 )
 
 for rule_spec in "${FIREWALL_RULES[@]}"; do
@@ -49,7 +49,7 @@ for rule_spec in "${FIREWALL_RULES[@]}"; do
         gcloud compute firewall-rules create "$rule_name" \
             --allow "${protocol}:${port}" \
             --source-ranges "0.0.0.0/0" \
-            --target-tags "odoo-server" \
+            --target-tags "erp-server" \
             --description "Allow ${protocol} traffic on port ${port} for Odoo"
         log_success "Created firewall rule: $rule_name"
     else
@@ -70,19 +70,20 @@ if [[ ! -f "$STARTUP_SCRIPT" ]]; then
 fi
 
 
-log_info "Creating VM with Cloud SQL Odoo installation startup script..."
+log_info "Creating VM with SQL erp installation startup script..."
 gcloud compute instances create ${VM_NAME} \
     --zone=${ZONE} \
     --machine-type=${MACHINE_TYPE} \
     --network=${NETWORK} \
-    --tags=odoo-server \
+    --address=${RESERVED_IP_NAME} \
+    --tags=erp-server \
     --image-family=ubuntu-2204-lts \
     --image-project=ubuntu-os-cloud \
     --boot-disk-size=30GB \
     --scopes=storage-full \
     --metadata-from-file startup-script=${STARTUP_SCRIPT}
 
-log_success "VM created successfully with Cloud SQL Odoo script"
+log_success "VM created successfully with  SQL erp script"
 
 
 VM_EXTERNAL_IP=$(gcloud compute instances describe ${VM_NAME} --zone=${ZONE} --format='get(networkInterfaces[0].accessConfigs[0].natIP)')

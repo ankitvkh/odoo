@@ -19,11 +19,13 @@
     'depends': [
         'sale',
         'sale_management',
+        'account',
     ],
     'data': [
         'data/ir_sequence_data.xml',
         'views/sale_order_views.xml',
         'views/sale_report_templates.xml',
+        'views/invoice_report_templates.xml',
         'views/sale_portal_templates.xml',
     ],
     'installable': True,

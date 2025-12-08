@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # Configuration 
-DOMAIN_NAME="rasptechnologies.co.in"          
-SUBDOMAIN="odoo"                            
-RESERVED_IP_NAME="odoo-reserved-ip"         
-DNS_ZONE_NAME="odoo-zone"                  
-REGION="us-central1"                        
-PROJECT_ID="hypnotic-bounty-469316-a6"     
+DOMAIN_NAME="powertekautomation.in"          
+SUBDOMAIN="erp"                            
+RESERVED_IP_NAME="erp-reserved-ip"         
+DNS_ZONE_NAME="erp-zone"                  
+REGION="asia-south1"                        
+PROJECT_ID="magnetic-lore-480113-m4"     
 
 
 FULL_DOMAIN="${SUBDOMAIN}.${DOMAIN_NAME}"

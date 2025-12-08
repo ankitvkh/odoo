@@ -24,6 +24,7 @@
     ],
     'data': [
         'data/ir_sequence_data.xml',
+        'views/purchase_report_templates.xml',
     ],
     'installable': True,
     'application': False,

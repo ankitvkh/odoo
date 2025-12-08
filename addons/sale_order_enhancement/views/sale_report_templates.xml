@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="report_saleorder_document_enhanced" inherit_id="sale.report_saleorder_document">
+        <!-- Add Company Logo at the top of the document -->
+        <xpath expr="//div[@class='page']/div[@class='oe_structure'][1]" position="after">
+            <div class="row mb-3" t-if="doc.company_id.logo">
+                <div class="col-12 text-center">
+                    <img t-att-src="image_data_uri(doc.company_id.logo)" 
+                         style="max-height: 100px; max-width: 300px;" 
+                         alt="Company Logo"/>
+                </div>
+            </div>
+        </xpath>
+        
         <!-- Header: Unit Price -->
         <xpath expr="//th[@name='th_priceunit']" position="replace">
             <th name="th_priceunit" class="text-end text-nowrap">
