@@ -8,15 +8,12 @@
         <field name="inherit_id" ref="base.view_users_form"/>
         <field name="arch" type="xml">
             
-            <!-- Add button to view accessible locations -->
+            <!-- Add button to view accessible locations with count -->
             <xpath expr="//div[@name='button_box']" position="inside">
                 <button name="action_view_accessible_locations" type="object" 
                         class="oe_stat_button" icon="fa-map-marker"
-                        invisible="not location_id">
-                    <div class="o_field_widget o_stat_info">
-                        <span class="o_stat_text">Accessible</span>
-                        <span class="o_stat_text">Locations</span>
-                    </div>
+                        invisible="total_location_count == 0">
+                    <field name="total_location_count" widget="statinfo" string="Locations"/>
                 </button>
             </xpath>
             
@@ -30,16 +27,23 @@
             <xpath expr="//notebook" position="inside">
                 <page string="Location &amp; Access" name="location_access">
                     <group>
-                        <group string="Location Assignment">
-                            <field name="location_id" options="{'no_create': True}"/>
-                            <field name="group_code" readonly="1"/>
-                            <field name="secondary_location_ids" widget="many2many_tags" 
-                                   options="{'no_create': True}"/>
+                        <group string="Location Summary">
+                            <field name="total_location_count" readonly="1"/>
+                            <field name="has_multiple_locations" invisible="1"/>
                         </group>
-                        <group string="Department Assignment">
-                            <field name="department_ids" widget="many2many_tags" 
-                                   options="{'no_create': True}"/>
+                        <group string="All Accessible Locations">
+                            <field name="all_location_names" readonly="1" 
+                                   invisible="total_location_count == 0" nolabel="1"/>
                         </group>
+                    </group>
+                    <group string="Secondary Locations" invisible="not location_id">
+                        <field name="secondary_location_ids" nolabel="1" 
+                               widget="many2many"
+                               options="{'no_create': True}"/>
+                    </group>
+                    <group string="Department Assignment">
+                        <field name="department_ids" widget="many2many_tags" 
+                               options="{'no_create': True}"/>
                     </group>
                     <group string="Access Level">
                         <field name="access_level" readonly="1"/>
@@ -53,6 +57,20 @@
         </field>
     </record>
     
+    <!-- Enhanced User Tree View with Location Info -->
+    <record id="view_users_tree_inherit" model="ir.ui.view">
+        <field name="name">res.users.tree.inherit</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='login']" position="after">
+                <field name="location_id" optional="show"/>
+                <field name="total_location_count" optional="show" string="Locations"/>
+                <field name="has_multiple_locations" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+    
     <!-- Extended User Search View -->
     <record id="view_users_search_inherit" model="ir.ui.view">
         <field name="name">res.users.search.inherit</field>
@@ -61,13 +79,16 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='name']" position="after">
                 <field name="location_id"/>
-                <field name="group_code"/>
+                <field name="secondary_location_ids"/>
             </xpath>
             <xpath expr="//search" position="inside">
                 <filter string="Has Location" name="has_location" 
                         domain="[('location_id', '!=', False)]"/>
                 <filter string="No Location" name="no_location" 
                         domain="[('location_id', '=', False)]"/>
+                <filter string="Has Secondary Locations" name="has_secondary" 
+                        domain="[('secondary_location_ids', '!=', False)]"/>
+                <separator/>
                 <filter string="Administrators" name="administrators" 
                         domain="[('access_level', '=', 'admin')]"/>
                 <filter string="Managers" name="managers" 
@@ -76,6 +97,7 @@
                         domain="[('access_level', '=', 'user')]"/>
                 <filter string="Viewers" name="viewers" 
                         domain="[('access_level', '=', 'viewer')]"/>
+                <separator/>
                 <filter string="Location" name="group_location" 
                         context="{'group_by': 'location_id'}"/>
                 <filter string="Access Level" name="group_access_level" 

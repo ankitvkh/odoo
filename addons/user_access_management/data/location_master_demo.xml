@@ -34,6 +34,22 @@
             <field name="active">True</field>
         </record>
         
+        <record id="location_master_pune" model="location.master">
+            <field name="code">PUN</field>
+            <field name="name">Pune Office</field>
+            <field name="parent_id" ref="location_master_hq"/>
+            <field name="address">654 FC Road, Pune, MH 411004</field>
+            <field name="active">True</field>
+        </record>
+        
+        <record id="location_master_chennai" model="location.master">
+            <field name="code">CHN</field>
+            <field name="name">Chennai Office</field>
+            <field name="parent_id" ref="location_master_hq"/>
+            <field name="address">987 Anna Salai, Chennai, TN 600002</field>
+            <field name="active">True</field>
+        </record>
+        
         <!-- Assign locations to demo users -->
         <record id="base.user_demo" model="res.users">
             <field name="location_id" ref="location_master_mumbai"/>

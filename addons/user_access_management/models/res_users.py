@@ -43,6 +43,23 @@ class ResUsers(models.Model):
         ('viewer', 'Viewer'),
     ], string='Access Level', default='user', help='Quick access level indicator')
     
+    # Computed fields for multi-location UI
+    total_location_count = fields.Integer(
+        string='Total Locations',
+        compute='_compute_location_stats',
+        help='Total number of accessible locations (primary + secondary)'
+    )
+    has_multiple_locations = fields.Boolean(
+        string='Has Multiple Locations',
+        compute='_compute_location_stats',
+        help='Indicates if user has access to more than one location'
+    )
+    all_location_names = fields.Char(
+        string='All Locations',
+        compute='_compute_location_stats',
+        help='Comma-separated list of all accessible location names'
+    )
+    
     @api.constrains('location_id', 'secondary_location_ids')
     def _check_location_company(self):
         """Ensure locations belong to the same company as the user"""
@@ -57,6 +74,15 @@ class ResUsers(models.Model):
                         _('Location(s) %s do not belong to the user\'s company.') % 
                         ', '.join(invalid_locations.mapped('name'))
                     )
+    
+    @api.depends('location_id', 'secondary_location_ids')
+    def _compute_location_stats(self):
+        """Compute location statistics for UI display"""
+        for user in self:
+            all_locations = user.location_id | user.secondary_location_ids
+            user.total_location_count = len(all_locations)
+            user.has_multiple_locations = len(all_locations) > 1
+            user.all_location_names = ', '.join(all_locations.mapped('name')) if all_locations else ''
     
     def get_accessible_locations(self):
         """

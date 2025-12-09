@@ -48,6 +48,7 @@
     ],
     'demo': [
         'data/location_master_demo.xml',
+        'data/res_users_demo.xml',
     ],
     'installable': True,
     'application': True,
