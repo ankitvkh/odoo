@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_enhanced_delete_confirm_wizard,enhanced.delete.confirm.wizard,model_enhanced_delete_confirm_wizard,base.group_user,1,1,1,1
