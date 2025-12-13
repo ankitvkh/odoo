@@ -26,8 +26,17 @@
                 <div class="alert alert-warning">
                     <field name="message" readonly="1" widget="text"/>
                 </div>
+                <group attrs="{'invisible': [('linked_info', '=', False)]}">
+                    <field name="linked_info" readonly="1" widget="text"/>
+                </group>
                 <footer>
-                    <button string="Delete" name="action_delete" type="object" class="btn-danger"/>
+                    <button string="Delete" name="action_delete" type="object"
+                            class="btn-danger"
+                            attrs="{'invisible': [('can_delete', '=', False)]}"/>
+                    <button string="Force Delete" name="action_delete" type="object"
+                            class="btn-danger"
+                            attrs="{'invisible': [('can_delete', '=', True)]}"
+                            title="This will delete the record and all linked data"/>
                     <button string="Cancel" name="action_cancel" type="object" class="btn-secondary" special="cancel"/>
                 </footer>
             </form>
