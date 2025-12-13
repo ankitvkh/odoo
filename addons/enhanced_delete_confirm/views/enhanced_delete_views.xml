@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Model Definition -->
+    <record id="model_enhanced_delete_confirm_wizard" model="ir.model">
+        <field name="name">enhanced.delete.confirm.wizard</field>
+        <field name="model">enhanced.delete.confirm.wizard</field>
+        <field name="info">Enhanced Delete Confirmation Wizard</field>
+    </record>
+
+    <!-- Access Rules -->
+    <record id="access_enhanced_delete_confirm_wizard" model="ir.model.access">
+        <field name="name">enhanced.delete.confirm.wizard</field>
+        <field name="model_id" ref="model_enhanced_delete_confirm_wizard"/>
+        <field name="perm_read">1</field>
+        <field name="perm_write">1</field>
+        <field name="perm_create">1</field>
+        <field name="perm_unlink">1</field>
+    </record>
+
+    <!-- Wizard Form View -->
+    <record id="enhanced_delete_confirm_wizard_form" model="ir.ui.view">
+        <field name="name">enhanced.delete.confirm.wizard.form</field>
+        <field name="model">enhanced.delete.confirm.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Delete Confirmation">
+                <div class="alert alert-warning">
+                    <field name="message" readonly="1" widget="text"/>
+                </div>
+                <footer>
+                    <button string="Delete" name="action_delete" type="object" class="btn-danger"/>
+                    <button string="Cancel" name="action_cancel" type="object" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="enhanced_delete_confirm_wizard_action" model="ir.actions.act_window">
+        <field name="name">Delete Confirmation</field>
+        <field name="res_model">enhanced.delete.confirm.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="enhanced_delete_confirm_wizard_form"/>
+    </record>
+</odoo>
