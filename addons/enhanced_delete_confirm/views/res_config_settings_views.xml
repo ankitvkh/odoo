@@ -5,47 +5,23 @@
         <field name="model">res.config.settings</field>
         <field name="inherit_id" ref="base.res_config_settings_view_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//div[hasclass('settings')]" position="inside">
-                <div class="app_settings_block" data_key="enhanced_delete_confirm" string="Enhanced Delete">
-                    <h2>Enhanced Delete Confirmation</h2>
-                    <div class="row mt16 o_settings_container">
-                        <div class="col-12 col-lg-6 o_setting_box">
-                            <div class="o_setting_left_pane">
-                                <field name="enhanced_delete_enabled"/>
-                            </div>
-                            <div class="o_setting_right_pane">
-                                <label for="enhanced_delete_enabled"/>
-                                <div class="text-muted">
-                                    Enable enhanced delete confirmation with unlink/cascade options
-                                </div>
-                            </div>
-                        </div>
+            <xpath expr="//form" position="inside">
+                <app string="Enhanced Delete" name="enhanced_delete_confirm">
+                    <block title="Enhanced Delete Confirmation">
+                        <setting help="Enable enhanced delete confirmation with unlink/cascade options">
+                            <field name="enhanced_delete_enabled"/>
+                            <label for="enhanced_delete_enabled"/>
+                        </setting>
                         
-                        <div class="col-12 col-lg-6 o_setting_box">
-                            <div class="o_setting_left_pane"/>
-                            <div class="o_setting_right_pane">
-                                <label for="enhanced_delete_min_records" string="Minimum Records"/>
-                                <field name="enhanced_delete_min_records" class="o_light_label"/>
-                                <div class="text-muted">
-                                    Show confirmation only when deleting this many records or more
-                                </div>
-                            </div>
-                        </div>
+                        <setting string="Minimum Records" help="Show confirmation only when deleting this many records or more">
+                            <field name="enhanced_delete_min_records"/>
+                        </setting>
                         
-                        <div class="col-12 col-lg-6 o_setting_box">
-                            <div class="o_setting_left_pane"/>
-                            <div class="o_setting_right_pane">
-                                <label for="enhanced_delete_excluded_models" string="Excluded Models"/>
-                                <field name="enhanced_delete_excluded_models" 
-                                       placeholder="ir.ui.menu,ir.model,ir.model.fields"
-                                       class="o_light_label"/>
-                                <div class="text-muted">
-                                    Comma-separated list of models to exclude (e.g., ir.ui.menu,ir.model)
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                        <setting string="Excluded Models" help="Comma-separated list of models to exclude (e.g., ir.ui.menu,ir.model)">
+                            <field name="enhanced_delete_excluded_models" placeholder="ir.ui.menu,ir.model,ir.model.fields"/>
+                        </setting>
+                    </block>
+                </app>
             </xpath>
         </field>
     </record>
