@@ -20,7 +20,7 @@
       <xpath expr="//group[last()]" position="after">
         <group name="material_indent_info" string="Material Indent Configuration">
           <group>
-            <field name="bom_flow_type" widget="radio"/>
+            <field name="bom_flow_type" widget="radio" options="{'horizontal': true}"/>
             <field name="project_id" 
                    invisible="bom_flow_type != 'project'"
                    required="bom_flow_type == 'project'"/>
@@ -29,16 +29,15 @@
                    placeholder="e.g., PROJ-2025-001"/>
           </group>
           <group>
-            <label for="bom_flow_type" string="Flow Type Help"/>
-            <div invisible="bom_flow_type != 'project'">
-              <span class="text-muted">
-                Project BOM: BOM can have custom names. Indent lines will use actual inventory product names.
-              </span>
+            <div class="alert alert-info" role="alert" invisible="bom_flow_type != 'project'">
+              <strong>Project BOM:</strong> supports custom descriptions.
+              <br/>
+              <em>Example:</em> "Rebar" mapped to "Steel Rod 12mm".
             </div>
-            <div invisible="bom_flow_type != 'spare'">
-              <span class="text-muted">
-                Spare Parts BOM: BOM name must exactly match product name throughout the process.
-              </span>
+            <div class="alert alert-warning" role="alert" invisible="bom_flow_type != 'spare'">
+              <strong>Spare Parts BOM:</strong> requires exact name matching.
+              <br/>
+              <em>Example:</em> "SKF Bearing 6308" must match inventory.
             </div>
           </group>
         </group>
@@ -87,10 +86,12 @@
         <field name="custom_product_description" 
                string="Custom Description"
                optional="show"
-               help="Project BOM: Custom name (mapped to inventory). Spare BOM: Must match inventory exactly"/>
+               column_invisible="parent.bom_flow_type == 'spare'"
+               help="Project BOM: Custom name (mapped to inventory)."/>
         <field name="inventory_product_id" 
                string="Inventory Product"
-               optional="hide"
+               optional="show"
+               column_invisible="parent.bom_flow_type == 'spare'"
                help="Actual inventory product this maps to"/>
       </xpath>
       

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="purchase_order_form_enhanced" model="ir.ui.view">
+        <field name="name">purchase.order.form.enhanced</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <!-- Add custom reference code field in purchase order form -->
+            <xpath expr="//field[@name='partner_ref']" position="before">
+                <field name="custom_ref_code" 
+                       placeholder="Reference Code (XXXXX)"
+                       readonly="state not in ['draft', 'sent']"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

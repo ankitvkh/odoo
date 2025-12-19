@@ -11,6 +11,72 @@
                 </div>
             </div>
         </xpath>
+        <!-- Header: Unit Price -->
+        <xpath expr="//th[@name='th_priceunit']" position="replace">
+            <th name="th_priceunit" t-if="o.offer_type != 'technical'" class="text-end text-nowrap"><span>Unit Price</span></th>
+            <th name="th_priceunit" t-if="o.offer_type == 'technical'" class="text-end text-nowrap"><span>Unit Price</span></th>
+        </xpath>
+        
+        <!-- Header: Taxes -->
+        <xpath expr="//th[@name='th_taxes']" position="replace">
+            <th name="th_taxes" t-if="o.offer_type != 'technical'" class="text-end"><span>Taxes</span></th>
+            <th name="th_taxes" t-if="o.offer_type == 'technical'" class="text-end"><span>Taxes</span></th>
+        </xpath>
+
+        <!-- Header: Amount -->
+        <xpath expr="//th[@name='th_subtotal']" position="replace">
+            <th name="th_subtotal" t-if="o.offer_type != 'technical'" class="text-end"><span>Amount</span></th>
+            <th name="th_subtotal" t-if="o.offer_type == 'technical'" class="text-end"><span>Amount</span></th>
+        </xpath>
+
+        <!-- Body: Unit Price -->
+        <xpath expr="//td[@name='td_price_unit']" position="replace">
+            <td name="td_price_unit" class="text-end text-nowrap">
+                <span t-if="o.offer_type == 'technical'">Quoted</span>
+                <span t-else="" t-field="line.price_unit"/>
+            </td>
+        </xpath>
+
+        <!-- Body: Taxes -->
+        <xpath expr="//td[@name='td_taxes']" position="replace">
+            <td name="td_taxes" class="text-end">
+                <span t-if="o.offer_type == 'technical'">Quoted</span>
+                <span t-else="" t-out="', '.join(map(lambda x: (x.description or x.name), line.tax_ids))" id="line_tax_ids"/>
+            </td>
+        </xpath>
+
+        <!-- Body: Subtotal -->
+        <xpath expr="//td[@name='td_subtotal']" position="replace">
+            <td name="td_subtotal" class="text-end o_price_total">
+                <span t-if="o.offer_type == 'technical'">Quoted</span>
+                <span t-else="" t-field="line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>
+                <span t-else="" t-field="line.price_total" groups="account.group_show_line_subtotals_tax_included"/>
+            </td>
+        </xpath>
+
+        <!-- Totals Summary -->
+        <xpath expr="//div[@id='total']" position="replace">
+            <div id="total" class="row">
+                <div t-attf-class="#{'col-6' if report_type != 'html' else 'col-sm-7 col-md-6'} ms-auto">
+                    <t t-if="o.offer_type == 'technical'">
+                        <table class="table table-sm table-borderless">
+                            <tr class="border-black o_total">
+                                <td><strong>Total</strong></td>
+                                <td class="text-end">
+                                    <span class="text-nowrap">Quoted</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </t>
+                    <t t-else="">
+                        <t t-call="account.document_tax_totals">
+                            <t t-set="tax_totals" t-value="o.tax_totals"/>
+                            <t t-set="currency" t-value="o.currency_id"/>
+                        </t>
+                    </t>
+                </div>
+            </div>
+        </xpath>
     </template>
 </odoo>
 

@@ -30,19 +30,23 @@
             <!-- Replace fields in the inline tree view of order_line -->
             <xpath expr="//field[@name='order_line']/list//field[@name='price_unit']" position="replace">
                 <field name="offer_type" column_invisible="True"/>
-                <field name="price_unit_display" string="Unit Price"/>
+                <field name="price_unit" string="Unit Price" column_invisible="parent.offer_type == 'technical'"/>
+                <field name="price_unit_display" string="Unit Price" column_invisible="parent.offer_type != 'technical'"/>
             </xpath>
             
             <xpath expr="//field[@name='order_line']/list//field[@name='price_subtotal']" position="replace">
-                <field name="price_subtotal_display" string="Subtotal"/>
+                <field name="price_subtotal" string="Subtotal" column_invisible="parent.offer_type == 'technical'"/>
+                <field name="price_subtotal_display" string="Subtotal" column_invisible="parent.offer_type != 'technical'"/>
             </xpath>
             
             <xpath expr="//field[@name='order_line']/list//field[@name='price_tax']" position="replace">
-                <field name="price_tax_display" string="Taxes"/>
+                <field name="price_tax" string="Taxes" column_invisible="parent.offer_type == 'technical'"/>
+                <field name="price_tax_display" string="Taxes" column_invisible="parent.offer_type != 'technical'"/>
             </xpath>
             
             <xpath expr="//field[@name='order_line']/list//field[@name='price_total']" position="replace">
-                <field name="price_total_display" string="Total"/>
+                <field name="price_total" string="Total" column_invisible="parent.offer_type == 'technical'"/>
+                <field name="price_total_display" string="Total" column_invisible="parent.offer_type != 'technical'"/>
             </xpath>
             
             <!-- Add control buttons for Optional Products -->
@@ -269,7 +273,8 @@
                 <!-- Invisible offer_type for compute dependency -->
                 <field name="offer_type" column_invisible="True"/>
                 
-                <field name="price_unit_display" string="Unit Price"/>
+                <field name="price_unit" string="Unit Price" column_invisible="parent.offer_type == 'technical'"/>
+                <field name="price_unit_display" string="Unit Price" column_invisible="parent.offer_type != 'technical'"/>
                 
                 <field name="tax_id" 
                        widget="many2many_tags" 
@@ -284,11 +289,14 @@
                        invisible="display_type in ('line_section', 'line_note')"
                        readonly="0"/>
                 
-                <field name="price_subtotal_display" string="Subtotal"/>
+                <field name="price_subtotal" string="Subtotal" column_invisible="parent.offer_type == 'technical'"/>
+                <field name="price_subtotal_display" string="Subtotal" column_invisible="parent.offer_type != 'technical'"/>
                 
-                <field name="price_tax_display" string="Taxes"/>
+                <field name="price_tax" string="Taxes" column_invisible="parent.offer_type == 'technical'"/>
+                <field name="price_tax_display" string="Taxes" column_invisible="parent.offer_type != 'technical'"/>
                 
-                <field name="price_total_display" string="Total"/>
+                <field name="price_total" string="Total" column_invisible="parent.offer_type == 'technical'"/>
+                <field name="price_total_display" string="Total" column_invisible="parent.offer_type != 'technical'"/>
             </list>
         </field>
     </record>

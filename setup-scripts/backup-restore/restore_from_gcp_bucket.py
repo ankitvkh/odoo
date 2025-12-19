@@ -5,7 +5,7 @@ POSTGRES_USER = "erp_user"
 POSTGRES_PASSWORD = "powertek123"
 DATABASE_NAME = "erp_db"
 BUCKET_NAME = "erp-databackup"
-GCS_FILE = "odoo_backups/odoo_backup_2025-12-09_17-00-02.dump"
+GCS_FILE = "erp_backups/erp_backup_2025-12-18_17-00-01.dump"
 TEMP_DIR = "/tmp/erp_restore"
 
 os.makedirs(TEMP_DIR, exist_ok=True)
