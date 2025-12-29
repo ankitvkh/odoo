@@ -238,26 +238,72 @@ set -e
 
 log_info "Step 6: Installing wkhtmltopdf..."
 set +e
-if ! command -v wkhtmltopdf >/dev/null 2>&1; then
-    if apt-get install -y wkhtmltopdf; then
-        log_success "wkhtmltopdf installed from repository"
-    else
-        log_warning "Repository installation failed, trying manual download..."
-        if wget -q https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-3/wkhtmltox_0.12.6.1-3.jammy_amd64.deb -O /tmp/wkhtmltox.deb; then
-            if dpkg -i /tmp/wkhtmltox.deb; then
-                log_success "wkhtmltopdf installed manually"
-            else
-                apt-get install -f -y || true
-                log_warning "wkhtmltopdf installation had issues, PDF generation may be limited"
-            fi
-            rm -f /tmp/wkhtmltox.deb
-        else
-            log_warning "wkhtmltopdf installation failed, PDF generation will be limited"
-        fi
-    fi
+
+# Detect Ubuntu version
+UBUNTU_VERSION=$(lsb_release -rs)
+log_info "Detected Ubuntu version: $UBUNTU_VERSION"
+
+# Add focal-security repository for libssl1.1 compatibility
+log_info "Setting up libssl1.1 compatibility..."
+echo "deb http://security.ubuntu.com/ubuntu focal-security main" | tee /etc/apt/sources.list.d/focal-security.list > /dev/null
+apt-get update
+apt-get install -y libssl1.1
+
+# Install required dependencies
+log_info "Installing wkhtmltopdf dependencies..."
+apt-get install -y \
+    fontconfig \
+    fontconfig-config \
+    fonts-dejavu-core \
+    fonts-liberation \
+    libfontenc1 \
+    libfreetype6 \
+    libjpeg-turbo-progs \
+    libjpeg8 \
+    libpng16-16 \
+    libx11-6 \
+    libxcb1 \
+    libxext6 \
+    libxrender1 \
+    xfonts-encodings \
+    xfonts-utils
+
+# Download patched wkhtmltopdf based on version
+cd /tmp
+if [ "$UBUNTU_VERSION" = "24.04" ]; then
+    log_info "Installing for Ubuntu 24.04..."
+    wget -q https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-2/wkhtmltox_0.12.6.1-2.noble_amd64.deb -O wkhtmltox.deb
+elif [ "$UBUNTU_VERSION" = "22.04" ]; then
+    log_info "Installing for Ubuntu 22.04..."
+    wget -q https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-2/wkhtmltox_0.12.6.1-2.jammy_amd64.deb -O wkhtmltox.deb
+elif [ "$UBUNTU_VERSION" = "20.04" ]; then
+    log_info "Installing for Ubuntu 20.04..."
+    wget -q https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-2/wkhtmltox_0.12.6.1-2.focal_amd64.deb -O wkhtmltox.deb
 else
-    log_info "wkhtmltopdf already installed"
+    log_info "Ubuntu $UBUNTU_VERSION detected. Attempting Jammy version (Ubuntu 22.04 compatible)..."
+    wget -q https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-2/wkhtmltox_0.12.6.1-2.jammy_amd64.deb -O wkhtmltox.deb
 fi
+
+if [[ -f wkhtmltox.deb ]]; then
+    dpkg -i wkhtmltox.deb || apt-get install -yf
+    rm -f wkhtmltox.deb
+    log_success "wkhtmltopdf installed successfully"
+else
+    log_error "Failed to download wkhtmltopdf package"
+fi
+
+# Fix any remaining dependencies
+apt-get install -yf
+
+# Verify installation
+wkhtmltopdf --version
+
+# Create XDG_RUNTIME_DIR for odoo user
+log_info "Setting up XDG_RUNTIME_DIR..."
+mkdir -p /run/odoo
+chown ${ODOO_USER}:${ODOO_USER} /run/odoo 2>/dev/null || chown root:root /run/odoo
+chmod 700 /run/odoo
+
 set -e
 
 log_info "Step 7: Setting up working directory structure..."
@@ -368,6 +414,7 @@ After=network.target
 [Service]
 User=${ODOO_USER}
 Group=${ODOO_USER}
+Environment="XDG_RUNTIME_DIR=/run/odoo"
 ExecStart=${VENV_DIR}/bin/python3 ${ODOO_DIR}/odoo-bin --config=${CONFIG_FILE}
 Restart=always
 RestartSec=10

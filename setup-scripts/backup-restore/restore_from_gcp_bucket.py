@@ -4,18 +4,37 @@ import subprocess
 POSTGRES_USER = "erp_user"
 POSTGRES_PASSWORD = "powertek123"
 DATABASE_NAME = "erp_db"
-BUCKET_NAME = "erp-databackup"
-GCS_FILE = "erp_backups/erp_backup_2025-12-18_17-00-01.dump"
+BUCKET_NAME = "odoo-backup-store"
+GCS_FILE = "" # Leave empty to automatically find the latest backup
 TEMP_DIR = "/tmp/erp_restore"
 
 os.makedirs(TEMP_DIR, exist_ok=True)
 os.environ["PGPASSWORD"] = POSTGRES_PASSWORD
 
-LOCAL_FILE = os.path.join(TEMP_DIR, os.path.basename(GCS_FILE))
+# Find latest backup if GCS_FILE is not specific
+if not GCS_FILE:
+    print("No specific backup file provided. Finding the latest backup...")
+    try:
+        ls_cmd = f"gsutil ls gs://{BUCKET_NAME}/odoo_backups/*.dump"
+        result = subprocess.run(ls_cmd, shell=True, check=True, capture_output=True, text=True)
+        backups = result.stdout.strip().split('\n')
+        if not backups:
+            print("No backups found in bucket.")
+            exit(1)
+        # Sort and get the latest
+        GCS_FILE_PATH = sorted(backups)[-1]
+        print(f"Latest backup identified: {GCS_FILE_PATH}")
+    except subprocess.CalledProcessError:
+        print("Error listing backups in GCS.")
+        exit(1)
+else:
+    GCS_FILE_PATH = f"gs://{BUCKET_NAME}/{GCS_FILE}"
+
+LOCAL_FILE = os.path.join(TEMP_DIR, os.path.basename(GCS_FILE_PATH))
 
 # Download backup
-print("Downloading backup from GCS...")
-download_cmd = f'gsutil cp gs://{BUCKET_NAME}/{GCS_FILE} "{LOCAL_FILE}"'
+print(f"Downloading backup from {GCS_FILE_PATH}...")
+download_cmd = f'gsutil cp "{GCS_FILE_PATH}" "{LOCAL_FILE}"'
 try:
     subprocess.run(download_cmd, check=True, shell=True)
     print(f"Backup downloaded successfully: {LOCAL_FILE}")
