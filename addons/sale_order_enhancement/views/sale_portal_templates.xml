@@ -2,17 +2,7 @@
 <odoo>
     <!-- Inherit portal template to hide price in sidebar for Technical Offer -->
     <template id="sale_order_portal_template_enhanced" inherit_id="sale.sale_order_portal_template">
-        <!-- Add Company Logo at the top of the portal -->
-        <xpath expr="//div[hasclass('o_portal_sale_sidebar')]" position="before">
-            <div class="row mb-3" t-if="sale_order.company_id.logo">
-                <div class="col-12 text-center">
-                    <img t-att-src="image_data_uri(sale_order.company_id.logo)" 
-                         style="max-height: 100px; max-width: 300px;" 
-                         alt="Company Logo"
-                         class="img-fluid"/>
-                </div>
-            </div>
-        </xpath>
+
         <!-- Replace sidebar total amount -->
         <xpath expr="//t[@t-set='title']/h2[@data-id='total_amount']" position="replace">
             <h2 t-if="sale_order.offer_type == 'technical'" class="mb-0 text-break">Quoted</h2>
