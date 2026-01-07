@@ -15,7 +15,7 @@ GITHUB_REPO="https://github.com/ankitvkh/odoo.git"
 GITHUB_BRANCH="Anish-Kumar-09-patch-1"
 
 ADMIN_EMAIL="admin"
-ADMIN_PASSWORD="admin"
+ADMIN_PASSWORD="odooforadmin"
 
 VENV_DIR="${WORK_DIR}/venv"
 ADDONS_DIR="${WORK_DIR}/custom_addons"
@@ -50,6 +50,16 @@ log_error() {
     echo -e "${RED}[ERROR]${NC} $1"
     echo "$(date '+%Y-%m-%d %H:%M:%S') [ERROR] $1" >> /var/log/startup-script.log
 }
+
+MARKER_FILE="/var/lib/odoo/startup_completed"
+
+if [[ -f "$MARKER_FILE" ]]; then
+    echo "--------------------------------------------------------"
+    echo "Startup script has already run successfully. Skipping..."
+    echo "To force re-run, delete $MARKER_FILE"
+    echo "--------------------------------------------------------"
+    exit 0
+fi
 
 set -e
 
@@ -111,6 +121,9 @@ fi
 log_info "Using local PostgreSQL instance inside VM"
 DB_HOST="127.0.0.1"
 log_info "DB host set to ${DB_HOST}"
+
+RESTORE_FLAG=$(curl -s -H "Metadata-Flavor: Google" http://metadata.google.internal/computeMetadata/v1/instance/attributes/RESTORE_DATA 2>/dev/null || echo "false")
+log_info "Restore Flag: $RESTORE_FLAG"
 
 
 
@@ -180,7 +193,7 @@ if ! sudo -u postgres psql -tAc "SELECT 1 FROM pg_database WHERE datname='${DB_N
     sudo -u postgres psql -c "CREATE DATABASE ${DB_NAME} OWNER ${POSTGRES_USER};"
     log_success "Database ${DB_NAME} created"
 else
-    log_info "Database ${DB_NAME} already exists"
+log_info "Database ${DB_NAME} already exists"
 fi
 
 connection_success=false
@@ -330,6 +343,21 @@ if [[ ! -f "${ODOO_DIR}/odoo-bin" ]]; then
 fi
 
 log_success "Odoo repository ready"
+
+if [[ "$RESTORE_FLAG" == "true" ]]; then
+    log_info "Restore flag is true, proceeding with data restoration using scripts from the repository..."
+    RESTORE_SCRIPT="${ODOO_DIR}/setup-scripts/backup-restore/restore_from_gcp_bucket.py"
+    
+    if [[ -f "$RESTORE_SCRIPT" ]]; then
+        if python3 "$RESTORE_SCRIPT"; then
+            log_success "Data restore completed successfully"
+        else
+            log_warning "Data restore failed, check logs"
+        fi
+    else
+        log_error "Restore script not found at $RESTORE_SCRIPT"
+    fi
+fi
 
 log_info "Step 9: Creating Python virtual environment..."
 if [[ ! -d "${VENV_DIR}" ]]; then
@@ -529,6 +557,37 @@ exit()
 PYTHON_EOF
 set -e
 
+BACKUP_SCRIPT="${ODOO_DIR}/setup-scripts/backup-restore/backup_to_gcp_bucket.py"
+
+if [[ ! -f "$BACKUP_SCRIPT" ]]; then
+    log_error "Backup script not found at $BACKUP_SCRIPT, cron job not scheduled"
+else
+    log_info "Setting up cron job for backups..."
+    
+    CRON_ENTRY="0 15 * * 1-6 /usr/bin/python3 $BACKUP_SCRIPT >> /var/log/odoo/backup.log 2>&1"
+    
+    EXISTING_CRONTAB=$(crontab -u root -l 2>/dev/null || true)
+    
+    echo "$EXISTING_CRONTAB" | grep -v "backup_to_gcp_bucket.py" > /tmp/new_crontab || true
+    echo "$CRON_ENTRY" >> /tmp/new_crontab
+    
+    if crontab -u root /tmp/new_crontab; then
+        rm -f /tmp/new_crontab
+        log_success "Backup cron job scheduled (Mon-Sat 15:00 UTC)"
+        
+        if crontab -u root -l | grep -q "backup_to_gcp_bucket.py"; then
+            log_success "Cron job verified in crontab"
+        else
+            log_error "Cron job not found in crontab after installation!"
+            exit 1
+        fi
+    else
+        rm -f /tmp/new_crontab
+        log_error "Failed to install crontab"
+        exit 1
+    fi
+fi
+
 log_info "Step 18: Starting Odoo service..."
 systemctl daemon-reload
 systemctl enable odoo
@@ -561,3 +620,9 @@ NGINX_STATUS=$(systemctl is-active nginx 2>/dev/null || echo 'inactive')
 PORT_8069=$(netstat -tlnp 2>/dev/null | grep ':8069.*LISTEN' >/dev/null && echo 'LISTENING' || echo 'NOT LISTENING')
 PORT_80=$(netstat -tlnp 2>/dev/null | grep ':80.*LISTEN' >/dev/null && echo 'LISTENING' || echo 'NOT LISTENING')
 DB_STATUS=$(PGPASSWORD=${POSTGRES_PASSWORD} psql -h ${DB_HOST} -U ${POSTGRES_USER} -d ${DB_NAME} -c 'SELECT 1' >/dev/null 2>&1 && echo 'OK' || echo 'ERROR')
+
+if [[ "$ODOO_STATUS" == "active" ]]; then
+    mkdir -p /var/lib/odoo
+    touch "$MARKER_FILE"
+    log_success "Startup completed. Marker file created at $MARKER_FILE"
+fi

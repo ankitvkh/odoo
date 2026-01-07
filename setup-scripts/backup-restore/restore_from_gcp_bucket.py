@@ -4,7 +4,7 @@ import subprocess
 POSTGRES_USER = "erp_user"
 POSTGRES_PASSWORD = "powertek123"
 DATABASE_NAME = "erp_db"
-BUCKET_NAME = "odoo-backup-store"
+BUCKET_NAME = "erp-databackup"
 GCS_FILE = "" # Leave empty to automatically find the latest backup
 TEMP_DIR = "/tmp/erp_restore"
 
@@ -15,7 +15,7 @@ os.environ["PGPASSWORD"] = POSTGRES_PASSWORD
 if not GCS_FILE:
     print("No specific backup file provided. Finding the latest backup...")
     try:
-        ls_cmd = f"gsutil ls gs://{BUCKET_NAME}/odoo_backups/*.dump"
+        ls_cmd = f"gsutil ls gs://{BUCKET_NAME}/erp_backups/*.dump"
         result = subprocess.run(ls_cmd, shell=True, check=True, capture_output=True, text=True)
         backups = result.stdout.strip().split('\n')
         if not backups:

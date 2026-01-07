@@ -70,6 +70,8 @@ if [[ ! -f "$STARTUP_SCRIPT" ]]; then
 fi
 
 
+RESTORE_DATA="true" # Set to "true" to restore the latest backup
+
 log_info "Creating VM with SQL erp installation startup script..."
 gcloud compute instances create ${VM_NAME} \
     --zone=${ZONE} \
@@ -81,9 +83,36 @@ gcloud compute instances create ${VM_NAME} \
     --image-project=ubuntu-os-cloud \
     --boot-disk-size=30GB \
     --scopes=storage-full \
+    --metadata RESTORE_DATA=${RESTORE_DATA} \
     --metadata-from-file startup-script=${STARTUP_SCRIPT}
 
-log_success "VM created successfully with  SQL erp script"
+log_success "VM created successfully (Restore Flag: ${RESTORE_DATA})"
+
+REGION=$(echo $ZONE | sed 's/-[a-z]$//')
+SCHEDULE_NAME="erp-power-schedule"
+
+log_info "Setting up VM Power Schedule (Start: 03:30 UTC, Stop: 15:30 UTC)..."
+
+# Create the resource policy if it doesn't exist
+if ! gcloud compute resource-policies describe $SCHEDULE_NAME --region=$REGION >/dev/null 2>&1; then
+    gcloud compute resource-policies create instance-schedule $SCHEDULE_NAME \
+        --region=$REGION \
+        --vm-start-schedule="0 9 * * 1-6" \
+        --vm-stop-schedule="0 21 * * 1-6" \
+        --timezone="Asia/Kolkata" \
+        --description="Start at 9 AM IST, Stop at 9 PM IST (Mon-Sat)"
+    log_success "Created resource policy: $SCHEDULE_NAME"
+else
+    log_info "Resource policy already exists: $SCHEDULE_NAME"
+fi
+
+# Attach the policy to the instance
+log_info "Attaching schedule to VM..."
+gcloud compute instances add-resource-policies ${VM_NAME} \
+    --zone=${ZONE} \
+    --resource-policies=$SCHEDULE_NAME
+
+log_success "VM Power Schedule attached successfully"
 
 
 VM_EXTERNAL_IP=$(gcloud compute instances describe ${VM_NAME} --zone=${ZONE} --format='get(networkInterfaces[0].accessConfigs[0].natIP)')
