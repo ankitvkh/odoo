@@ -405,8 +405,8 @@ logfile = ${LOG_FILE}
 
 xmlrpc_interface = 0.0.0.0
 xmlrpc_port = 8069
-proxy_mode = False
-web.base.url = http://${SERVER_NAME}:8069
+proxy_mode = True
+web.base.url = http://${SERVER_NAME}
 
 admin_passwd = admin
 
@@ -589,6 +589,39 @@ else
 fi
 
 log_info "Step 18: Starting Odoo service..."
+
+SSL_DOMAIN=$(curl -s -H "Metadata-Flavor: Google" http://metadata.google.internal/computeMetadata/v1/instance/attributes/DOMAIN_NAME 2>/dev/null || echo "")
+SSL_EMAIL=$(curl -s -H "Metadata-Flavor: Google" http://metadata.google.internal/computeMetadata/v1/instance/attributes/ADMIN_EMAIL 2>/dev/null || echo "admin@example.com")
+
+if [[ -n "$SSL_DOMAIN" && "$SSL_DOMAIN" != "" ]]; then
+    log_info "Domain configured: $SSL_DOMAIN - Setting up SSL certificate..."
+    
+    apt-get install -y certbot python3-certbot-nginx
+    
+    sed -i "s/server_name .*/server_name ${SSL_DOMAIN};/" /etc/nginx/sites-available/odoo
+    nginx -t && systemctl reload nginx
+    
+    sleep 5
+    
+    set +e
+    if certbot --nginx -d ${SSL_DOMAIN} --email ${SSL_EMAIL} --agree-tos --non-interactive --redirect; then
+        log_success "SSL certificate obtained successfully for ${SSL_DOMAIN}"
+        
+        sed -i "s|web.base.url = http://|web.base.url = https://|" ${CONFIG_FILE}
+        
+        (crontab -l 2>/dev/null | grep -v certbot; echo "0 3 * * * /usr/bin/certbot renew --quiet") | crontab -
+        
+        log_success "HTTPS enabled for ${SSL_DOMAIN}"
+    else
+        log_warning "SSL certificate setup failed. HTTPS not enabled. Check DNS and try manually."
+        log_warning "You can run: sudo certbot --nginx -d ${SSL_DOMAIN}"
+    fi
+    set -e
+else
+    log_info "No domain configured, skipping SSL setup. Access via HTTP only."
+fi
+
+log_info "Step 19: Starting Odoo service..."
 systemctl daemon-reload
 systemctl enable odoo
 
@@ -613,7 +646,7 @@ done
 log_info "Waiting for services to stabilize..."
 sleep 20
 
-log_info "Step 19: Final system verification..."
+log_info "Step 20: Final system verification..."
 
 ODOO_STATUS=$(systemctl is-active odoo 2>/dev/null || echo 'inactive')
 NGINX_STATUS=$(systemctl is-active nginx 2>/dev/null || echo 'inactive')

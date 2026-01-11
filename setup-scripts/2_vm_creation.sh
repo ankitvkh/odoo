@@ -8,6 +8,10 @@ NETWORK="default"
 RESERVED_IP_NAME="erp-reserved-ip"        
 STARTUP_SCRIPT="./Startup_Script.sh"
 
+DOMAIN_NAME="odoo.rasptechnologies.co.in"  
+ADMIN_EMAIL="pk@raspinnovations.com" 
+
+
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 BLUE='\033[0;34m'
@@ -70,7 +74,7 @@ if [[ ! -f "$STARTUP_SCRIPT" ]]; then
 fi
 
 
-RESTORE_DATA="true" # Set to "true" to restore the latest backup
+RESTORE_DATA="false" # Set to "true" to restore the latest backup
 
 log_info "Creating VM with SQL erp installation startup script..."
 gcloud compute instances create ${VM_NAME} \
@@ -83,7 +87,7 @@ gcloud compute instances create ${VM_NAME} \
     --image-project=ubuntu-os-cloud \
     --boot-disk-size=30GB \
     --scopes=storage-full \
-    --metadata RESTORE_DATA=${RESTORE_DATA} \
+    --metadata RESTORE_DATA=${RESTORE_DATA},DOMAIN_NAME=${DOMAIN_NAME},ADMIN_EMAIL=${ADMIN_EMAIL} \
     --metadata-from-file startup-script=${STARTUP_SCRIPT}
 
 log_success "VM created successfully (Restore Flag: ${RESTORE_DATA})"
