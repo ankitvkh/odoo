@@ -8,6 +8,7 @@ class AccountMove(models.Model):
     offer_type = fields.Selection([
         ('actual', 'Actual Offer'),
         ('technical', 'Technical Offer'),
+        ('budgetary', 'Budgetary Offer'),
     ], string='Offer Type', compute='_compute_offer_type', store=True,
        help='Offer type linked to the source sales order')
 
