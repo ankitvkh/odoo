@@ -8,8 +8,8 @@ NETWORK="default"
 RESERVED_IP_NAME="erp-reserved-ip"        
 STARTUP_SCRIPT="./Startup_Script.sh"
 
-DOMAIN_NAME="odoo.rasptechnologies.co.in"  
-ADMIN_EMAIL="pk@raspinnovations.com" 
+DOMAIN_NAME="erp.powertekautomation.in"  
+ADMIN_EMAIL="mkumar@powertekautomation.in" 
 
 
 RED='\033[0;31m'
@@ -74,7 +74,7 @@ if [[ ! -f "$STARTUP_SCRIPT" ]]; then
 fi
 
 
-RESTORE_DATA="false" # Set to "true" to restore the latest backup
+RESTORE_DATA="true" # Set to "true" to restore the latest backup
 
 log_info "Creating VM with SQL erp installation startup script..."
 gcloud compute instances create ${VM_NAME} \

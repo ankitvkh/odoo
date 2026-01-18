@@ -17,8 +17,9 @@ class SaleOrder(models.Model):
     offer_type = fields.Selection([
         ('actual', 'Actual Offer'),
         ('technical', 'Technical Offer'),
+        ('budgetary', 'Budgetary Offer'),
     ], string='Offer Type', default='actual', required=True,
-       help='Select offer type: Actual Offer shows real prices, Technical Offer shows "Quoted Price"')
+       help='Select offer type: Actual Offer/Budgetary Offer shows real prices, Technical Offer shows "Quoted Price"')
     
     # Computed fields for conditional price display
     amount_untaxed_display = fields.Char(
@@ -87,7 +88,7 @@ class SaleOrder(models.Model):
                 order.amount_tax_display = 'Quoted'
                 order.amount_total_display = 'Quoted'
             else:
-                # Format amounts with currency
+                # Format amounts with currency (for actual and budgetary)
                 currency = order.currency_id or order.company_id.currency_id
                 order.amount_untaxed_display = f"{currency.symbol} {order.amount_untaxed:,.2f}"
                 order.amount_tax_display = f"{currency.symbol} {order.amount_tax:,.2f}"
@@ -229,6 +230,7 @@ class SaleOrderLine(models.Model):
         selection=[
             ('actual', 'Actual Offer'),
             ('technical', 'Technical Offer'),
+            ('budgetary', 'Budgetary Offer'),
         ],
         string='Offer Type',
         compute='_compute_offer_type',
@@ -303,7 +305,7 @@ class SaleOrderLine(models.Model):
                 line.price_tax_display = 'Quoted'
                 line.price_total_display = 'Quoted'
             else:
-                # Format amounts with currency
+                # Format amounts with currency (for actual and budgetary)
                 currency = line.currency_id or line.company_id.currency_id
                 line.price_unit_display = f"{currency.symbol} {line.price_unit:,.2f}"
                 line.price_subtotal_display = f"{currency.symbol} {line.price_subtotal:,.2f}"
@@ -318,6 +320,7 @@ class SaleOrderOption(models.Model):
         selection=[
             ('actual', 'Actual Offer'),
             ('technical', 'Technical Offer'),
+            ('budgetary', 'Budgetary Offer'),
         ],
         string='Offer Type',
         compute='_compute_offer_type',
@@ -442,7 +445,7 @@ class SaleOrderOption(models.Model):
                 line.price_tax_display = 'Quoted'
                 line.price_total_display = 'Quoted'
             else:
-                # Format amounts with currency
+                # Format amounts with currency (for actual and budgetary)
                 # sale.order.option doesn't have currency_id, use order_id's currency
                 currency = line.currency_id or line.company_id.currency_id
                 line.price_unit_display = f"{currency.symbol} {line.price_unit:,.2f}"
