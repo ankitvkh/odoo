@@ -23,6 +23,7 @@
     ],
     'data': [
         'data/ir_sequence_data.xml',
+        'data/res_company_data.xml',
         'views/sale_order_views.xml',
         'views/sale_report_templates.xml',
         'views/invoice_report_templates.xml',
