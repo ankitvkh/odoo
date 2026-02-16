@@ -284,8 +284,8 @@ apt-get install -y \
 # Download patched wkhtmltopdf based on version
 cd /tmp
 if [ "$UBUNTU_VERSION" = "24.04" ]; then
-    log_info "Installing for Ubuntu 24.04..."
-    wget -q https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-2/wkhtmltox_0.12.6.1-2.noble_amd64.deb -O wkhtmltox.deb
+    log_info "Installing for Ubuntu 24.04 (using Jammy build as Noble build is not yet available)..."
+    wget -q https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-2/wkhtmltox_0.12.6.1-2.jammy_amd64.deb -O wkhtmltox.deb
 elif [ "$UBUNTU_VERSION" = "22.04" ]; then
     log_info "Installing for Ubuntu 22.04..."
     wget -q https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-2/wkhtmltox_0.12.6.1-2.jammy_amd64.deb -O wkhtmltox.deb
@@ -519,7 +519,7 @@ if PGPASSWORD=${POSTGRES_PASSWORD} psql -h ${DB_HOST} -U ${POSTGRES_USER} -d ${D
 else
     log_info "Initializing fresh database..."
     # Try initialization with increased timeout
-    timeout 300s sudo -u ${ODOO_USER} ${VENV_DIR}/bin/python ${ODOO_DIR}/odoo-bin -c ${CONFIG_FILE} \
+    timeout 600s sudo -u ${ODOO_USER} ${VENV_DIR}/bin/python ${ODOO_DIR}/odoo-bin -c ${CONFIG_FILE} \
         -d ${DB_NAME} \
         --db-filter=${DB_NAME} \
         -i base \

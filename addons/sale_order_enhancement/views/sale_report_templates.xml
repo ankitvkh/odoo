@@ -11,6 +11,9 @@
                 <span t-else="">Order # </span>
                 <span t-field="doc.name">SO0000</span>
             </t>
+            <div t-if="doc.portal_ref_no" class="mb-2">
+                <strong>Portal Ref. No.: </strong><span t-field="doc.portal_ref_no"/>
+            </div>
         </xpath>
         <!-- Header: Unit Price -->
         <xpath expr="//th[@name='th_priceunit']" position="replace">

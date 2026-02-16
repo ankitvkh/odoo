@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="report_invoice_document_enhanced" inherit_id="account.report_invoice_document">
+        <xpath expr="//div[@id='informations']" position="before">
+            <div t-if="o.portal_ref_no" class="mb-2">
+                <strong>Portal Ref. No.: </strong><span t-field="o.portal_ref_no"/>
+            </div>
+        </xpath>
 
         <!-- Header: Unit Price -->
         <xpath expr="//th[@name='th_priceunit']" position="replace">
