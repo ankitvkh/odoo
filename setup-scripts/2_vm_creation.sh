@@ -83,7 +83,7 @@ gcloud compute instances create ${VM_NAME} \
     --network=${NETWORK} \
     --address=${RESERVED_IP_NAME} \
     --tags=erp-server \
-    --image-family=ubuntu-2204-lts \
+    --image-family=ubuntu-2404-lts-amd64 \
     --image-project=ubuntu-os-cloud \
     --boot-disk-size=30GB \
     --scopes=storage-full \
