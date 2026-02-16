@@ -7,7 +7,7 @@
         <field name="code">purchase.order.custom</field>
         <field name="prefix"></field>
         <field name="padding">4</field>
-        <field name="number_next">1460</field>
+        <field name="number_next">1490</field>
         <field name="number_increment">1</field>
         <field name="implementation">standard</field>
     </record>
