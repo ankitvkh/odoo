@@ -21,6 +21,11 @@ class SaleOrder(models.Model):
     ], string='Offer Type', default='actual', required=True,
        help='Select offer type: Actual Offer/Budgetary Offer shows real prices, Technical Offer shows "Quoted Price"')
     
+    portal_ref_no = fields.Char(
+        string='Portal Ref. No.',
+        help='Reference number from the portal, only for Technical Offers'
+    )
+    
     # Computed fields for conditional price display
     amount_untaxed_display = fields.Char(
         string='Basic Amount Display',

@@ -1,13 +1,13 @@
--- PSQL script to reset Odoo sequences for custom Sale and Purchase Orders to 1300
+-- PSQL script to reset Odoo sequences for custom Sale and Purchase Orders to 1460
 
 -- Reset Purchase Order Custom Sequence
 UPDATE ir_sequence 
-SET number_next = 1300 
+SET number_next = 1460 
 WHERE code = 'purchase.order.custom';
 
 -- Reset Sale Order Custom Sequence
 UPDATE ir_sequence 
-SET number_next = 1300 
+SET number_next = 1460 
 WHERE code = 'sale.order.custom';
 
 -- If use_advisory_lock is true, we might need to reset the actual postgres sequence too

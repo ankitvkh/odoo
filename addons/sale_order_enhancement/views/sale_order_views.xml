@@ -152,6 +152,10 @@
                        placeholder="Reference Code (XXXXX)"
                        readonly="state not in ['draft', 'sent']"/>
                 <field name="offer_type" widget="selection" readonly="state not in ['draft', 'sent']"/>
+                <field name="portal_ref_no" 
+                       invisible="offer_type != 'technical'" 
+                       readonly="offer_type != 'technical' or state not in ['draft', 'sent']"
+                       required="offer_type == 'technical'"/>
             </xpath>
             
         </field>
