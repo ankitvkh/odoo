@@ -57,6 +57,13 @@ class SaleOrder(models.Model):
         copy=False
     )
     
+    is_revised = fields.Boolean(
+        string='Is Revised',
+        help='Internal flag to track if the quotation has been modified since last send',
+        default=False,
+        copy=False
+    )
+    
     def _get_financial_year(self, date):
         """
         Calculate financial year based on date.
@@ -206,15 +213,11 @@ class SaleOrder(models.Model):
         # Apply the write first
         result = super(SaleOrder, self).write(vals)
         
-        # Then increment revision and update name for orders that need it
+        # Then flag as revised for orders that need it
         for order in orders_to_revise:
-            new_revision = (order.revision_count or 0) + 1
-            # Generate new name with the incremented revision count
-            new_name = order._generate_custom_name(use_original_seq=True, explicit_revision=new_revision)
             # Use sudo to avoid recursion and write directly
             order.sudo().write({
-                'revision_count': new_revision,
-                'name': new_name
+                'is_revised': True
             })
         
         # If custom_ref_code is changed and order is still in draft state (not sent yet)
@@ -226,6 +229,25 @@ class SaleOrder(models.Model):
                     })
         
         return result
+
+    def action_quotation_send(self):
+        """
+        Overridden to increment revision count if the order has been revised
+        """
+        for order in self:
+            if order.is_revised and order.state == 'sent':
+                new_revision = (order.revision_count or 0) + 1
+                # Generate new name with the incremented revision count
+                new_name = order._generate_custom_name(use_original_seq=True, explicit_revision=new_revision)
+                # Apply the revision increment and name update
+                order.sudo().write({
+                    'revision_count': new_revision,
+                    'is_revised': False,
+                    'name': new_name
+                })
+                # Re-calculate display names for lines if needed (though they are usually computed)
+        
+        return super(SaleOrder, self).action_quotation_send()
 
 
 class SaleOrderLine(models.Model):

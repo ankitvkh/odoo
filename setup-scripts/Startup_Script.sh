@@ -400,7 +400,7 @@ db_user = ${POSTGRES_USER}
 db_password = ${POSTGRES_PASSWORD}
 
 addons_path = ${ODOO_DIR}/addons,${ADDONS_DIR}
-data_dir = ${WORK_DIR}/filestore
+data_dir = ${WORK_DIR}
 logfile = ${LOG_FILE}
 
 xmlrpc_interface = 0.0.0.0
