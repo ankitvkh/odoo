@@ -1,5 +1,7 @@
 import os
+import re
 import subprocess
+import shutil
 
 POSTGRES_USER = "erp_user"
 POSTGRES_PASSWORD = "powertek123"
@@ -7,6 +9,8 @@ DATABASE_NAME = "erp_db"
 BUCKET_NAME = "erp-databackup"
 GCS_FILE = "" # Leave empty to automatically find the latest backup
 TEMP_DIR = "/tmp/erp_restore"
+FILESTORE_DIR = "/opt/odoo/filestore"
+ODOO_USER = "odoo"
 
 os.makedirs(TEMP_DIR, exist_ok=True)
 os.environ["PGPASSWORD"] = POSTGRES_PASSWORD
@@ -88,7 +92,52 @@ except Exception as e:
     print(f"Restore error: {e}")
     exit(1)
 
-# Cleanup
 os.remove(LOCAL_FILE)
 print(f"Temporary backup file removed: {LOCAL_FILE}")
+
+dump_basename = os.path.basename(GCS_FILE_PATH)
+timestamp_match = re.search(r"erp_backup_(\d{4}-\d{2}-\d{2}_\d{2}-\d{2}-\d{2})\.dump", dump_basename)
+
+if timestamp_match:
+    timestamp = timestamp_match.group(1)
+    filestore_archive_name = f"erp_filestore_{timestamp}.tar.gz"
+    filestore_gcs_path = f"gs://{BUCKET_NAME}/erp_backups/{filestore_archive_name}"
+    filestore_local_path = os.path.join(TEMP_DIR, filestore_archive_name)
+
+    print(f"Looking for filestore archive: {filestore_gcs_path}")
+
+    check_cmd = f'gsutil ls "{filestore_gcs_path}"'
+    check_result = subprocess.run(check_cmd, shell=True, capture_output=True, text=True)
+
+    if check_result.returncode == 0:
+        print(f"Downloading filestore archive...")
+        try:
+            subprocess.run(f'gsutil cp "{filestore_gcs_path}" "{filestore_local_path}"', shell=True, check=True)
+            print("Filestore archive downloaded.")
+
+            if os.path.isdir(FILESTORE_DIR):
+                print(f"Clearing existing filestore at {FILESTORE_DIR}...")
+                shutil.rmtree(FILESTORE_DIR)
+
+            os.makedirs(FILESTORE_DIR, exist_ok=True)
+
+            print(f"Extracting filestore archive...")
+            subprocess.run(
+                ["tar", "-xzf", filestore_local_path, "-C", os.path.dirname(FILESTORE_DIR)],
+                check=True
+            )
+            subprocess.run(["chown", "-R", f"{ODOO_USER}:{ODOO_USER}", FILESTORE_DIR], check=True)
+            print("Filestore restored and ownership fixed.")
+
+            os.remove(filestore_local_path)
+            print("Filestore archive cleaned up.")
+        except subprocess.CalledProcessError as e:
+            print(f"WARNING: Filestore restore failed: {e}")
+            print("Database was restored successfully, but attachments may be missing.")
+    else:
+        print(f"No filestore archive found for this backup (older backup without filestore).")
+        print("Database restored, but file attachments may be missing.")
+else:
+    print("Could not extract timestamp from backup filename. Skipping filestore restore.")
+
 print("\nRestore process complete!")
