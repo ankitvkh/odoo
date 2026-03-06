@@ -193,20 +193,19 @@ class SaleOrder(models.Model):
         # Track which orders need revision increment
         orders_to_revise = self.env['sale.order']
         
+        # Exclude certain fields that shouldn't trigger revision
+        excluded_fields = {'message_follower_ids', 'message_ids', 'activity_ids', 
+                         'access_token', 'state', 'revision_count', 'name', 'is_revised'}
+        
+        # Check if any meaningful field is being changed in the vals dict
+        meaningful_change = any(key not in excluded_fields for key in vals.keys())
+        
         for order in self:
-            # Check if this is a significant modification after being sent
-            # Exclude certain fields that shouldn't trigger revision
-            excluded_fields = {'message_follower_ids', 'message_ids', 'activity_ids', 
-                             'access_token', 'state', 'revision_count', 'name'}
-            
-            # Check if any meaningful field is being changed
-            meaningful_change = any(key not in excluded_fields for key in vals.keys())
-            
             # Increment revision if:
             # 1. Order was previously sent (state is 'sent' or was 'sent')
             # 2. There's a meaningful change
             # 3. Not changing to 'cancel' state
-            if (order.state == 'sent' and meaningful_change and 
+            if (meaningful_change and order.state == 'sent' and 
                 vals.get('state') != 'cancel'):
                 orders_to_revise |= order
         
@@ -215,8 +214,9 @@ class SaleOrder(models.Model):
         
         # Then flag as revised for orders that need it
         for order in orders_to_revise:
-            # Use sudo to avoid recursion and write directly
-            order.sudo().write({
+            # IMPORTANT: Use super(SaleOrder, order.sudo()).write to avoid infinite recursion
+            # This calls the parent write method (sale.order base) instead of this local one
+            super(SaleOrder, order.sudo()).write({
                 'is_revised': True
             })
         
@@ -224,8 +224,10 @@ class SaleOrder(models.Model):
         if 'custom_ref_code' in vals:
             for order in self:
                 if order.state == 'draft' and order not in orders_to_revise:
-                    order.sudo().write({
-                        'name': order._generate_custom_name(use_original_seq=bool(order.original_sequence))
+                    # Generate new name and use super().write to avoid recursion
+                    new_name = order._generate_custom_name(use_original_seq=bool(order.original_sequence))
+                    super(SaleOrder, order.sudo()).write({
+                        'name': new_name
                     })
         
         return result
