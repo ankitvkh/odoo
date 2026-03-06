@@ -190,6 +190,10 @@ class SaleOrder(models.Model):
         Track revisions when quotation is modified after being sent.
         Increment revision_count and append alphabetical suffix (A, B, C, etc.)
         """
+        # Recursion guard using context - this is the safest way to prevent re-entry
+        if self.env.context.get('skip_revision_tracking'):
+            return super(SaleOrder, self).write(vals)
+
         # Track which orders need revision increment
         orders_to_revise = self.env['sale.order']
         
@@ -213,10 +217,9 @@ class SaleOrder(models.Model):
         result = super(SaleOrder, self).write(vals)
         
         # Then flag as revised for orders that need it
-        for order in orders_to_revise:
-            # IMPORTANT: Use super(SaleOrder, order.sudo()).write to avoid infinite recursion
-            # This calls the parent write method (sale.order base) instead of this local one
-            super(SaleOrder, order.sudo()).write({
+        if orders_to_revise:
+            # IMPORTANT: Use with_context to prevent recursion
+            orders_to_revise.sudo().with_context(skip_revision_tracking=True).write({
                 'is_revised': True
             })
         
@@ -224,9 +227,9 @@ class SaleOrder(models.Model):
         if 'custom_ref_code' in vals:
             for order in self:
                 if order.state == 'draft' and order not in orders_to_revise:
-                    # Generate new name and use super().write to avoid recursion
+                    # Generate new name and use context guard
                     new_name = order._generate_custom_name(use_original_seq=bool(order.original_sequence))
-                    super(SaleOrder, order.sudo()).write({
+                    order.sudo().with_context(skip_revision_tracking=True).write({
                         'name': new_name
                     })
         
@@ -236,20 +239,19 @@ class SaleOrder(models.Model):
         """
         Overridden to increment revision count if the order has been revised
         """
+        res = super(SaleOrder, self).action_quotation_send()
         for order in self:
             if order.is_revised and order.state == 'sent':
                 new_revision = (order.revision_count or 0) + 1
                 # Generate new name with the incremented revision count
                 new_name = order._generate_custom_name(use_original_seq=True, explicit_revision=new_revision)
-                # Apply the revision increment and name update
-                order.sudo().write({
+                # Apply the revision increment and name update using context guard
+                order.sudo().with_context(skip_revision_tracking=True).write({
                     'revision_count': new_revision,
                     'is_revised': False,
                     'name': new_name
                 })
-                # Re-calculate display names for lines if needed (though they are usually computed)
-        
-        return super(SaleOrder, self).action_quotation_send()
+        return res
 
 
 class SaleOrderLine(models.Model):
