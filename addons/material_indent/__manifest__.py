@@ -22,7 +22,8 @@
         'security/ir.model.access.csv',
         'data/sequence_data.xml',
         'views/mrp_bom_views.xml',
-        'views/material_indent_views.xml'
+        'views/material_indent_views.xml',
+        'views/product_template_views.xml'
     ],
     'demo': [],
     'installable': True,

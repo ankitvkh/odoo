@@ -134,6 +134,19 @@ class MrpBomLine(models.Model):
         help="The actual inventory product this line maps to (for project BOMs)"
     )
     
+    make = fields.Char(
+        related='product_id.make', 
+        string='Make', 
+        readonly=True, 
+        store=True
+    )
+    description_short = fields.Char(
+        related='product_id.description_short', 
+        string='Description', 
+        readonly=True, 
+        store=True
+    )
+    
     @api.onchange('product_id')
     def _onchange_product_id(self):
         """Auto-fill custom description and inventory product"""
