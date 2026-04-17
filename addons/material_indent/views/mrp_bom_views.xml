@@ -93,8 +93,8 @@
                optional="show"
                column_invisible="parent.bom_flow_type == 'spare'"
                help="Actual inventory product this maps to"/>
-        <field name="make" optional="show"/>
-        <field name="description_short" string="Description" optional="show"/>
+        <field name="make" optional="hide"/>
+        <field name="description_short" string="Description" optional="hide"/>
       </xpath>
       
     </field>

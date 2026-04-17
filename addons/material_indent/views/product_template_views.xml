@@ -7,8 +7,8 @@
         <field name="inherit_id" ref="product.product_template_tree_view"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='name']" position="after">
-                <field name="make" optional="show"/>
-                <field name="description_short" optional="show"/>
+                <field name="make" optional="hide"/>
+                <field name="description_short" optional="hide"/>
             </xpath>
         </field>
     </record>
