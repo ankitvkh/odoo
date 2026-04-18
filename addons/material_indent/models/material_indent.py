@@ -274,6 +274,19 @@ class MaterialIndentLine(models.Model):
         compute='_compute_vendor_id',
         store=True
     )
+    
+    make = fields.Char(
+        related='product_id.make',
+        string='Make',
+        readonly=True,
+        store=True
+    )
+    description_short = fields.Char(
+        related='product_id.description_short',
+        string='Description',
+        readonly=True,
+        store=True
+    )
 
     @api.depends('product_id')
     def _compute_vendor_id(self):

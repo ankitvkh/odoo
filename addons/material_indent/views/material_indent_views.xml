@@ -117,6 +117,8 @@
                   <field name="product_name" 
                          readonly="1"
                          string="Inventory Product Name"/>
+                  <field name="make" optional="show"/>
+                  <field name="description_short" string="Description" optional="show"/>
                   <field name="product_qty"/>
                   <field name="uom_id" groups="uom.group_uom"/>
                   <field name="available_qty" optional="show"/>

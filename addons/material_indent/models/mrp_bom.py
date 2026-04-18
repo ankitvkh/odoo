@@ -112,6 +112,9 @@ class MaterialIndentLineBom(models.Model):
     
     flow_type = fields.Selection(related='bom_id.bom_flow_type', string='Flow Type')
     
+    make = fields.Char(related='product_id.make', string='Make', readonly=True, store=True)
+    description_short = fields.Char(related='product_id.description_short', string='Description', readonly=True, store=True)
+    
     @api.model
     def create(self, vals):
         if vals.get('indent_reference', 'New') == 'New':

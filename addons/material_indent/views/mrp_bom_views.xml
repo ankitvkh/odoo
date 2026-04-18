@@ -50,6 +50,8 @@
               <field name="custom_description" string="BOM Description" optional="show"/>
               <field name="product_id" string="Inventory Product" domain="[('type', 'in', ['product', 'consu'])]"/>
               <field name="product_name" string="Inventory Name" readonly="1"/>
+              <field name="make" optional="show"/>
+              <field name="description_short" string="Description" optional="show"/>
               <field name="product_qty"/>
               <field name="uom_id"/>
               <field name="flow_type" invisible="1"/>
@@ -93,8 +95,8 @@
                optional="show"
                column_invisible="parent.bom_flow_type == 'spare'"
                help="Actual inventory product this maps to"/>
-        <field name="make" optional="hide"/>
-        <field name="description_short" string="Description" optional="hide"/>
+        <field name="make" optional="show"/>
+        <field name="description_short" string="Description" optional="show"/>
       </xpath>
       
     </field>
