@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Update Search View Filter -->
+    <record id="view_sales_order_filter_inherit" model="ir.ui.view">
+        <field name="name">sale.order.search.inherit.material_indent</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='salesperson']" position="attributes">
+                <attribute name="string">Designated Person</attribute>
+            </xpath>
+            <xpath expr="//filter[@name='my_sale_orders_filter']" position="attributes">
+                <attribute name="string">My Orders (Designated)</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Update Quotation Search View Filter -->
+    <record id="sale_order_view_search_inherit_quotation_inherit" model="ir.ui.view">
+        <field name="name">sale.order.search.inherit.quotation.material_indent</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.sale_order_view_search_inherit_quotation"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='my_quotation']" position="attributes">
+                <attribute name="string">My Quotations (Designated)</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Update Form View Group Label if necessary (though it uses the field's string by default) -->
+    <!-- The group name is "sales_person" but the string is "Sales". I'll leave it as "Sales" or change to "Designated Info"? -->
+    <!-- The user explicitly said "Update the salesperson field to designatedperson". -->
+</odoo>

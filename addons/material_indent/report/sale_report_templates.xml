@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_saleorder_document_inherit" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//div[@id='informations']/div[contains(@t-if, 'doc.user_id.name')]/strong" position="replace">
+            <strong>Designated Person</strong>
+        </xpath>
+    </template>
+</odoo>

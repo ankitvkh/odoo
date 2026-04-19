@@ -16,7 +16,8 @@
         'mrp',
         'purchase',
         'stock',
-        'project'
+        'project',
+        'sale'
     ],
     'data': [
         'security/ir.model.access.csv',
@@ -24,7 +25,9 @@
         'views/mrp_bom_views.xml',
         'views/material_indent_views.xml',
         'views/product_template_views.xml',
-        'views/purchase_order_views.xml'
+        'views/purchase_order_views.xml',
+        'views/sale_order_views.xml',
+        'report/sale_report_templates.xml'
     ],
     'demo': [],
     'installable': True,
