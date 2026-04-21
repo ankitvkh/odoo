@@ -1,0 +1,75 @@
+2026-04-20 03:59:37,747 10021 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) starting 
+2026-04-20 03:59:37,757 10021 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) done in 0.006s 
+2026-04-20 03:59:37,759 10021 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) processed 0 records, 0 records remaining 
+2026-04-20 03:59:37,767 10021 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) completed 
+2026-04-20 04:08:33,027 10021 ERROR ? odoo.addons.bus.models.bus: Bus.loop error, sleep and retry 
+Traceback (most recent call last):
+  File "/Users/rohitkumar/IdeaProjects/odoo/addons/bus/models/bus.py", line 255, in run
+    self.loop()
+  File "/Users/rohitkumar/IdeaProjects/odoo/addons/bus/models/bus.py", line 240, in loop
+    conn.poll()
+psycopg2.OperationalError: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+2026-04-20 04:08:33,035 10021 INFO odoo_db odoo.sql_db: Connection to the database failed 
+2026-04-20 04:08:33,035 10021 WARNING odoo_db odoo.addons.base.models.ir_cron: Exception in cron: 
+Traceback (most recent call last):
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/addons/base/models/ir_cron.py", line 132, in _process_jobs
+    with db.cursor() as cron_cr:
+         ^^^^^^^^^^^
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/sql_db.py", line 784, in cursor
+    return Cursor(self.__pool, self.__dbname, self.__dsn)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/sql_db.py", line 288, in __init__
+    self._cnx = pool.borrow(dsn)
+                ^^^^^^^^^^^^^^^^
+  File "/Users/rohitkumar/IdeaProjects/odoo/.venv/lib/python3.12/site-packages/decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/tools/func.py", line 97, in locked
+    return func(inst, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/sql_db.py", line 712, in borrow
+    result = psycopg2.connect(
+             ^^^^^^^^^^^^^^^^^
+  File "/Users/rohitkumar/IdeaProjects/odoo/.venv/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: connection to server at "localhost" (::1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+2026-04-20 04:08:33,037 10021 INFO odoo_db odoo.sql_db: Connection to the database failed 
+2026-04-20 04:08:33,040 10021 WARNING odoo_db odoo.addons.base.models.ir_cron: Exception in cron: 
+Traceback (most recent call last):
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/addons/base/models/ir_cron.py", line 132, in _process_jobs
+    with db.cursor() as cron_cr:
+         ^^^^^^^^^^^
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/sql_db.py", line 784, in cursor
+    return Cursor(self.__pool, self.__dbname, self.__dsn)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/sql_db.py", line 288, in __init__
+    self._cnx = pool.borrow(dsn)
+                ^^^^^^^^^^^^^^^^
+  File "/Users/rohitkumar/IdeaProjects/odoo/.venv/lib/python3.12/site-packages/decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/tools/func.py", line 97, in locked
+    return func(inst, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/sql_db.py", line 712, in borrow
+    result = psycopg2.connect(
+             ^^^^^^^^^^^^^^^^^
+  File "/Users/rohitkumar/IdeaProjects/odoo/.venv/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: connection to server at "localhost" (::1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+2026-04-20 04:08:35,561 10021 INFO odoo_db odoo.service.server: Initiating shutdown 
+2026-04-20 04:08:35,562 10021 INFO odoo_db odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown. 
+2026-04-20 04:08:35,891 10021 INFO odoo_db odoo.sql_db: ConnectionPool(read/write;used=0/count=0/max=64): Closed 2 connections  

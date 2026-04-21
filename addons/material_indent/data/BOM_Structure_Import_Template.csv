@@ -1,0 +1,5 @@
+product_tmpl_id,bom_flow_type,project_id,bom_line_ids/product_id,bom_line_ids/product_qty,bom_line_ids/custom_product_description
+Steel Structure Assembly,project,Alpha Construction Project,Steel Rod 12mm,50,Project Reinforcement
+Steel Structure Assembly,project,Alpha Construction Project,Steel Plate 10mm,20,Project Base Plates
+Pump Motor Assembly,spare,,SKF Bearing 6308,2,SKF Bearing 6308
+Pump Motor Assembly,spare,,Mechanical Seal 40mm,1,Mechanical Seal 40mm

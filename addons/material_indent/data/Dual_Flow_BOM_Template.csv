@@ -1,7 +1,7 @@
-product_tmpl_id,bom_flow_type,project_id,bom_line_ids/product_id,bom_line_ids/custom_product_description,bom_line_ids/inventory_product_id,bom_line_ids/product_qty
-Steel Building Assembly,project,Alpha Construction Project,Steel Rod 12mm,Custom Steel Reinforcement Bar,Steel Rod 12mm,50
-Steel Building Assembly,project,Alpha Construction Project,Welding Rod E6013,Project Welding Material,Welding Rod E6013,5
-Steel Building Assembly,project,Alpha Construction Project,Primer Paint,Anti-Rust Coating,Primer Paint,2
-Pump Maintenance Kit,spare,,SKF Bearing 6308,SKF Bearing 6308,SKF Bearing 6308,2
-Pump Maintenance Kit,spare,,Mechanical Seal 40mm,Mechanical Seal 40mm,Mechanical Seal 40mm,1
-Pump Maintenance Kit,spare,,V-Belt B50,V-Belt B50,V-Belt B50,1
+product_tmpl_id,bom_flow_type,project_id,bom_line_ids/product_id,bom_line_ids/custom_product_description,bom_line_ids/inventory_product_id,bom_line_ids/product_qty,bom_line_ids/make,bom_line_ids/description_short
+Steel Building Assembly,project,Alpha Construction Project,Steel Rod 12mm,Custom Steel Reinforcement Bar,Steel Rod 12mm,50,TATA,Reinforcement
+Steel Building Assembly,project,Alpha Construction Project,Welding Rod E6013,Project Welding Material,Welding Rod E6013,5,Adani,Welding
+Steel Building Assembly,project,Alpha Construction Project,Primer Paint,Anti-Rust Coating,Primer Paint,2,Asian Paints,Coating
+Pump Maintenance Kit,spare,,SKF Bearing 6308,SKF Bearing 6308,SKF Bearing 6308,2,SKF,Standard Bearing
+Pump Maintenance Kit,spare,,Mechanical Seal 40mm,Mechanical Seal 40mm,Mechanical Seal 40mm,1,Grundfos,Main Seal
+Pump Maintenance Kit,spare,,V-Belt B50,V-Belt B50,V-Belt B50,1,Fenner,Drive Belt

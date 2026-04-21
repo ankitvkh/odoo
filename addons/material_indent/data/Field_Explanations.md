@@ -52,6 +52,15 @@
 ### `indent_line_ids/uom_id` - Unit of Measure
 - **What it is**: Unit for the quantity
 - **Examples**: Units, Kg, Liters, Meters, Bags, Cubic Meter
+### `indent_line_ids/make` - Make/Manufacturer
+- **What it is**: The brand or manufacturer of the component
+- **Examples**: TATA, SKF, Siemens, Grundfos
+- **Auto-pulls**: Yes, if already set in Inventory (Product)
+
+### `indent_line_ids/description_short` - Short Description
+- **What it is**: Brief identification for the component
+- **Examples**: 12mm Reinforcement, Main Shaft Seal
+- **Auto-pulls**: Yes, if already set in Inventory (Product)
 
 ## Flow Types
 

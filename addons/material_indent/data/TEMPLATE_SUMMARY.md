@@ -2,23 +2,20 @@
 
 ## 📋 Available Templates (Unified Approach)
 
-### 🎯 **Material_Indent_Import_Ready.csv** (RECOMMENDED)
+### 📦 **Inventory_Import_Template.csv** (NEW)
+- **Purpose**: Loading products into Odoo inventory
+- **Format**: Includes **Make** and **Short Description** fields
+- **Best for**: Initial data load of items with manufacturer details
+
+### 🏗️ **BOM_Structure_Import_Template.csv** (NEW)
+- **Purpose**: Loading BoM structure (components and quantities)
+- **Format**: Links products to BoMs with quantities
+- **Best for**: Setting up production/maintenance structures
+
+### 🎯 **Material_Indent_Import_Ready.csv** (UPDATED)
 - **Purpose**: Direct import into Odoo
-- **Format**: Odoo field names for seamless import
-- **Contains**: Both project and spare parts examples in one file
-- **Best for**: Ready-to-use import without column mapping
-
-### 📝 **Material_Indent_Simple_Template.csv**
-- **Purpose**: User-friendly data preparation
-- **Format**: Simple column names for easy understanding
-- **Contains**: Same data as import-ready, but easier to read/edit
-- **Best for**: Manual data entry before converting to import format
-
-### 🔧 **Material_Indent_Unified_Template.csv**
-- **Purpose**: Matches your BOM structure exactly
-- **Format**: Product | Quantity | BoM Type | Unit | Components | Quantities
-- **Contains**: Shows relationship between BOMs and Material Indents
-- **Best for**: Understanding the data structure
+- **Format**: Includes **Make** and **Short Description** for indent lines
+- **Best for**: Ready-to-use indent import
 
 ## 🏗️ Template Structure Based on Your BOM Format
 

@@ -1,0 +1,20 @@
+
+# Material Indent & Inventory Import Templates
+
+## 📂 Core Templates:
+1. **Inventory_Import_Template.csv** - Load Products with Make and Description
+2. **BOM_Structure_Import_Template.csv** - Load Bill of Materials
+3. **Material_Indent_Unified_Import.csv** - Ready-to-import Indents
+4. **Material_Indent_Simple_Format.csv** - User-friendly data preparation
+
+## 🆕 New Fields Added:
+- **Make**: Manufacturer/Brand (e.g., TATA, SKF, Siemens)
+- **Description**: Short identification (e.g., 12mm Rod, Ball Bearing)
+
+## 🚀 How to Use:
+1. **Import Inventory First**: Use `Inventory_Import_Template.csv` to load products with their Make and Description.
+2. **Import BOMs**: Use `BOM_Structure_Import_Template.csv` to link products into BOMs.
+3. **Import Indents**: Use `Material_Indent_Unified_Import.csv` to create material indents.
+
+## 💡 Pro Tip:
+The 'Make' and 'Description' fields in BOM and Indent lines are automatically pulled from the Inventory (Product) settings. When you import products using the Inventory template, these values will show up everywhere else!
