@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="project_project_rule_all_visible" model="ir.rule">
+        <field name="name">Project: All Internal Users See All Projects</field>
+        <field name="model_id" ref="project.model_project_project"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <record id="project_activity_template_rule_all_visible" model="ir.rule">
+        <field name="name">Project Template: All Internal Users See All Templates</field>
+        <field name="model_id" ref="project_activity_template.model_project_activity_template"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+</odoo>

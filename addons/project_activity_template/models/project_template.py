@@ -12,7 +12,8 @@ class ProjectActivityTemplate(models.Model):
     name = fields.Char(
         string='Template Name',
         required=True,
-        tracking=True
+        tracking=True,
+        translate=False
     )
     sequence = fields.Integer(
         string='Sequence',

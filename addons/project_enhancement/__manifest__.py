@@ -18,8 +18,11 @@
     'website': 'https://www.yourcompany.com',
     'depends': [
         'project',
+        'project_activity_template',
     ],
-    'data': [],
+    'data': [
+        'security/project_security.xml',
+    ],
     'installable': True,
     'application': False,
     'auto_install': False,
