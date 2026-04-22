@@ -114,7 +114,7 @@ class MaterialIndent(models.Model):
             
             lines.append((0, 0, {
                 'product_id': product.id,
-                'product_name': product.name,  # Always use inventory product name
+                'product_name': product.display_name,  # Always use inventory product name
                 'product_qty': line.product_qty,
                 'uom_id': line.product_uom_id.id,
                 'available_qty': available_qty,
@@ -246,6 +246,7 @@ class MaterialIndentLine(models.Model):
     product_name = fields.Char(
         string='Product Name', 
         help='Preserved product name from inventory',
+        related='product_id.display_name',
         required=True
     )
     
@@ -302,7 +303,6 @@ class MaterialIndentLine(models.Model):
         """Auto-fill product details"""
         for rec in self:
             if rec.product_id:
-                rec.product_name = rec.product_id.name
                 rec.uom_id = rec.product_id.uom_id.id
                 rec.available_qty = rec.product_id.qty_available
 

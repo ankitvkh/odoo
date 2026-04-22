@@ -98,7 +98,7 @@ class MaterialIndentLineBom(models.Model):
     indent_reference = fields.Char(string='Indent Reference', default='New')
     product_id = fields.Many2one('product.product', string='Inventory Product', required=True,
                                 help="The actual inventory product to be procured")
-    product_name = fields.Char(string='Inventory Product Name', related='product_id.name')
+    product_name = fields.Char(string='Inventory Product Name', related='product_id.display_name')
     custom_description = fields.Char(string='Original BOM Description', 
                                    help="Original description from BOM (for project BOMs)")
     product_qty = fields.Float(string='Quantity', default=1.0, required=True)
@@ -112,8 +112,8 @@ class MaterialIndentLineBom(models.Model):
     
     flow_type = fields.Selection(related='bom_id.bom_flow_type', string='Flow Type')
     
-    make = fields.Char(related='product_id.make', string='Make', readonly=True, store=True)
-    description_short = fields.Char(related='product_id.description_short', string='Description', readonly=True, store=True)
+    make = fields.Char(related='product_id.make', string='Make', readonly=False, store=True)
+    description_short = fields.Char(related='product_id.description_short', string='Description', readonly=False, store=True)
     
     @api.model
     def create(self, vals):
@@ -140,13 +140,13 @@ class MrpBomLine(models.Model):
     make = fields.Char(
         related='product_id.make', 
         string='Make', 
-        readonly=True, 
+        readonly=False, 
         store=True
     )
     description_short = fields.Char(
         related='product_id.description_short', 
         string='Description', 
-        readonly=True, 
+        readonly=False, 
         store=True
     )
     

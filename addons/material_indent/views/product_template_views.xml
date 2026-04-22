@@ -12,6 +12,18 @@
             </xpath>
         </field>
     </record>
+    
+    <record id="product_product_tree_view_inherit_material_indent" model="ir.ui.view">
+        <field name="name">product.product.list.inherit.material.indent</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_product_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="make" optional="show"/>
+                <field name="description_short" optional="show"/>
+            </xpath>
+        </field>
+    </record>
 
     <!-- Product Template Form View Inheritance -->
     <record id="product_template_form_view_inherit_material_indent" model="ir.ui.view">
@@ -19,9 +31,54 @@
         <field name="model" >product.template</field>
         <field name="inherit_id" ref="product.product_template_form_view"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='categ_id']" position="after">
-                <field name="make" placeholder="e.g. SKF, Siemens"/>
-                <field name="description_short" placeholder="Brief identification description"/>
+            <xpath expr="//div[hasclass('oe_title')]" position="inside">
+                <div class="o_row">
+                    <field name="make" placeholder="Make (e.g. SKF, Siemens)" class="oe_inline fw-bold"/>
+                    <span class="mx-2" invisible="not make or not description_short">-</span>
+                    <field name="description_short" placeholder="Short Description" class="oe_inline"/>
+                </div>
+            </xpath>
+
+            <!-- Also add to General Information tab for better visibility with labels -->
+            <xpath expr="//group[@name='group_general']" position="inside">
+                <field name="make"/>
+                <field name="description_short"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Product Variant Easy Edit Form View Inheritance -->
+    <record id="product_variant_easy_edit_view_inherit_material_indent" model="ir.ui.view">
+        <field name="name">product.variant.easy.edit.inherit.material.indent</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_variant_easy_edit_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_title')]" position="inside">
+                <div class="o_row">
+                    <field name="make" placeholder="Make" class="oe_inline fw-bold"/>
+                    <span class="mx-2" invisible="not make or not description_short">-</span>
+                    <field name="description_short" placeholder="Short Description" class="oe_inline"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Product Product Normal Form View Inheritance -->
+    <record id="product_normal_form_view_inherit_material_indent" model="ir.ui.view">
+        <field name="name">product.product.form.inherit.material.indent</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_title')]" position="inside">
+                <div class="o_row">
+                    <field name="make" placeholder="Make" class="oe_inline fw-bold"/>
+                    <span class="mx-2" invisible="not make or not description_short">-</span>
+                    <field name="description_short" placeholder="Short Description" class="oe_inline"/>
+                </div>
+            </xpath>
+            <xpath expr="//group[@name='group_general']" position="inside">
+                <field name="make"/>
+                <field name="description_short"/>
             </xpath>
         </field>
     </record>
@@ -41,6 +98,20 @@
                     <filter string="Make" name="group_make" context="{'group_by': 'make'}"/>
                 </group>
                 <separator/>
+            </xpath>
+        </field>
+    </record>
+    <!-- Product Product Search View Inheritance -->
+    <record id="product_product_search_view_inherit_material_indent" model="ir.ui.view">
+        <field name="name">product.product.search.inherit.material.indent</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_search_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="make"/>
+            </xpath>
+            <xpath expr="//group" position="inside">
+                <filter string="Make" name="group_make" context="{'group_by': 'make'}"/>
             </xpath>
         </field>
     </record>
