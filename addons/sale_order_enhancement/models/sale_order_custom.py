@@ -257,6 +257,18 @@ class SaleOrder(models.Model):
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
     
+    make = fields.Char(
+        related='product_id.make',
+        string='Make',
+        readonly=True
+    )
+    
+    description_short = fields.Char(
+        related='product_id.description_short',
+        string='Short Description',
+        readonly=True
+    )
+    
     offer_type = fields.Selection(
         selection=[
             ('actual', 'Actual Offer'),
@@ -346,6 +358,18 @@ class SaleOrderLine(models.Model):
 
 class SaleOrderOption(models.Model):
     _inherit = 'sale.order.option'
+    
+    make = fields.Char(
+        related='product_id.make',
+        string='Make',
+        readonly=True
+    )
+    
+    description_short = fields.Char(
+        related='product_id.description_short',
+        string='Short Description',
+        readonly=True
+    )
     
     offer_type = fields.Selection(
         selection=[

@@ -35,5 +35,49 @@
             ]</field>
         </record>
 
+        <!-- Record Rules: Filter Invoices/Bills by Location -->
+        <record id="account_move_location_rule" model="ir.rule">
+            <field name="name">Account Move - Location Filter</field>
+            <field name="model_id" ref="account.model_account_move"/>
+            <field name="domain_force">[
+                '|',
+                ('location_id', '=', False),
+                ('location_id', 'in', user.get_accessible_locations())
+            ]</field>
+        </record>
+
+        <!-- Neutralize Standard Salesperson-based Rules -->
+        <!-- We use function calls to force update records that are marked with noupdate="1" in base modules -->
+        
+        <function name="write" model="ir.rule">
+            <value eval="[ref('sale.sale_order_personal_rule')]"/>
+            <value eval="{'domain_force': '[(1, \'=\', 1)]'}"/>
+        </function>
+
+        <function name="write" model="ir.rule">
+            <value eval="[ref('sale.sale_order_line_personal_rule')]"/>
+            <value eval="{'domain_force': '[(1, \'=\', 1)]'}"/>
+        </function>
+
+        <function name="write" model="ir.rule">
+            <value eval="[ref('sale.sale_order_report_personal_rule')]"/>
+            <value eval="{'domain_force': '[(1, \'=\', 1)]'}"/>
+        </function>
+
+        <function name="write" model="ir.rule">
+            <value eval="[ref('sale.account_invoice_rule_see_personal')]"/>
+            <value eval="{'domain_force': '[(1, \'=\', 1)]'}"/>
+        </function>
+
+        <function name="write" model="ir.rule">
+            <value eval="[ref('sale.account_invoice_line_rule_see_personal')]"/>
+            <value eval="{'domain_force': '[(1, \'=\', 1)]'}"/>
+        </function>
+
+        <function name="write" model="ir.rule">
+            <value eval="[ref('sale.account_invoice_report_rule_see_personal')]"/>
+            <value eval="{'domain_force': '[(1, \'=\', 1)]'}"/>
+        </function>
+
     </data>
 </odoo>

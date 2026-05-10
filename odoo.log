@@ -1,75 +1,269 @@
-2026-04-20 03:59:37,747 10021 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) starting 
-2026-04-20 03:59:37,757 10021 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) done in 0.006s 
-2026-04-20 03:59:37,759 10021 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) processed 0 records, 0 records remaining 
-2026-04-20 03:59:37,767 10021 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) completed 
-2026-04-20 04:08:33,027 10021 ERROR ? odoo.addons.bus.models.bus: Bus.loop error, sleep and retry 
-Traceback (most recent call last):
-  File "/Users/rohitkumar/IdeaProjects/odoo/addons/bus/models/bus.py", line 255, in run
-    self.loop()
-  File "/Users/rohitkumar/IdeaProjects/odoo/addons/bus/models/bus.py", line 240, in loop
-    conn.poll()
-psycopg2.OperationalError: server closed the connection unexpectedly
-	This probably means the server terminated abnormally
-	before or while processing the request.
-
-2026-04-20 04:08:33,035 10021 INFO odoo_db odoo.sql_db: Connection to the database failed 
-2026-04-20 04:08:33,035 10021 WARNING odoo_db odoo.addons.base.models.ir_cron: Exception in cron: 
-Traceback (most recent call last):
-  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/addons/base/models/ir_cron.py", line 132, in _process_jobs
-    with db.cursor() as cron_cr:
-         ^^^^^^^^^^^
-  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/sql_db.py", line 784, in cursor
-    return Cursor(self.__pool, self.__dbname, self.__dsn)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/sql_db.py", line 288, in __init__
-    self._cnx = pool.borrow(dsn)
-                ^^^^^^^^^^^^^^^^
+2026-05-10 10:42:52,794 53030 INFO ? odoo: Odoo version 18.0 
+2026-05-10 10:42:52,795 53030 INFO ? odoo: Using configuration file at /Users/rohitkumar/IdeaProjects/odoo/odoo.conf 
+2026-05-10 10:42:52,795 53030 INFO ? odoo: addons paths: ['/Users/rohitkumar/IdeaProjects/odoo/odoo/addons', '/Users/rohitkumar/Library/Application Support/Odoo/addons/18.0', '/Users/rohitkumar/IdeaProjects/odoo/addons'] 
+2026-05-10 10:42:52,795 53030 INFO ? odoo: database: rohitkumar@localhost:5432 
+2026-05-10 10:42:52,880 53030 INFO ? odoo.addons.base.models.ir_actions_report: You need Wkhtmltopdf to print a pdf version of the reports. 
+2026-05-10 10:42:52,880 53030 INFO ? odoo.addons.base.models.ir_actions_report: You need Wkhtmltoimage to generate images from html. 
+2026-05-10 10:42:52,976 53030 INFO ? odoo.service.server: HTTP service (werkzeug) running on Rohits-MacBook-Pro.local:8069 
+2026-05-10 10:42:52,993 53030 INFO odoo_db odoo.modules.loading: loading 1 modules... 
+2026-05-10 10:42:52,997 53030 INFO odoo_db odoo.modules.loading: 1 modules loaded in 0.00s, 0 queries (+0 extra) 
+2026-05-10 10:42:53,028 53030 INFO odoo_db odoo.modules.loading: loading 99 modules... 
+2026-05-10 10:42:53,481 53030 WARNING odoo_db py.warnings: /Users/rohitkumar/IdeaProjects/odoo/odoo/api.py:466: DeprecationWarning: The model odoo.addons.material_indent.models.mrp_bom is not overriding the create method in batch
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo-bin", line 8, in <module>
+    odoo.cli.main()
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/cli/command.py", line 66, in main
+    o.run(args)
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/cli/server.py", line 180, in run
+    main(args)
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/cli/server.py", line 173, in main
+    rc = odoo.service.server.start(preload=preload, stop=stop)
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/service/server.py", line 1402, in start
+    rc = server.run(preload, stop)
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/service/server.py", line 578, in run
+    rc = preload_registries(preload)
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/service/server.py", line 1306, in preload_registries
+    registry = Registry.new(dbname, update_module=update_module)
   File "/Users/rohitkumar/IdeaProjects/odoo/.venv/lib/python3.12/site-packages/decorator.py", line 232, in fun
     return caller(func, *(extras + args), **kw)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/Users/rohitkumar/IdeaProjects/odoo/odoo/tools/func.py", line 97, in locked
     return func(inst, *args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/sql_db.py", line 712, in borrow
-    result = psycopg2.connect(
-             ^^^^^^^^^^^^^^^^^
-  File "/Users/rohitkumar/IdeaProjects/odoo/.venv/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
-    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-psycopg2.OperationalError: connection to server at "localhost" (::1), port 5432 failed: Connection refused
-	Is the server running on that host and accepting TCP/IP connections?
-connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
-	Is the server running on that host and accepting TCP/IP connections?
-
-2026-04-20 04:08:33,037 10021 INFO odoo_db odoo.sql_db: Connection to the database failed 
-2026-04-20 04:08:33,040 10021 WARNING odoo_db odoo.addons.base.models.ir_cron: Exception in cron: 
-Traceback (most recent call last):
-  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/addons/base/models/ir_cron.py", line 132, in _process_jobs
-    with db.cursor() as cron_cr:
-         ^^^^^^^^^^^
-  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/sql_db.py", line 784, in cursor
-    return Cursor(self.__pool, self.__dbname, self.__dsn)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/sql_db.py", line 288, in __init__
-    self._cnx = pool.borrow(dsn)
-                ^^^^^^^^^^^^^^^^
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/modules/registry.py", line 131, in new
+    odoo.modules.load_modules(registry, force_demo, status, update_module)
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/modules/loading.py", line 475, in load_modules
+    processed_modules += load_marked_modules(env, graph,
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/modules/loading.py", line 363, in load_marked_modules
+    loaded, processed = load_module_graph(
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/modules/loading.py", line 184, in load_module_graph
+    load_openerp_module(package.name)
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/modules/module.py", line 384, in load_openerp_module
+    __import__(qualname)
+  File "/Users/rohitkumar/IdeaProjects/odoo/addons/material_indent/__init__.py", line 1, in <module>
+    from . import models
+  File "/Users/rohitkumar/IdeaProjects/odoo/addons/material_indent/models/__init__.py", line 1, in <module>
+    from . import mrp_bom
+  File "/Users/rohitkumar/IdeaProjects/odoo/addons/material_indent/models/mrp_bom.py", line 93, in <module>
+    class MaterialIndentLineBom(models.Model):
+  File "/Users/rohitkumar/IdeaProjects/odoo/addons/material_indent/models/mrp_bom.py", line 118, in MaterialIndentLineBom
+    @api.model
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/api.py", line 429, in model
+    return model_create_single(method)
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/api.py", line 466, in model_create_single
+    warnings.warn(
+ 
+2026-05-10 10:42:53,482 53030 WARNING odoo_db py.warnings: /Users/rohitkumar/IdeaProjects/odoo/odoo/api.py:466: DeprecationWarning: The model odoo.addons.material_indent.models.material_indent is not overriding the create method in batch
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo-bin", line 8, in <module>
+    odoo.cli.main()
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/cli/command.py", line 66, in main
+    o.run(args)
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/cli/server.py", line 180, in run
+    main(args)
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/cli/server.py", line 173, in main
+    rc = odoo.service.server.start(preload=preload, stop=stop)
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/service/server.py", line 1402, in start
+    rc = server.run(preload, stop)
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/service/server.py", line 578, in run
+    rc = preload_registries(preload)
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/service/server.py", line 1306, in preload_registries
+    registry = Registry.new(dbname, update_module=update_module)
   File "/Users/rohitkumar/IdeaProjects/odoo/.venv/lib/python3.12/site-packages/decorator.py", line 232, in fun
     return caller(func, *(extras + args), **kw)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/Users/rohitkumar/IdeaProjects/odoo/odoo/tools/func.py", line 97, in locked
     return func(inst, *args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/sql_db.py", line 712, in borrow
-    result = psycopg2.connect(
-             ^^^^^^^^^^^^^^^^^
-  File "/Users/rohitkumar/IdeaProjects/odoo/.venv/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
-    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-psycopg2.OperationalError: connection to server at "localhost" (::1), port 5432 failed: Connection refused
-	Is the server running on that host and accepting TCP/IP connections?
-connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
-	Is the server running on that host and accepting TCP/IP connections?
-
-2026-04-20 04:08:35,561 10021 INFO odoo_db odoo.service.server: Initiating shutdown 
-2026-04-20 04:08:35,562 10021 INFO odoo_db odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown. 
-2026-04-20 04:08:35,891 10021 INFO odoo_db odoo.sql_db: ConnectionPool(read/write;used=0/count=0/max=64): Closed 2 connections  
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/modules/registry.py", line 131, in new
+    odoo.modules.load_modules(registry, force_demo, status, update_module)
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/modules/loading.py", line 475, in load_modules
+    processed_modules += load_marked_modules(env, graph,
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/modules/loading.py", line 363, in load_marked_modules
+    loaded, processed = load_module_graph(
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/modules/loading.py", line 184, in load_module_graph
+    load_openerp_module(package.name)
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/modules/module.py", line 384, in load_openerp_module
+    __import__(qualname)
+  File "/Users/rohitkumar/IdeaProjects/odoo/addons/material_indent/__init__.py", line 1, in <module>
+    from . import models
+  File "/Users/rohitkumar/IdeaProjects/odoo/addons/material_indent/models/__init__.py", line 2, in <module>
+    from . import material_indent
+  File "/Users/rohitkumar/IdeaProjects/odoo/addons/material_indent/models/material_indent.py", line 5, in <module>
+    class MaterialIndent(models.Model):
+  File "/Users/rohitkumar/IdeaProjects/odoo/addons/material_indent/models/material_indent.py", line 72, in MaterialIndent
+    @api.model
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/api.py", line 429, in model
+    return model_create_single(method)
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/api.py", line 466, in model_create_single
+    warnings.warn(
+ 
+2026-05-10 10:42:53,512 53030 WARNING odoo_db py.warnings: /Users/rohitkumar/IdeaProjects/odoo/odoo/api.py:466: DeprecationWarning: The model odoo.addons.user_access_management.models.res_users is not overriding the create method in batch
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo-bin", line 8, in <module>
+    odoo.cli.main()
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/cli/command.py", line 66, in main
+    o.run(args)
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/cli/server.py", line 180, in run
+    main(args)
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/cli/server.py", line 173, in main
+    rc = odoo.service.server.start(preload=preload, stop=stop)
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/service/server.py", line 1402, in start
+    rc = server.run(preload, stop)
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/service/server.py", line 578, in run
+    rc = preload_registries(preload)
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/service/server.py", line 1306, in preload_registries
+    registry = Registry.new(dbname, update_module=update_module)
+  File "/Users/rohitkumar/IdeaProjects/odoo/.venv/lib/python3.12/site-packages/decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/tools/func.py", line 97, in locked
+    return func(inst, *args, **kwargs)
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/modules/registry.py", line 131, in new
+    odoo.modules.load_modules(registry, force_demo, status, update_module)
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/modules/loading.py", line 475, in load_modules
+    processed_modules += load_marked_modules(env, graph,
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/modules/loading.py", line 363, in load_marked_modules
+    loaded, processed = load_module_graph(
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/modules/loading.py", line 184, in load_module_graph
+    load_openerp_module(package.name)
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/modules/module.py", line 384, in load_openerp_module
+    __import__(qualname)
+  File "/Users/rohitkumar/IdeaProjects/odoo/addons/user_access_management/__init__.py", line 3, in <module>
+    from . import models
+  File "/Users/rohitkumar/IdeaProjects/odoo/addons/user_access_management/models/__init__.py", line 4, in <module>
+    from . import res_users
+  File "/Users/rohitkumar/IdeaProjects/odoo/addons/user_access_management/models/res_users.py", line 7, in <module>
+    class ResUsers(models.Model):
+  File "/Users/rohitkumar/IdeaProjects/odoo/addons/user_access_management/models/res_users.py", line 152, in ResUsers
+    @api.model
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/api.py", line 429, in model
+    return model_create_single(method)
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/api.py", line 466, in model_create_single
+    warnings.warn(
+ 
+2026-05-10 10:42:53,540 53030 INFO odoo_db odoo.modules.loading: 99 modules loaded in 0.51s, 0 queries (+0 extra) 
+2026-05-10 10:42:53,625 53030 INFO odoo_db odoo.modules.loading: Modules loaded. 
+2026-05-10 10:42:53,628 53030 INFO odoo_db odoo.modules.registry: Registry loaded in 0.652s 
+2026-05-10 10:42:53,636 53030 INFO odoo_db odoo.addons.base.models.ir_http: Generating routing map for key None 
+2026-05-10 10:42:53,721 53030 WARNING odoo_db py.warnings: /Users/rohitkumar/IdeaProjects/odoo/odoo/fields.py:819: UserWarning: Field location.master.complete_name should be declared with recursive=True
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/threading.py", line 1032, in _bootstrap
+    self._bootstrap_inner()
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+    self.run()
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/threading.py", line 1012, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socketserver.py", line 766, in __init__
+    self.handle()
+  File "/Users/rohitkumar/IdeaProjects/odoo/.venv/lib/python3.12/site-packages/werkzeug/serving.py", line 390, in handle
+    super().handle()
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/http/server.py", line 436, in handle
+    self.handle_one_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/http/server.py", line 424, in handle_one_request
+    method()
+  File "/Users/rohitkumar/IdeaProjects/odoo/.venv/lib/python3.12/site-packages/werkzeug/serving.py", line 362, in run_wsgi
+    execute(self.server.app)
+  File "/Users/rohitkumar/IdeaProjects/odoo/.venv/lib/python3.12/site-packages/werkzeug/serving.py", line 323, in execute
+    application_iter = app(environ, start_response)
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/http.py", line 2363, in __call__
+    response = request._serve_db()
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/http.py", line 1891, in _serve_db
+    return self._transactioning(
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/http.py", line 1954, in _transactioning
+    return service_model.retrying(func, env=self.env)
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/service/model.py", line 137, in retrying
+    result = func()
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/http.py", line 1921, in _serve_ir_http
+    response = self.dispatcher.dispatch(rule.endpoint, args)
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/http.py", line 2168, in dispatch
+    result = self.request.registry['ir.http']._dispatch(endpoint)
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/addons/base/models/ir_http.py", line 329, in _dispatch
+    result = endpoint(**request.params)
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/http.py", line 727, in route_wrapper
+    result = endpoint(self, *args, **params_ok)
+  File "/Users/rohitkumar/IdeaProjects/odoo/addons/web/controllers/dataset.py", line 35, in call_kw
+    return call_kw(request.env[model], method, args, kwargs)
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/api.py", line 517, in call_kw
+    result = getattr(recs, name)(*args, **kwargs)
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/addons/base/models/ir_ui_view.py", line 2579, in get_views
+    v_type: self.get_view(
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/addons/base/models/ir_ui_view.py", line 2765, in get_view
+    result = dict(self._get_view_cache(view_id, view_type, **options))
+  File "/Users/rohitkumar/IdeaProjects/odoo/.venv/lib/python3.12/site-packages/decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/tools/cache.py", line 110, in lookup
+    value = d[key] = self.method(*args, **kwargs)
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/addons/base/models/ir_ui_view.py", line 2724, in _get_view_cache
+    arch, models = view.postprocess_and_fields(arch, model=self._name, **options)
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/addons/base/models/ir_ui_view.py", line 982, in postprocess_and_fields
+    name_manager = self._postprocess_view(node, model or self.model, **options)
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/addons/base/models/ir_ui_view.py", line 1156, in _postprocess_view
+    self._postprocess_on_change(root, model)
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/addons/base/models/ir_ui_view.py", line 1222, in _postprocess_on_change
+    if model._has_onchange(field, field_nodes):
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/models.py", line 7275, in _has_onchange
+    for dep in self.pool.get_dependent_fields(field.base_field)
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/modules/registry.py", line 430, in get_dependent_fields
+    if field not in self._field_triggers:
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/tools/func.py", line 42, in __get__
+    value = self.fget(obj)
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/modules/registry.py", line 518, in _field_triggers
+    dependencies = list(field.resolve_depends(self))
+  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/fields.py", line 819, in resolve_depends
+    warnings.warn(f"Field {self} should be declared with recursive=True")
+ 
+2026-05-10 10:42:53,730 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:42:53] "POST /web/dataset/call_kw/location.master/get_views HTTP/1.1" 200 - 25 0.032 0.428
+2026-05-10 10:42:53,802 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:42:53] "POST /web/dataset/call_kw/res.users/web_read HTTP/1.1" 200 - 78 0.048 0.016
+2026-05-10 10:42:53,883 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:42:53] "GET /web/image/res.users/12/avatar_128?unique=1776913426000 HTTP/1.1" 200 - 18 0.011 0.015
+2026-05-10 10:42:54,520 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:42:54] "GET /websocket?version=18.0-2 HTTP/1.1" 101 - 2 0.001 0.008
+2026-05-10 10:42:54,837 53030 INFO ? odoo.addons.bus.models.bus: Bus.loop listen imbus on db postgres 
+2026-05-10 10:43:22,742 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:43:22] "POST /web/dataset/call_kw/res.users/web_search_read HTTP/1.1" 200 - 12 0.007 0.018
+2026-05-10 10:43:33,176 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:43:33] "POST /web/dataset/call_kw/sale.order/web_search_read HTTP/1.1" 200 - 28 0.024 0.025
+2026-05-10 10:43:34,905 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:43:34] "POST /web/dataset/call_kw/sale.order/web_search_read HTTP/1.1" 200 - 26 0.014 0.021
+2026-05-10 10:43:35,927 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:43:35] "POST /web/dataset/call_kw/sale.order/web_read HTTP/1.1" 200 - 134 0.108 0.107
+2026-05-10 10:43:36,054 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:43:36] "POST /mail/thread/data HTTP/1.1" 200 - 38 0.033 0.020
+2026-05-10 10:43:36,078 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:43:36] "POST /mail/thread/messages HTTP/1.1" 200 - 24 0.024 0.026
+2026-05-10 10:43:43,678 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:43:43] "POST /web/dataset/call_kw/res.users/name_search HTTP/1.1" 200 - 4 0.004 0.008
+2026-05-10 10:43:43,733 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:43:43] "GET /web/image/res.users/8/avatar_128 HTTP/1.1" 200 - 10 0.008 0.029
+2026-05-10 10:43:43,735 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:43:43] "GET /web/image/res.users/9/avatar_128 HTTP/1.1" 200 - 10 0.013 0.024
+2026-05-10 10:43:43,744 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:43:43] "GET /web/image/res.users/10/avatar_128 HTTP/1.1" 200 - 10 0.021 0.026
+2026-05-10 10:43:44,884 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:43:44] "POST /web/dataset/call_kw/sale.order/onchange HTTP/1.1" 200 - 61 0.056 0.076
+2026-05-10 10:43:47,078 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:43:47] "POST /web/dataset/call_kw/sale.order/web_save HTTP/1.1" 200 - 144 0.144 0.130
+2026-05-10 10:43:47,110 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:43:47] "POST /mail/thread/messages HTTP/1.1" 200 - 20 0.014 0.009
+2026-05-10 10:43:47,121 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:43:47] "POST /mail/thread/data HTTP/1.1" 200 - 25 0.014 0.014
+2026-05-10 10:43:49,488 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:43:49] "GET /web/session/logout HTTP/1.1" 303 - 3 0.002 0.009
+2026-05-10 10:43:49,507 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:43:49] "GET /odoo HTTP/1.1" 303 - 4 0.003 0.008
+2026-05-10 10:43:49,681 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:43:49] "GET /web/login?redirect=/odoo? HTTP/1.1" 200 - 54 0.023 0.142
+2026-05-10 10:43:49,704 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:43:49] "GET /web/binary/company_logo HTTP/1.1" 304 - 5 0.003 0.004
+2026-05-10 10:43:50,532 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:43:50] "GET /web/service-worker.js HTTP/1.1" 200 - 5 0.004 0.011
+2026-05-10 10:43:50,560 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:43:50] "GET /odoo/offline HTTP/1.1" 200 - 13 0.004 0.016
+2026-05-10 10:43:53,466 53030 INFO odoo_db odoo.addons.base.models.res_users: Login successful for db:odoo_db login:demo from 127.0.0.1 
+2026-05-10 10:43:53,472 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:43:53] "POST /web/login HTTP/1.1" 303 - 34 0.024 0.239
+2026-05-10 10:43:53,486 53030 INFO odoo_db odoo.addons.base.models.res_device: User 6 inserts device log (ex57vQ2IPtZcUz7kPGVhXz2swUOQQWhr7i6Ga0bGW6) 
+2026-05-10 10:43:53,709 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:43:53] "GET /odoo HTTP/1.1" 200 - 81 0.043 0.183
+2026-05-10 10:43:53,722 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:43:53] "GET /web/webclient/translations/8e32a489e99091d45311008a1461b6fd13609787?lang=en_US HTTP/1.1" 200 - 1 0.000 0.002
+2026-05-10 10:43:53,727 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:43:53] "GET /web/manifest.webmanifest HTTP/1.1" 200 - 9 0.005 0.004
+2026-05-10 10:43:53,745 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:43:53] "GET /web/webclient/load_menus/acd65a01ee6499b2701c4f60964d05468d1210f22446269ef51593c1f0dfe329 HTTP/1.1" 200 - 55 0.013 0.013
+2026-05-10 10:43:53,757 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:43:53] "GET /web/webclient/translations/8e32a489e99091d45311008a1461b6fd13609787?lang=en_US HTTP/1.1" 200 - 1 0.001 0.001
+2026-05-10 10:43:53,791 53030 INFO ? werkzeug: 127.0.0.1 - - [10/May/2026 10:43:53] "GET /web/static/img/spin.svg HTTP/1.1" 200 - 0 0.000 0.001
+2026-05-10 10:43:53,832 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:43:53] "GET /websocket?version=18.0-2 HTTP/1.1" 101 - 1 0.001 0.035
+2026-05-10 10:43:53,834 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:43:53] "POST /web/action/load HTTP/1.1" 200 - 6 0.009 0.031
+2026-05-10 10:43:53,836 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:43:53] "GET /web/image?model=res.users&field=avatar_128&id=6 HTTP/1.1" 200 - 9 0.014 0.029
+2026-05-10 10:43:53,841 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:43:53] "POST /mail/action HTTP/1.1" 200 - 60 0.032 0.017
+2026-05-10 10:43:53,846 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:43:53] "GET /web/image/res.partner/7/avatar_128?unique=1778388730000 HTTP/1.1" 200 - 17 0.013 0.040
+2026-05-10 10:43:53,886 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:43:53] "POST /mail/data HTTP/1.1" 200 - 53 0.021 0.015
+2026-05-10 10:43:53,916 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:43:53] "POST /mail/inbox/messages HTTP/1.1" 200 - 5 0.003 0.002
+2026-05-10 10:43:54,720 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:43:54] "GET /web/service-worker.js HTTP/1.1" 200 - 1 0.000 0.004
+2026-05-10 10:43:54,731 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:43:54] "GET /odoo/offline HTTP/1.1" 200 - 2 0.001 0.003
+2026-05-10 10:43:56,170 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:43:56] "POST /web/action/load HTTP/1.1" 200 - 12 0.006 0.004
+2026-05-10 10:43:56,296 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:43:56] "POST /web/dataset/call_kw/sale.order/get_views HTTP/1.1" 200 - 135 0.049 0.061
+2026-05-10 10:43:56,314 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:43:56] "POST /web/dataset/call_kw/res.users/has_group HTTP/1.1" 200 - 1 0.001 0.001
+2026-05-10 10:43:56,339 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:43:56] "POST /web/dataset/call_kw/sale.order/web_search_read HTTP/1.1" 200 - 22 0.017 0.010
+2026-05-10 10:43:56,393 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:43:56] "GET /web/image/res.users/6/avatar_128 HTTP/1.1" 200 - 9 0.005 0.006
+2026-05-10 10:43:57,385 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:43:57] "POST /web/dataset/call_kw/sale.order/web_search_read HTTP/1.1" 200 - 27 0.015 0.029
+2026-05-10 10:43:57,444 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:43:57] "GET /web/image/res.users/8/avatar_128 HTTP/1.1" 200 - 10 0.009 0.009
+2026-05-10 10:43:57,444 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:43:57] "GET /web/image/res.users/11/avatar_128 HTTP/1.1" 200 - 10 0.009 0.008
+2026-05-10 10:43:57,445 53030 INFO odoo_db werkzeug: 127.0.0.1 - - [10/May/2026 10:43:57] "GET /web/image/res.users/2/avatar_128 HTTP/1.1" 200 - 9 0.009 0.009
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       Exception in thread odoo.service.cron.cron1:
+Traceback (most recent call last):
+Exception in thread odoo.service.cron.cron0:
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+2026-05-10 10:42:52,650 52974 INFO odoo_db odoo.sql_db: ConnectionPool(read/write;used=0/count=0/max=64): Closed 8 connections  
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/threading.py", line 1075, in _bootstrap_inner

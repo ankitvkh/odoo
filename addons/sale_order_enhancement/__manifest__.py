@@ -20,6 +20,7 @@
         'sale',
         'sale_management',
         'account',
+        'material_indent',
     ],
     'data': [
         'data/ir_sequence_data.xml',
