@@ -63,25 +63,6 @@
         </field>
     </record>
 
-    <!-- Product Product Normal Form View Inheritance -->
-    <record id="product_normal_form_view_inherit_material_indent" model="ir.ui.view">
-        <field name="name">product.product.form.inherit.material.indent</field>
-        <field name="model">product.product</field>
-        <field name="inherit_id" ref="product.product_normal_form_view"/>
-        <field name="arch" type="xml">
-            <xpath expr="//div[hasclass('oe_title')]" position="inside">
-                <div class="o_row">
-                    <field name="make" placeholder="Make" class="oe_inline fw-bold"/>
-                    <span class="mx-2" invisible="not make or not description_short">-</span>
-                    <field name="description_short" placeholder="Short Description" class="oe_inline"/>
-                </div>
-            </xpath>
-            <xpath expr="//group[@name='group_general']" position="inside">
-                <field name="make"/>
-                <field name="description_short"/>
-            </xpath>
-        </field>
-    </record>
 
     <!-- Product Template Search View Inheritance -->
     <record id="product_template_search_view_inherit_material_indent" model="ir.ui.view">

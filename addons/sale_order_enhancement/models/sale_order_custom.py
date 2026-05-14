@@ -142,8 +142,14 @@ class SaleOrder(models.Model):
             # Use original sequence for revisions
             seq_number = self.original_sequence
         else:
-            # Generate new sequence
-            seq_number = self.env['ir.sequence'].with_company(company).next_by_code('sale.order.custom') or '0001'
+            # Generate new sequence with fallback
+            try:
+                seq_number = self.env['ir.sequence'].with_company(company).next_by_code('sale.order.custom')
+                if not seq_number:
+                    # Fallback to default Odoo sequence if custom one is missing
+                    seq_number = self.env['ir.sequence'].with_company(company).next_by_code('sale.order') or '0001'
+            except Exception:
+                seq_number = '0001'
         
         # Build base reference
         base_name = f"{prefix}/{ref_code}/QTN-{fy}/{seq_number}"
@@ -168,17 +174,18 @@ class SaleOrder(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
+            # Only generate custom name if it's a new record and not being loaded from demo/fixed data
             if not vals.get('name') or vals.get('name', _("New")) == _("New") or vals.get('name') == 'New':
-                # Generate custom name before creating record
-                vals['name'] = self._generate_custom_name(vals)
+                # Skip custom name generation if we are in demo mode or if specifically requested via context
+                if not self.env.context.get('skip_custom_name_generation'):
+                    vals['name'] = self._generate_custom_name(vals)
                 
                 # Store original sequence if this is not a revision
-                if vals.get('revision_count', 0) == 0:
-                    # Extract sequence from generated name (last part before any letter)
+                if vals.get('revision_count', 0) == 0 and vals.get('name') and '/' in vals['name']:
+                    # Extract sequence from generated name
                     name_parts = vals['name'].split('/')
                     if len(name_parts) >= 4:
                         seq_part = name_parts[-1]
-                        # Remove any trailing letter (revision suffix)
                         if seq_part and seq_part[-1].isalpha():
                             seq_part = seq_part[:-1]
                         vals['original_sequence'] = seq_part
@@ -186,48 +193,38 @@ class SaleOrder(models.Model):
         return super(SaleOrder, self).create(vals_list)
     
     def write(self, vals):
-        """
-        Track revisions when quotation is modified after being sent.
-        Increment revision_count and append alphabetical suffix (A, B, C, etc.)
-        """
-        # Recursion guard using context - this is the safest way to prevent re-entry
+        # Recursion guard using context
         if self.env.context.get('skip_revision_tracking'):
             return super(SaleOrder, self).write(vals)
 
-        # Track which orders need revision increment
+        # Track which orders need revision flag incremented
         orders_to_revise = self.env['sale.order']
         
         # Exclude certain fields that shouldn't trigger revision
         excluded_fields = {'message_follower_ids', 'message_ids', 'activity_ids', 
                          'access_token', 'state', 'revision_count', 'name', 'is_revised'}
         
-        # Check if any meaningful field is being changed in the vals dict
+        # Check if any meaningful field is being changed
         meaningful_change = any(key not in excluded_fields for key in vals.keys())
         
-        for order in self:
-            # Increment revision if:
-            # 1. Order was previously sent (state is 'sent' or was 'sent')
-            # 2. There's a meaningful change
-            # 3. Not changing to 'cancel' state
-            if (meaningful_change and order.state == 'sent' and 
-                vals.get('state') != 'cancel'):
-                orders_to_revise |= order
+        if meaningful_change:
+            for order in self:
+                # Increment revision if order was previously sent and not being cancelled
+                if order.state == 'sent' and vals.get('state') != 'cancel':
+                    orders_to_revise |= order
         
-        # Apply the write first
         result = super(SaleOrder, self).write(vals)
         
-        # Then flag as revised for orders that need it
+        # Flag as revised
         if orders_to_revise:
-            # IMPORTANT: Use with_context to prevent recursion
             orders_to_revise.sudo().with_context(skip_revision_tracking=True).write({
                 'is_revised': True
             })
         
-        # If custom_ref_code is changed and order is still in draft state (not sent yet)
+        # Handle Custom Name regeneration for Draft orders
         if 'custom_ref_code' in vals:
             for order in self:
-                if order.state == 'draft' and order not in orders_to_revise:
-                    # Generate new name and use context guard
+                if order.state == 'draft':
                     new_name = order._generate_custom_name(use_original_seq=bool(order.original_sequence))
                     order.sudo().with_context(skip_revision_tracking=True).write({
                         'name': new_name
@@ -277,7 +274,7 @@ class SaleOrderLine(models.Model):
         ],
         string='Offer Type',
         compute='_compute_offer_type',
-        store=True,
+        store=False,
         readonly=True
     )
     
@@ -287,20 +284,25 @@ class SaleOrderLine(models.Model):
         store=False
     )
     
-    @api.depends('order_id', 'order_id.order_line')
+    @api.depends('order_id.order_line')
     def _compute_serial_no(self):
+        """
+        Optimized serial number computation to avoid O(N^2) complexity.
+        Computes serial numbers for all lines in the order in one pass.
+        """
+        # Group by order to compute everything at once
+        orders = self.mapped('order_id')
+        for order in orders:
+            # Sort lines once per order
+            lines = order.order_line.sorted('sequence')
+            for idx, line in enumerate(lines, start=1):
+                # Only update lines that are in the current batch (self)
+                if line in self:
+                    line.serial_no = idx
+        
+        # Handle lines without an order_id
         for line in self:
-            if line.order_id:
-                # Get all lines in the order, sorted by sequence
-                lines = line.order_id.order_line.sorted('sequence')
-                # Calculate serial number based on position in the list
-                serial = 1
-                for idx, order_line in enumerate(lines, start=1):
-                    if order_line == line:
-                        serial = idx
-                        break
-                line.serial_no = serial
-            else:
+            if not line.order_id:
                 line.serial_no = 0
 
     
@@ -335,6 +337,13 @@ class SaleOrderLine(models.Model):
         help='Displays actual total or "Quoted Price" based on offer type'
     )
     
+    @api.model_create_multi
+    def create(self, vals_list):
+        return super(SaleOrderLine, self).create(vals_list)
+
+    def write(self, vals):
+        return super(SaleOrderLine, self).write(vals)
+
     @api.depends('offer_type', 'price_unit', 'price_subtotal', 'price_tax', 'price_total')
     def _compute_amount_display(self):
         """
