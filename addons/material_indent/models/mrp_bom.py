@@ -115,11 +115,12 @@ class MaterialIndentLineBom(models.Model):
     make = fields.Char(related='product_id.make', string='Make', readonly=False, store=True)
     description_short = fields.Char(related='product_id.description_short', string='Description', readonly=False, store=True)
     
-    @api.model
-    def create(self, vals):
-        if vals.get('indent_reference', 'New') == 'New':
-            vals['indent_reference'] = self.env['ir.sequence'].next_by_code('material.indent') or 'IND/NEW'
-        return super().create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get('indent_reference', 'New') == 'New':
+                vals['indent_reference'] = self.env['ir.sequence'].next_by_code('material.indent') or 'IND/NEW'
+        return super().create(vals_list)
 
 
 class MrpBomLine(models.Model):

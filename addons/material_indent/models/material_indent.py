@@ -69,13 +69,14 @@ class MaterialIndent(models.Model):
         compute='_compute_purchase_orders'
     )
 
-    @api.model
-    def create(self, vals):
+    @api.model_create_multi
+    def create(self, vals_list):
         """Generate sequence number on creation"""
-        if vals.get('name', 'New') == 'New':
-            seq = self.env.ref('material_indent.sequence_material_indent', raise_if_not_found=False)
-            vals['name'] = seq.next_by_id() if seq else self.env['ir.sequence'].next_by_code('material.indent') or 'IND/NEW'
-        return super().create(vals)
+        for vals in vals_list:
+            if vals.get('name', 'New') == 'New':
+                seq = self.env.ref('material_indent.sequence_material_indent', raise_if_not_found=False)
+                vals['name'] = seq.next_by_id() if seq else self.env['ir.sequence'].next_by_code('material.indent') or 'IND/NEW'
+        return super().create(vals_list)
 
     def _compute_purchase_orders(self):
         """Find related purchase orders by origin"""
