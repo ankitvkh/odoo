@@ -281,8 +281,10 @@ class SaleOrderLine(models.Model):
     
     product_id = fields.Many2one('product.product', required=False)
     product_template_id = fields.Many2one('product.template', required=False)
+    product_uom = fields.Many2one('uom.uom', required=False)
     
     custom_item_name = fields.Char(string='Item')
+    custom_uom = fields.Char(string='UoM')
     
     make = fields.Char(string='Make')
     

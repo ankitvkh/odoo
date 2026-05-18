@@ -37,6 +37,15 @@
                 <attribute name="required">0</attribute>
             </xpath>
             
+            <xpath expr="//field[@name='order_line']/list//field[@name='product_uom']" position="attributes">
+                <attribute name="required">0</attribute>
+                <attribute name="column_invisible">True</attribute>
+            </xpath>
+            
+            <xpath expr="//field[@name='order_line']/list//field[@name='product_uom']" position="after">
+                <field name="custom_uom" optional="show" invisible="display_type in ('line_section', 'line_note')"/>
+            </xpath>
+            
             <xpath expr="//field[@name='order_line']/list//field[@name='product_template_id']" position="after">
                 <field name="custom_item_name" optional="show" required="not display_type"/>
                 <field name="make" optional="show"/>
@@ -217,11 +226,11 @@
                        readonly="state in ('sale', 'done', 'cancel')"
                        context="{'partner_id': parent.partner_id, 'quantity': product_uom_qty, 'pricelist': parent.pricelist_id, 'uom': product_uom, 'company_id': parent.company_id}"/>
                 
-                <field name="product_uom" 
+                <field name="product_uom" column_invisible="True"/>
+                <field name="custom_uom" 
                        optional="show"
                        invisible="display_type in ('line_section', 'line_note')"
-                       readonly="state in ('sale', 'done', 'cancel')"
-                       groups="uom.group_uom"/>
+                       readonly="state in ('sale', 'done', 'cancel')"/>
                 
                 <field name="price_unit_display" string="Unit Price"/>
                 
