@@ -250,21 +250,43 @@ class SaleOrder(models.Model):
                 })
         return res
 
+    def _confirmation_error_message(self):
+        """ Return whether order can be confirmed or not if not then return error message. """
+        self.ensure_one()
+        if self.state not in {'draft', 'sent'}:
+            return _("Some orders are not in a state requiring confirmation.")
+        if any(
+            not line.display_type
+            and not line.is_downpayment
+            and not line.product_id
+            and not line.custom_item_name
+            for line in self.order_line
+        ):
+            return _("A line on these orders missing an item, you cannot confirm it.")
+
+        return False
+
 
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
     
-    make = fields.Char(
-        related='product_id.make',
-        string='Make',
-        readonly=True
-    )
+    _sql_constraints = [
+        ('accountable_required_fields',
+            "CHECK(1=1)",
+            "Missing required fields on accountable sale order line."),
+        ('non_accountable_null_fields',
+            "CHECK(1=1)",
+            "Forbidden values on non-accountable sale order line"),
+    ]
     
-    description_short = fields.Char(
-        related='product_id.description_short',
-        string='Short Description',
-        readonly=True
-    )
+    product_id = fields.Many2one('product.product', required=False)
+    product_template_id = fields.Many2one('product.template', required=False)
+    
+    custom_item_name = fields.Char(string='Item')
+    
+    make = fields.Char(string='Make')
+    
+    description_short = fields.Char(string='Short Description')
     
     offer_type = fields.Selection(
         selection=[
@@ -368,17 +390,13 @@ class SaleOrderLine(models.Model):
 class SaleOrderOption(models.Model):
     _inherit = 'sale.order.option'
     
-    make = fields.Char(
-        related='product_id.make',
-        string='Make',
-        readonly=True
-    )
+    product_id = fields.Many2one('product.product', required=False)
     
-    description_short = fields.Char(
-        related='product_id.description_short',
-        string='Short Description',
-        readonly=True
-    )
+    custom_item_name = fields.Char(string='Item')
+    
+    make = fields.Char(string='Make')
+    
+    description_short = fields.Char(string='Short Description')
     
     offer_type = fields.Selection(
         selection=[

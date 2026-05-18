@@ -28,7 +28,17 @@
             </xpath>
 
             <!-- Replace fields in the inline tree view of order_line -->
-            <xpath expr="//field[@name='order_line']/list//field[@name='product_id']" position="after">
+            <xpath expr="//field[@name='order_line']/list//field[@name='product_template_id']" position="attributes">
+                <attribute name="column_invisible">True</attribute>
+                <attribute name="required">0</attribute>
+            </xpath>
+            
+            <xpath expr="//field[@name='order_line']/list//field[@name='product_id']" position="attributes">
+                <attribute name="required">0</attribute>
+            </xpath>
+            
+            <xpath expr="//field[@name='order_line']/list//field[@name='product_template_id']" position="after">
+                <field name="custom_item_name" optional="show" required="not display_type"/>
                 <field name="make" optional="show"/>
                 <field name="description_short" optional="show"/>
             </xpath>
@@ -81,13 +91,11 @@
                     <field name="name" widget="section_and_note_text" optional="show"/>
                     
                     <!-- Product fields -->
-                    <field name="product_id" 
+                    <field name="custom_item_name" 
                            optional="show"
                            invisible="display_type in ('line_section', 'line_note')"
                            required="not display_type"
-                           context="{'partner_id': parent.partner_id, 'quantity': quantity, 'pricelist': parent.pricelist_id, 'company_id': parent.company_id, 'uom': uom_id}"
-                           readonly="0"
-                           domain="[('sale_ok', '=', True)]"/>
+                           readonly="0"/>
                     
                     <field name="make" optional="show" invisible="display_type in ('line_section', 'line_note')"/>
                     <field name="description_short" optional="show" invisible="display_type in ('line_section', 'line_note')"/>
@@ -188,13 +196,11 @@
                 <field name="name" widget="section_and_note_text" optional="show"/>
                 
                 <!-- Product fields -->
-                <field name="product_id" 
+                <field name="custom_item_name" 
                        optional="show"
                        invisible="display_type in ('line_section', 'line_note')"
-                       context="{'partner_id': parent.partner_id, 'quantity': product_uom_qty, 'pricelist': parent.pricelist_id, 'company_id': parent.company_id}"
                        readonly="state in ('sale', 'done', 'cancel')"
-                       required="not display_type"
-                       domain="[('sale_ok', '=', True)]"/>
+                       required="not display_type"/>
                 
                 <field name="make" optional="show" invisible="display_type in ('line_section', 'line_note')"/>
                 <field name="description_short" optional="show" invisible="display_type in ('line_section', 'line_note')"/>
@@ -265,13 +271,11 @@
                 <field name="name" widget="section_and_note_text" optional="show"/>
                 
                 <!-- Product fields -->
-                    <field name="product_id" 
+                    <field name="custom_item_name" 
                            optional="show"
                            invisible="display_type in ('line_section', 'line_note')"
                            required="not display_type"
-                           context="{'partner_id': parent.partner_id, 'quantity': quantity, 'pricelist': parent.pricelist_id, 'company_id': parent.company_id, 'uom': uom_id}"
-                           readonly="0"
-                           domain="[('sale_ok', '=', True)]"/>
+                           readonly="0"/>
                     
                     <field name="make" optional="show" invisible="display_type in ('line_section', 'line_note')"/>
                     <field name="description_short" optional="show" invisible="display_type in ('line_section', 'line_note')"/>
