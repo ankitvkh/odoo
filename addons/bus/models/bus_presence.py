@@ -81,10 +81,19 @@ class BusPresence(models.Model):
     @api.model
     def _update_presence(self, inactivity_period, identity_field, identity_value):
         presence = self.search([(identity_field, "=", identity_value)])
+        new_status = "away" if inactivity_period > AWAY_TIMER * 1000 else "online"
+        
+        if presence:
+            now = fields.Datetime.now()
+            last_poll = presence.last_poll
+            # Throttle updates: skip if last_poll is within the last 30 seconds and status remains the same
+            if last_poll and (now - last_poll).total_seconds() < 30 and presence.status == new_status:
+                return
+
         values = {
             "last_poll": fields.Datetime.now(),
             "last_presence": fields.Datetime.now() - timedelta(milliseconds=inactivity_period),
-            "status": "away" if inactivity_period > AWAY_TIMER * 1000 else "online",
+            "status": new_status,
         }
         if not presence:
             values[identity_field] = identity_value
