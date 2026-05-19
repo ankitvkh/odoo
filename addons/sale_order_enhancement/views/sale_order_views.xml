@@ -162,12 +162,24 @@
                 <field name="amount_total" invisible="1"/>
             </xpath>
 
-            <!-- Add totals summary below Order Lines -->
-            <xpath expr="//field[@name='order_line']" position="after">
-                <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
-                    <field name="amount_untaxed_display"/>
-                    <field name="amount_tax_display"/>
-                    <field name="amount_total_display" class="oe_subtotal_footer_separator"/>
+            <!-- Replace standard totals with conditional display based on offer_type -->
+            <xpath expr="//group[@name='sale_total']" position="replace">
+                <!-- Standard Odoo tax totals (shown when not technical offer) -->
+                <group class="oe_subtotal_footer d-flex order-0 order-lg-1 flex-column gap-0 gap-sm-3" 
+                       colspan="2" 
+                       name="sale_total" 
+                       invisible="offer_type == 'technical'">
+                    <field name="tax_totals" widget="account-tax-totals-field" nolabel="1" readonly="1"/>
+                </group>
+                
+                <!-- Custom "Quoted" display totals (shown only for technical offers) -->
+                <group class="oe_subtotal_footer oe_right" 
+                       colspan="2" 
+                       name="sale_total_technical" 
+                       invisible="offer_type != 'technical'">
+                    <field name="amount_untaxed_display" readonly="1"/>
+                    <field name="amount_tax_display" readonly="1"/>
+                    <field name="amount_total_display" class="oe_subtotal_footer_separator" readonly="1"/>
                 </group>
             </xpath>
             

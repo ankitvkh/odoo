@@ -28,19 +28,19 @@ class SaleOrder(models.Model):
     
     # Computed fields for conditional price display
     amount_untaxed_display = fields.Char(
-        string='Basic Amount Display',
+        string='Basic Amount',
         compute='_compute_amount_display',
         help='Displays actual amount or "Quoted Price" based on offer type'
     )
     
     amount_tax_display = fields.Char(
-        string='Taxes Display',
+        string='Taxes',
         compute='_compute_amount_display',
         help='Displays actual tax or "Quoted Price" based on offer type'
     )
     
     amount_total_display = fields.Char(
-        string='Total Display',
+        string='Total',
         compute='_compute_amount_display',
         help='Displays actual total or "Quoted Price" based on offer type'
     )
@@ -542,3 +542,40 @@ class SaleOrderOption(models.Model):
                 line.price_subtotal_display = f"{currency.symbol} {subtotal:,.2f}"
                 line.price_tax_display = f"{currency.symbol} {tax:,.2f}"
                 line.price_total_display = f"{currency.symbol} {total:,.2f}"
+
+
+class AccountTax(models.Model):
+    _inherit = 'account.tax'
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        taxes = super(AccountTax, self).create(vals_list)
+        for tax in taxes:
+            tax._ensure_unique_tax_group()
+        return taxes
+
+    def write(self, vals):
+        res = super(AccountTax, self).write(vals)
+        if 'name' in vals or 'tax_group_id' in vals:
+            for tax in self:
+                tax._ensure_unique_tax_group()
+        return res
+
+    def _ensure_unique_tax_group(self):
+        """
+        Ensure that the tax has a unique tax group matching its name,
+        so that it renders as an independent line in the subtotal footer
+        with its exact tax configuration name.
+        """
+        self.ensure_one()
+        group_name = self.name
+        tax_group = self.env['account.tax.group'].search([('name', '=', group_name)], limit=1)
+        if not tax_group:
+            tax_group = self.env['account.tax.group'].create({'name': group_name})
+        
+        if self.tax_group_id != tax_group:
+            self.sudo().with_context(skip_revision_tracking=True).write({
+                'tax_group_id': tax_group.id
+            })
+        elif tax_group.name != self.name:
+            tax_group.sudo().write({'name': self.name})
