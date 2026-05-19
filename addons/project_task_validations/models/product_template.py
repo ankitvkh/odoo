@@ -13,5 +13,5 @@ class ProductTemplate(models.Model):
         string='Preferred Vendors',
         domain="[('is_company', '=', True), ('supplier_rank', '>', 0)]",
         check_company=True,
-        help=_("Select vendors that are preferred for this product")
+        help="Select vendors that are preferred for this product"
     )

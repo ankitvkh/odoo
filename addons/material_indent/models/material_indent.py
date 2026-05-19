@@ -124,7 +124,20 @@ class MaterialIndent(models.Model):
         self.indent_line_ids = [(5, 0, 0)] + lines
         
         self.message_post(body=_('Loaded %d lines from BOM: %s') % (len(lines), bom.display_name))
+        self._sync_bom_indent_lines()
         return True
+
+    def _sync_bom_indent_lines(self):
+        for rec in self:
+            if rec.bom_id:
+                bom_lines = rec.bom_id.material_indent_line_ids
+                for line in rec.indent_line_ids:
+                    matching_bom_lines = bom_lines.filtered(lambda l: l.product_id == line.product_id)
+                    if matching_bom_lines:
+                        matching_bom_lines.write({
+                            'state': rec.state,
+                            'indent_reference': rec.name,
+                        })
 
     def action_submit(self):
         """Submit indent for approval"""
@@ -133,12 +146,14 @@ class MaterialIndent(models.Model):
                 raise ValidationError(_('Cannot submit an empty indent. Please load items from BOM first.'))
             rec.state = 'submitted'
             rec.message_post(body=_('Indent submitted for approval'))
+            rec._sync_bom_indent_lines()
 
     def action_approve(self):
         """Approve indent and create purchase orders"""
         for rec in self:
             rec.state = 'approved'
             rec.message_post(body=_('Indent approved'))
+            rec._sync_bom_indent_lines()
             rec._create_purchase_orders()
 
     def action_cancel(self):
@@ -146,12 +161,14 @@ class MaterialIndent(models.Model):
         for rec in self:
             rec.state = 'cancel'
             rec.message_post(body=_('Indent cancelled'))
+            rec._sync_bom_indent_lines()
 
     def action_reset_to_draft(self):
         """Reset to draft state"""
         for rec in self:
             rec.state = 'draft'
             rec.message_post(body=_('Indent reset to draft'))
+            rec._sync_bom_indent_lines()
 
     def _create_purchase_orders(self):
         """Create purchase orders grouped by vendor"""
@@ -161,15 +178,20 @@ class MaterialIndent(models.Model):
         partner_map = {}
         
         # Group lines by vendor
+        missing_vendor_products = []
         for line in self.indent_line_ids:
             sellers = line.product_id.seller_ids
             if not sellers:
-                # Create PO without vendor (can be assigned later)
-                partner = self.env['res.partner']
+                missing_vendor_products.append(line.product_id.display_name)
             else:
                 partner = sellers[0].partner_id
-            
-            partner_map.setdefault(partner.id, []).append(line)
+                partner_map.setdefault(partner.id, []).append(line)
+        
+        if missing_vendor_products:
+            raise UserError(_(
+                "Cannot approve and create Purchase Orders. The following products do not have any vendor configured:\n\n%s\n\n"
+                "Please configure a vendor on these products (under the Purchase tab) before proceeding."
+            ) % "\n".join(f"- {p}" for p in missing_vendor_products))
         
         created_pos = []
         

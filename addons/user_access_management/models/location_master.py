@@ -26,6 +26,7 @@ class LocationMaster(models.Model):
         string='Complete Name',
         compute='_compute_complete_name',
         store=True,
+        recursive=True,
         help='Complete name with parent hierarchy'
     )
     parent_id = fields.Many2one(

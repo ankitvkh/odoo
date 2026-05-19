@@ -1,141 +1,35 @@
-2026-05-18 06:26:41,367 62237 INFO ? odoo: Odoo version 18.0 
-2026-05-18 06:26:41,368 62237 INFO ? odoo: Using configuration file at /Users/rohitkumar/IdeaProjects/odoo/odoo.conf 
-2026-05-18 06:26:41,368 62237 INFO ? odoo: addons paths: ['/Users/rohitkumar/IdeaProjects/odoo/odoo/addons', '/Users/rohitkumar/Library/Application Support/Odoo/addons/18.0', '/Users/rohitkumar/IdeaProjects/odoo/addons'] 
-2026-05-18 06:26:41,368 62237 INFO ? odoo: database: rohitkumar@localhost:5432 
-2026-05-18 06:26:41,461 62237 INFO ? odoo.addons.base.models.ir_actions_report: You need Wkhtmltopdf to print a pdf version of the reports. 
-2026-05-18 06:26:41,461 62237 INFO ? odoo.addons.base.models.ir_actions_report: You need Wkhtmltoimage to generate images from html. 
-2026-05-18 06:26:41,563 62237 INFO ? odoo.service.server: HTTP service (werkzeug) running on Rohits-MacBook-Pro.local:8069 
-2026-05-18 06:26:41,584 62237 INFO odoo_db odoo.modules.loading: loading 1 modules... 
-2026-05-18 06:26:41,588 62237 INFO odoo_db odoo.modules.loading: 1 modules loaded in 0.00s, 0 queries (+0 extra) 
-2026-05-18 06:26:41,599 62237 INFO odoo_db odoo.modules.loading: updating modules list 
-2026-05-18 06:26:41,602 62237 INFO odoo_db odoo.addons.base.models.ir_module: ALLOW access to module.update_list on [] to user __system__ #1 via n/a 
-2026-05-18 06:26:42,135 62237 INFO odoo_db odoo.addons.base.models.ir_module: ALLOW access to module.button_upgrade on ['Customer Follow Up Management'] to user __system__ #1 via n/a 
-2026-05-18 06:26:42,135 62237 INFO odoo_db odoo.addons.base.models.ir_module: ALLOW access to module.update_list on ['Customer Follow Up Management'] to user __system__ #1 via n/a 
-2026-05-18 06:26:42,366 62237 INFO odoo_db odoo.addons.base.models.ir_module: ALLOW access to module.button_install on [] to user __system__ #1 via n/a 
-2026-05-18 06:26:42,385 62237 INFO odoo_db odoo.modules.loading: loading 108 modules... 
-2026-05-18 06:26:42,740 62237 INFO odoo_db odoo.modules.loading: Loading module om_account_followup (60/108) 
-2026-05-18 06:26:42,879 62237 INFO odoo_db odoo.modules.registry: module om_account_followup: creating or updating database tables 
-2026-05-18 06:26:43,103 62237 INFO odoo_db odoo.modules.loading: loading om_account_followup/security/security.xml 
-2026-05-18 06:26:43,106 62237 INFO odoo_db odoo.modules.loading: loading om_account_followup/security/ir.model.access.csv 
-2026-05-18 06:26:43,123 62237 INFO odoo_db odoo.modules.loading: loading om_account_followup/data/data.xml 
-2026-05-18 06:26:43,132 62237 INFO odoo_db odoo.modules.loading: loading om_account_followup/wizard/followup_print_view.xml 
-2026-05-18 06:26:43,155 62237 INFO odoo_db odoo.modules.loading: loading om_account_followup/wizard/followup_results_view.xml 
-2026-05-18 06:26:43,160 62237 INFO odoo_db odoo.modules.loading: loading om_account_followup/views/followup_view.xml 
-2026-05-18 06:26:43,197 62237 INFO odoo_db odoo.modules.loading: loading om_account_followup/views/account_move.xml 
-2026-05-18 06:26:43,216 62237 INFO odoo_db odoo.modules.loading: loading om_account_followup/views/partners.xml 
-2026-05-18 06:26:43,274 62237 INFO odoo_db odoo.modules.loading: loading om_account_followup/views/report_followup.xml 
-2026-05-18 06:26:43,278 62237 INFO odoo_db odoo.modules.loading: loading om_account_followup/views/reports.xml 
-2026-05-18 06:26:43,282 62237 INFO odoo_db odoo.modules.loading: loading om_account_followup/views/followup_partner_view.xml 
-2026-05-18 06:26:43,290 62237 INFO odoo_db odoo.modules.loading: loading om_account_followup/report/followup_report.xml 
-2026-05-18 06:26:43,303 62237 INFO odoo_db odoo.modules.loading: Module om_account_followup: loading demo 
-2026-05-18 06:26:43,304 62237 INFO odoo_db odoo.modules.loading: loading om_account_followup/demo/demo.xml 
-2026-05-18 06:26:43,325 62237 INFO odoo_db odoo.modules.loading: Module om_account_followup loaded in 0.59s, 534 queries (+534 other) 
-2026-05-18 06:26:43,392 62237 INFO odoo_db odoo.modules.loading: Loading module om_account_accountant (87/108) 
-2026-05-18 06:26:43,524 62237 INFO odoo_db odoo.modules.registry: module om_account_accountant: creating or updating database tables 
-2026-05-18 06:26:43,557 62237 WARNING odoo_db odoo.addons.base.models.ir_model: Two fields (sale_lock_date, tax_lock_date) of res.config.settings() have the same label: Hard Lock Date. [Modules: om_fiscal_year and om_fiscal_year] 
-2026-05-18 06:26:43,557 62237 WARNING odoo_db odoo.addons.base.models.ir_model: Two fields (purchase_lock_date, tax_lock_date) of res.config.settings() have the same label: Hard Lock Date. [Modules: om_fiscal_year and om_fiscal_year] 
-2026-05-18 06:26:43,557 62237 WARNING odoo_db odoo.addons.base.models.ir_model: Two fields (hard_lock_date, tax_lock_date) of res.config.settings() have the same label: Hard Lock Date. [Modules: om_fiscal_year and om_fiscal_year] 
-2026-05-18 06:26:43,608 62237 INFO odoo_db odoo.modules.loading: loading om_account_accountant/security/group.xml 
-2026-05-18 06:26:43,647 62237 INFO odoo_db odoo.modules.loading: loading om_account_accountant/views/menu.xml 
-2026-05-18 06:26:43,676 62237 INFO odoo_db odoo.modules.loading: loading om_account_accountant/views/settings.xml 
-2026-05-18 06:26:43,713 62237 INFO odoo_db odoo.modules.loading: loading om_account_accountant/views/account_group.xml 
-2026-05-18 06:26:43,719 62237 INFO odoo_db odoo.modules.loading: loading om_account_accountant/views/account_tag.xml 
-2026-05-18 06:26:43,725 62237 INFO odoo_db odoo.modules.loading: loading om_account_accountant/views/res_partner.xml 
-2026-05-18 06:26:43,750 62237 INFO odoo_db odoo.modules.loading: loading om_account_accountant/views/account_bank_statement.xml 
-2026-05-18 06:26:43,761 62237 INFO odoo_db odoo.modules.loading: loading om_account_accountant/views/payment_method.xml 
-2026-05-18 06:26:43,777 62237 INFO odoo_db odoo.modules.loading: loading om_account_accountant/views/reconciliation.xml 
-2026-05-18 06:26:43,784 62237 INFO odoo_db odoo.modules.loading: loading om_account_accountant/views/account_journal.xml 
-2026-05-18 06:26:43,820 62237 INFO odoo_db odoo.modules.loading: Module om_account_accountant loaded in 0.43s, 401 queries (+401 other) 
-2026-05-18 06:26:43,846 62237 WARNING odoo_db py.warnings: /Users/rohitkumar/IdeaProjects/odoo/odoo/api.py:466: DeprecationWarning: The model odoo.addons.user_access_management.models.res_users is not overriding the create method in batch
-  File "/Users/rohitkumar/IdeaProjects/odoo/odoo-bin", line 8, in <module>
-    odoo.cli.main()
-  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/cli/command.py", line 66, in main
-    o.run(args)
-  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/cli/server.py", line 180, in run
-    main(args)
-  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/cli/server.py", line 173, in main
-    rc = odoo.service.server.start(preload=preload, stop=stop)
-  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/service/server.py", line 1402, in start
-    rc = server.run(preload, stop)
-  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/service/server.py", line 578, in run
-    rc = preload_registries(preload)
-  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/service/server.py", line 1306, in preload_registries
-    registry = Registry.new(dbname, update_module=update_module)
-  File "/Users/rohitkumar/IdeaProjects/odoo/.venv/lib/python3.12/site-packages/decorator.py", line 232, in fun
-    return caller(func, *(extras + args), **kw)
-  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/tools/func.py", line 97, in locked
-    return func(inst, *args, **kwargs)
-  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/modules/registry.py", line 131, in new
-    odoo.modules.load_modules(registry, force_demo, status, update_module)
-  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/modules/loading.py", line 475, in load_modules
-    processed_modules += load_marked_modules(env, graph,
-  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/modules/loading.py", line 363, in load_marked_modules
-    loaded, processed = load_module_graph(
-  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/modules/loading.py", line 184, in load_module_graph
-    load_openerp_module(package.name)
-  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/modules/module.py", line 384, in load_openerp_module
-    __import__(qualname)
-  File "/Users/rohitkumar/IdeaProjects/odoo/addons/user_access_management/__init__.py", line 3, in <module>
-    from . import models
-  File "/Users/rohitkumar/IdeaProjects/odoo/addons/user_access_management/models/__init__.py", line 4, in <module>
-    from . import res_users
-  File "/Users/rohitkumar/IdeaProjects/odoo/addons/user_access_management/models/res_users.py", line 7, in <module>
-    class ResUsers(models.Model):
-  File "/Users/rohitkumar/IdeaProjects/odoo/addons/user_access_management/models/res_users.py", line 152, in ResUsers
-    @api.model
-  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/api.py", line 429, in model
-    return model_create_single(method)
-  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/api.py", line 466, in model_create_single
-    warnings.warn(
- 
-2026-05-18 06:26:43,864 62237 INFO odoo_db odoo.modules.loading: 108 modules loaded in 1.48s, 935 queries (+935 extra) 
-2026-05-18 06:26:44,146 62237 INFO odoo_db odoo.modules.registry: verifying fields for every extended model 
-2026-05-18 06:26:44,181 62237 WARNING odoo_db odoo.addons.base.models.ir_model: Two fields (sale_lock_date, tax_lock_date) of res.config.settings() have the same label: Hard Lock Date. [Modules: om_fiscal_year and om_fiscal_year] 
-2026-05-18 06:26:44,181 62237 WARNING odoo_db odoo.addons.base.models.ir_model: Two fields (purchase_lock_date, tax_lock_date) of res.config.settings() have the same label: Hard Lock Date. [Modules: om_fiscal_year and om_fiscal_year] 
-2026-05-18 06:26:44,181 62237 WARNING odoo_db odoo.addons.base.models.ir_model: Two fields (hard_lock_date, tax_lock_date) of res.config.settings() have the same label: Hard Lock Date. [Modules: om_fiscal_year and om_fiscal_year] 
-2026-05-18 06:26:44,226 62237 WARNING odoo_db py.warnings: /Users/rohitkumar/IdeaProjects/odoo/odoo/fields.py:819: UserWarning: Field location.master.complete_name should be declared with recursive=True
-  File "/Users/rohitkumar/IdeaProjects/odoo/odoo-bin", line 8, in <module>
-    odoo.cli.main()
-  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/cli/command.py", line 66, in main
-    o.run(args)
-  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/cli/server.py", line 180, in run
-    main(args)
-  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/cli/server.py", line 173, in main
-    rc = odoo.service.server.start(preload=preload, stop=stop)
-  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/service/server.py", line 1402, in start
-    rc = server.run(preload, stop)
-  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/service/server.py", line 578, in run
-    rc = preload_registries(preload)
-  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/service/server.py", line 1306, in preload_registries
-    registry = Registry.new(dbname, update_module=update_module)
-  File "/Users/rohitkumar/IdeaProjects/odoo/.venv/lib/python3.12/site-packages/decorator.py", line 232, in fun
-    return caller(func, *(extras + args), **kw)
-  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/tools/func.py", line 97, in locked
-    return func(inst, *args, **kwargs)
-  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/modules/registry.py", line 131, in new
-    odoo.modules.load_modules(registry, force_demo, status, update_module)
-  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/modules/loading.py", line 578, in load_modules
-    registry.init_models(cr, list(models_to_check), {'models_to_check': True})
-  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/modules/registry.py", line 618, in init_models
-    func()
-  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/addons/base/models/ir_model.py", line 59, in mark_modified
-    records.modified(fnames)
-  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/models.py", line 7109, in modified
-    todo = [self._modified([self._fields[fname] for fname in fnames], create)]
-  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/models.py", line 7160, in _modified
-    tree = self.pool.get_trigger_tree(fields, select=select)
-  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/modules/registry.py", line 424, in get_trigger_tree
-    if field in self._field_triggers
-  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/tools/func.py", line 42, in __get__
-    value = self.fget(obj)
-  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/modules/registry.py", line 518, in _field_triggers
-    dependencies = list(field.resolve_depends(self))
-  File "/Users/rohitkumar/IdeaProjects/odoo/odoo/fields.py", line 819, in resolve_depends
-    warnings.warn(f"Field {self} should be declared with recursive=True")
- 
-2026-05-18 06:26:44,477 62237 INFO odoo_db odoo.modules.loading: Modules loaded. 
-2026-05-18 06:26:44,480 62237 INFO odoo_db odoo.modules.registry: Registry changed, signaling through the database 
-2026-05-18 06:26:44,480 62237 INFO odoo_db odoo.modules.registry: Registry loaded in 2.917s 
-2026-05-18 06:26:44,485 62237 INFO odoo_db odoo.addons.base.models.ir_http: Generating routing map for key None 
-2026-05-18 06:26:44,496 62237 INFO odoo_db werkzeug: 127.0.0.1 - - [18/May/2026 06:26:44] "GET /websocket?version=18.0-2 HTTP/1.1" 101 - 6 0.001 1.178
-2026-05-18 06:26:44,851 62237 INFO ? odoo.addons.bus.models.bus: Bus.loop listen imbus on db postgres 
+2026-05-19 08:32:58,181 81342 INFO ? odoo: Odoo version 18.0 
+2026-05-19 08:32:58,181 81342 INFO ? odoo: Using configuration file at /Users/rohitkumar/IdeaProjects/odoo/odoo.conf 
+2026-05-19 08:32:58,181 81342 INFO ? odoo: addons paths: ['/Users/rohitkumar/IdeaProjects/odoo/odoo/addons', '/Users/rohitkumar/Library/Application Support/Odoo/addons/18.0', '/Users/rohitkumar/IdeaProjects/odoo/addons'] 
+2026-05-19 08:32:58,181 81342 INFO ? odoo: database: rohitkumar@localhost:5432 
+2026-05-19 08:32:58,269 81342 INFO ? odoo.addons.base.models.ir_actions_report: You need Wkhtmltopdf to print a pdf version of the reports. 
+2026-05-19 08:32:58,269 81342 INFO ? odoo.addons.base.models.ir_actions_report: You need Wkhtmltoimage to generate images from html. 
+2026-05-19 08:32:58,368 81342 INFO ? odoo.service.server: HTTP service (werkzeug) running on Rohits-MacBook-Pro.local:8069 
+2026-05-19 08:32:58,388 81342 INFO odoo_db odoo.modules.loading: loading 1 modules... 
+2026-05-19 08:32:58,392 81342 INFO odoo_db odoo.modules.loading: 1 modules loaded in 0.00s, 0 queries (+0 extra) 
+2026-05-19 08:32:58,402 81342 INFO odoo_db odoo.modules.loading: updating modules list 
+2026-05-19 08:32:58,405 81342 INFO odoo_db odoo.addons.base.models.ir_module: ALLOW access to module.update_list on [] to user __system__ #1 via n/a 
+2026-05-19 08:32:58,943 81342 INFO odoo_db odoo.addons.base.models.ir_module: ALLOW access to module.button_upgrade on ['User Access Management'] to user __system__ #1 via n/a 
+2026-05-19 08:32:58,943 81342 INFO odoo_db odoo.addons.base.models.ir_module: ALLOW access to module.update_list on ['User Access Management'] to user __system__ #1 via n/a 
+2026-05-19 08:32:59,186 81342 INFO odoo_db odoo.addons.base.models.ir_module: ALLOW access to module.button_install on [] to user __system__ #1 via n/a 
+2026-05-19 08:32:59,202 81342 INFO odoo_db odoo.modules.loading: loading 118 modules... 
+2026-05-19 08:32:59,669 81342 INFO odoo_db odoo.modules.loading: Loading module user_access_management (108/118) 
+2026-05-19 08:32:59,893 81342 INFO odoo_db odoo.modules.registry: module user_access_management: creating or updating database tables 
+2026-05-19 08:33:00,027 81342 INFO odoo_db odoo.modules.loading: loading user_access_management/security/ir.model.access.csv 
+2026-05-19 08:33:00,036 81342 INFO odoo_db odoo.modules.loading: loading user_access_management/security/location_record_rules.xml 
+2026-05-19 08:33:00,039 81342 INFO odoo_db odoo.modules.loading: loading user_access_management/views/location_master_views.xml 
+2026-05-19 08:33:00,059 81342 INFO odoo_db odoo.modules.loading: loading user_access_management/views/res_users_views.xml 
+2026-05-19 08:33:00,101 81342 INFO odoo_db odoo.modules.loading: loading user_access_management/views/sale_order_views.xml 
+2026-05-19 08:33:00,141 81342 INFO odoo_db odoo.modules.loading: loading user_access_management/views/purchase_order_views.xml 
+2026-05-19 08:33:00,170 81342 INFO odoo_db odoo.modules.loading: loading user_access_management/views/account_move_views.xml 
+2026-05-19 08:33:00,206 81342 INFO odoo_db odoo.modules.loading: loading user_access_management/views/stock_location_views.xml 
+2026-05-19 08:33:00,214 81342 INFO odoo_db odoo.modules.loading: loading user_access_management/views/menu_views.xml 
+2026-05-19 08:33:00,227 81342 INFO odoo_db odoo.modules.loading: Module user_access_management loaded in 0.56s, 455 queries (+455 other) 
+2026-05-19 08:33:00,247 81342 INFO odoo_db odoo.modules.loading: 118 modules loaded in 1.04s, 455 queries (+455 extra) 
+2026-05-19 08:33:00,500 81342 INFO odoo_db odoo.modules.registry: verifying fields for every extended model 
+2026-05-19 08:33:00,888 81342 INFO odoo_db odoo.modules.loading: Modules loaded. 
+2026-05-19 08:33:00,892 81342 INFO odoo_db odoo.modules.registry: Registry changed, signaling through the database 
+2026-05-19 08:33:00,892 81342 INFO odoo_db odoo.modules.registry: Registry loaded in 2.524s 
+2026-05-19 08:33:00,894 81342 INFO odoo_db odoo.addons.base.models.ir_http: Generating routing map for key None 
+2026-05-19 08:33:00,910 81342 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 08:33:00] "GET /websocket?version=18.0-2 HTTP/1.1" 101 - 6 0.001 0.154
+2026-05-19 08:33:01,239 81342 INFO ? odoo.addons.bus.models.bus: Bus.loop listen imbus on db postgres 

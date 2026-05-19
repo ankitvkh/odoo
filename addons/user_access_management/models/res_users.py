@@ -149,12 +149,12 @@ class ResUsers(models.Model):
         # Return domain that includes accessible locations or records without location
         return ['|', (location_field, 'in', accessible_location_ids), (location_field, '=', False)]
     
-    @api.model
-    def create(self, vals):
+    @api.model_create_multi
+    def create(self, vals_list):
         """Override create to set default access level based on groups"""
-        user = super(ResUsers, self).create(vals)
-        user._update_access_level()
-        return user
+        users = super(ResUsers, self).create(vals_list)
+        users._update_access_level()
+        return users
     
     def write(self, vals):
         """Override write to update access level when groups change"""

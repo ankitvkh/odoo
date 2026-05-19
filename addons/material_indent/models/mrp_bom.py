@@ -115,12 +115,33 @@ class MaterialIndentLineBom(models.Model):
     make = fields.Char(related='product_id.make', string='Make', readonly=False, store=True)
     description_short = fields.Char(related='product_id.description_short', string='Description', readonly=False, store=True)
     
+    def _sync_states_from_indents(self):
+        for line in self:
+            if line.bom_id and line.product_id:
+                indents = self.env['material.indent'].search([
+                    ('bom_id', '=', line.bom_id.id)
+                ], order='id desc')
+                for indent in indents:
+                    if line.product_id in indent.indent_line_ids.mapped('product_id'):
+                        if line.state != indent.state or line.indent_reference != indent.name:
+                            line.write({
+                                'state': indent.state,
+                                'indent_reference': indent.name,
+                            })
+                        break
+
+    def read(self, fields=None, load='_classic_read'):
+        self._sync_states_from_indents()
+        return super().read(fields=fields, load=load)
+
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
             if vals.get('indent_reference', 'New') == 'New':
                 vals['indent_reference'] = self.env['ir.sequence'].next_by_code('material.indent') or 'IND/NEW'
-        return super().create(vals_list)
+        res = super().create(vals_list)
+        res._sync_states_from_indents()
+        return res
 
 
 class MrpBomLine(models.Model):
