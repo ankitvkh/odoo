@@ -76,7 +76,23 @@ class MaterialIndent(models.Model):
             if vals.get('name', 'New') == 'New':
                 seq = self.env.ref('material_indent.sequence_material_indent', raise_if_not_found=False)
                 vals['name'] = seq.next_by_id() if seq else self.env['ir.sequence'].next_by_code('material.indent') or 'IND/NEW'
-        return super().create(vals_list)
+        records = super().create(vals_list)
+        records._sync_bom_indent_lines()
+        return records
+
+    def write(self, vals):
+        res = super().write(vals)
+        self._sync_bom_indent_lines()
+        return res
+
+    def unlink(self):
+        # Delete related BOM indent lines when deleting the indent
+        bom_lines = self.env['material.indent.line.bom'].search([
+            ('indent_reference', 'in', self.mapped('name'))
+        ])
+        if bom_lines:
+            bom_lines.unlink()
+        return super().unlink()
 
     def _compute_purchase_orders(self):
         """Find related purchase orders by origin"""
@@ -129,15 +145,42 @@ class MaterialIndent(models.Model):
 
     def _sync_bom_indent_lines(self):
         for rec in self:
-            if rec.bom_id:
-                bom_lines = rec.bom_id.material_indent_line_ids
-                for line in rec.indent_line_ids:
-                    matching_bom_lines = bom_lines.filtered(lambda l: l.product_id == line.product_id)
-                    if matching_bom_lines:
-                        matching_bom_lines.write({
-                            'state': rec.state,
-                            'indent_reference': rec.name,
-                        })
+            if not rec.bom_id:
+                continue
+            
+            # Find existing BOM indent lines linked to this indent reference
+            existing_bom_lines = self.env['material.indent.line.bom'].search([
+                ('bom_id', '=', rec.bom_id.id),
+                ('indent_reference', '=', rec.name)
+            ])
+            
+            processed_products = set()
+            for line in rec.indent_line_ids:
+                if not line.product_id:
+                    continue
+                
+                # Check if we already have a line for this product in this BOM/Indent combination
+                bom_line = existing_bom_lines.filtered(lambda l: l.product_id == line.product_id)
+                vals = {
+                    'bom_id': rec.bom_id.id,
+                    'indent_reference': rec.name,
+                    'product_id': line.product_id.id,
+                    'product_qty': line.product_qty,
+                    'state': rec.state,
+                    'custom_description': line.description_short or line.product_id.name,
+                }
+                
+                if bom_line:
+                    bom_line.write(vals)
+                else:
+                    self.env['material.indent.line.bom'].create(vals)
+                
+                processed_products.add(line.product_id.id)
+            
+            # Delete any existing BOM lines for products that were removed from this indent
+            lines_to_delete = existing_bom_lines.filtered(lambda l: l.product_id.id not in processed_products)
+            if lines_to_delete:
+                lines_to_delete.unlink()
 
     def action_submit(self):
         """Submit indent for approval"""
@@ -311,6 +354,20 @@ class MaterialIndentLine(models.Model):
         readonly=True,
         store=True
     )
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if not vals.get('uom_id') and vals.get('product_id'):
+                product = self.env['product.product'].browse(vals['product_id'])
+                vals['uom_id'] = product.uom_id.id
+        return super(MaterialIndentLine, self).create(vals_list)
+
+    def write(self, vals):
+        if 'product_id' in vals and not vals.get('uom_id'):
+            product = self.env['product.product'].browse(vals['product_id'])
+            vals['uom_id'] = product.uom_id.id
+        return super(MaterialIndentLine, self).write(vals)
 
     @api.depends('product_id')
     def _compute_vendor_id(self):

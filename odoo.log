@@ -1,71 +1,286 @@
-2026-05-19 19:56:24,623 91831 INFO ? odoo: Odoo version 18.0 
-2026-05-19 19:56:24,623 91831 INFO ? odoo: Using configuration file at /Users/rohitkumar/IdeaProjects/odoo/odoo.conf 
-2026-05-19 19:56:24,623 91831 INFO ? odoo: addons paths: ['/Users/rohitkumar/IdeaProjects/odoo/odoo/addons', '/Users/rohitkumar/Library/Application Support/Odoo/addons/18.0', '/Users/rohitkumar/IdeaProjects/odoo/addons'] 
-2026-05-19 19:56:24,623 91831 INFO ? odoo: database: rohitkumar@localhost:5432 
-2026-05-19 19:56:24,705 91831 INFO ? odoo.addons.base.models.ir_actions_report: You need Wkhtmltopdf to print a pdf version of the reports. 
-2026-05-19 19:56:24,706 91831 INFO ? odoo.addons.base.models.ir_actions_report: You need Wkhtmltoimage to generate images from html. 
-2026-05-19 19:56:24,801 91831 INFO ? odoo.service.server: HTTP service (werkzeug) running on Rohits-MacBook-Pro.local:8069 
-2026-05-19 19:56:24,822 91831 INFO odoo_db odoo.modules.loading: loading 1 modules... 
-2026-05-19 19:56:24,826 91831 INFO odoo_db odoo.modules.loading: 1 modules loaded in 0.00s, 0 queries (+0 extra) 
-2026-05-19 19:56:24,837 91831 INFO odoo_db odoo.modules.loading: updating modules list 
-2026-05-19 19:56:24,839 91831 INFO odoo_db odoo.addons.base.models.ir_module: ALLOW access to module.update_list on [] to user __system__ #1 via n/a 
-2026-05-19 19:56:25,344 91831 INFO odoo_db odoo.addons.base.models.ir_module: ALLOW access to module.button_upgrade on ['Sale Order Enhancement'] to user __system__ #1 via n/a 
-2026-05-19 19:56:25,344 91831 INFO odoo_db odoo.addons.base.models.ir_module: ALLOW access to module.update_list on ['Sale Order Enhancement'] to user __system__ #1 via n/a 
-2026-05-19 19:56:25,579 91831 INFO odoo_db odoo.addons.base.models.ir_module: ALLOW access to module.button_install on [] to user __system__ #1 via n/a 
-2026-05-19 19:56:25,595 91831 INFO odoo_db odoo.modules.loading: loading 118 modules... 
-2026-05-19 19:56:26,043 91831 INFO odoo_db odoo.modules.loading: Loading module sale_order_enhancement (110/118) 
-2026-05-19 19:56:26,241 91831 INFO odoo_db odoo.modules.registry: module sale_order_enhancement: creating or updating database tables 
-2026-05-19 19:56:26,292 91831 WARNING odoo_db odoo.addons.base.models.ir_model: Two fields (amount_untaxed_display, amount_untaxed) of sale.order() have the same label: Basic Amount. [Modules: sale_order_enhancement and sale] 
-2026-05-19 19:56:26,292 91831 WARNING odoo_db odoo.addons.base.models.ir_model: Two fields (amount_tax_display, amount_tax) of sale.order() have the same label: Taxes. [Modules: sale_order_enhancement and sale] 
-2026-05-19 19:56:26,292 91831 WARNING odoo_db odoo.addons.base.models.ir_model: Two fields (amount_total_display, amount_total) of sale.order() have the same label: Total. [Modules: sale_order_enhancement and sale] 
-2026-05-19 19:56:26,355 91831 INFO odoo_db odoo.modules.loading: loading sale_order_enhancement/data/ir_sequence_data.xml 
-2026-05-19 19:56:26,361 91831 INFO odoo_db odoo.modules.loading: loading sale_order_enhancement/data/res_company_data.xml 
-2026-05-19 19:56:26,362 91831 INFO odoo_db odoo.modules.loading: loading sale_order_enhancement/views/sale_order_views.xml 
-2026-05-19 19:56:26,414 91831 INFO odoo_db odoo.modules.loading: loading sale_order_enhancement/views/sale_report_templates.xml 
-2026-05-19 19:56:26,425 91831 INFO odoo_db odoo.modules.loading: loading sale_order_enhancement/views/invoice_report_templates.xml 
-2026-05-19 19:56:26,435 91831 INFO odoo_db odoo.modules.loading: loading sale_order_enhancement/views/sale_portal_templates.xml 
-2026-05-19 19:56:26,446 91831 WARNING odoo_db odoo.addons.base.models.ir_ui_view: Error-prone use of @class in view sale_order_portal_content_enhanced (sale_order_enhancement.sale_order_portal_content_enhanced): use the hasclass(*classes) function to filter elements by their classes 
-2026-05-19 19:56:26,446 91831 WARNING odoo_db odoo.addons.base.models.ir_ui_view: Error-prone use of @class in view sale_order_portal_content_enhanced (sale_order_enhancement.sale_order_portal_content_enhanced): use the hasclass(*classes) function to filter elements by their classes 
-2026-05-19 19:56:26,465 91831 INFO odoo_db odoo.modules.loading: Module sale_order_enhancement loaded in 0.42s, 240 queries (+240 other) 
-2026-05-19 19:56:26,480 91831 INFO odoo_db odoo.modules.loading: 118 modules loaded in 0.88s, 240 queries (+240 extra) 
-2026-05-19 19:56:26,736 91831 INFO odoo_db odoo.modules.registry: verifying fields for every extended model 
-2026-05-19 19:56:26,753 91831 WARNING odoo_db odoo.addons.base.models.ir_model: Two fields (amount_untaxed_display, amount_untaxed) of sale.order() have the same label: Basic Amount. [Modules: sale_order_enhancement and sale] 
-2026-05-19 19:56:26,753 91831 WARNING odoo_db odoo.addons.base.models.ir_model: Two fields (amount_tax_display, amount_tax) of sale.order() have the same label: Taxes. [Modules: sale_order_enhancement and sale] 
-2026-05-19 19:56:26,753 91831 WARNING odoo_db odoo.addons.base.models.ir_model: Two fields (amount_total_display, amount_total) of sale.order() have the same label: Total. [Modules: sale_order_enhancement and sale] 
-2026-05-19 19:56:27,112 91831 INFO odoo_db odoo.modules.loading: Modules loaded. 
-2026-05-19 19:56:27,115 91831 INFO odoo_db odoo.modules.registry: Registry changed, signaling through the database 
-2026-05-19 19:56:27,116 91831 INFO odoo_db odoo.modules.registry: Registry loaded in 2.314s 
-2026-05-19 19:56:27,644 91831 INFO odoo_db odoo.addons.base.models.ir_http: Generating routing map for key None 
-2026-05-19 19:56:27,670 91831 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 19:56:27] "GET /websocket?version=18.0-2 HTTP/1.1" 101 - 6 0.004 0.026
-2026-05-19 19:56:28,019 91831 INFO ? odoo.addons.bus.models.bus: Bus.loop listen imbus on db postgres 
-2026-05-19 19:56:40,133 91831 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 19:56:40] "GET /odoo/sales/50 HTTP/1.1" 200 - 93 0.035 0.259
-2026-05-19 19:56:40,310 91831 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 19:56:40] "GET /web/manifest.webmanifest HTTP/1.1" 200 - 9 0.003 0.003
-2026-05-19 19:56:40,568 91831 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 19:56:40] "POST /web/action/load HTTP/1.1" 200 - 14 0.010 0.026
-2026-05-19 19:56:40,576 91831 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 19:56:40] "GET /web/image?model=res.users&field=avatar_128&id=2 HTTP/1.1" 304 - 9 0.015 0.029
-2026-05-19 19:56:40,685 91831 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 19:56:40] "POST /mail/action HTTP/1.1" 200 - 92 0.105 0.047
-2026-05-19 19:56:40,693 91831 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 19:56:40] "POST /web/dataset/call_kw/sale.order/get_views HTTP/1.1" 200 - 139 0.046 0.076
-2026-05-19 19:56:40,797 91831 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 19:56:40] "POST /web/dataset/call_kw/sale.order/web_read HTTP/1.1" 200 - 88 0.066 0.026
-2026-05-19 19:56:40,916 91831 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 19:56:40] "POST /mail/thread/data HTTP/1.1" 200 - 31 0.021 0.010
-2026-05-19 19:56:40,925 91831 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 19:56:40] "POST /mail/thread/messages HTTP/1.1" 200 - 20 0.016 0.007
-2026-05-19 19:56:42,327 91831 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 19:56:42] "GET /web/service-worker.js HTTP/1.1" 200 - 1 0.001 0.006
-2026-05-19 19:56:46,151 91831 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 19:56:46] "POST /mail/thread/messages HTTP/1.1" 200 - 18 0.029 0.015
-2026-05-19 19:56:51,916 91831 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 19:56:51] "POST /web/action/load HTTP/1.1" 200 - 10 0.008 0.011
-2026-05-19 19:56:51,996 91831 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 19:56:51] "POST /web/dataset/call_kw/account.journal/get_views HTTP/1.1" 200 - 50 0.020 0.048
-2026-05-19 19:56:52,076 91831 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 19:56:52] "POST /web/dataset/call_kw/account.journal/web_search_read HTTP/1.1" 200 - 37 0.039 0.032
-2026-05-19 19:56:52,116 91831 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 19:56:52] "GET /web/bundle/web.chartjs_lib?lang=en_US&debug=1 HTTP/1.1" 200 - 2 0.002 0.002
-2026-05-19 19:56:54,692 91831 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 19:56:54] "POST /web/action/load HTTP/1.1" 200 - 10 0.007 0.012
-2026-05-19 19:56:54,764 91831 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 19:56:54] "POST /web/dataset/call_kw/account.tax/get_views HTTP/1.1" 200 - 44 0.017 0.035
-2026-05-19 19:56:54,776 91831 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 19:56:54] "POST /web/dataset/call_kw/res.users/has_group HTTP/1.1" 200 - 1 0.001 0.003
-2026-05-19 19:56:54,784 91831 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 19:56:54] "POST /web/dataset/call_kw/account.tax/web_search_read HTTP/1.1" 200 - 4 0.004 0.007
-2026-05-19 19:56:56,001 91831 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 19:56:56] "POST /web/dataset/call_kw/account.tax/web_read HTTP/1.1" 200 - 23 0.016 0.022
-2026-05-19 19:56:56,059 91831 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 19:56:56] "POST /mail/thread/data HTTP/1.1" 200 - 17 0.010 0.012
-2026-05-19 19:56:56,088 91831 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 19:56:56] "POST /mail/thread/messages HTTP/1.1" 200 - 22 0.012 0.016
-2026-05-19 19:57:00,351 91831 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 19:57:00] "POST /web/dataset/call_kw/account.tax/web_save HTTP/1.1" 200 - 44 0.029 0.040
-2026-05-19 19:57:00,378 91831 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 19:57:00] "POST /mail/thread/data HTTP/1.1" 200 - 12 0.009 0.009
-2026-05-19 19:57:00,380 91831 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 19:57:00] "POST /mail/thread/messages HTTP/1.1" 200 - 21 0.013 0.012
-2026-05-19 19:57:01,955 91831 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 19:57:01] "POST /web/action/load HTTP/1.1" 200 - 12 0.009 0.012
-2026-05-19 19:57:02,026 91831 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 19:57:02] "POST /web/dataset/call_kw/sale.order/web_search_read HTTP/1.1" 200 - 19 0.015 0.027
-2026-05-19 19:57:02,095 91831 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 19:57:02] "GET /web/image/res.users/2/avatar_128 HTTP/1.1" 304 - 9 0.005 0.014
-2026-05-19 19:57:03,607 91831 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 19:57:03] "POST /web/dataset/call_kw/sale.order/web_read HTTP/1.1" 200 - 41 0.040 0.050
-2026-05-19 19:57:03,671 91831 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 19:57:03] "POST /mail/thread/messages HTTP/1.1" 200 - 3 0.002 0.006
-2026-05-19 19:57:03,678 91831 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 19:57:03] "POST /mail/thread/data HTTP/1.1" 200 - 20 0.011 0.012
+2026-05-19 20:31:15,585 93221 INFO ? odoo: Odoo version 18.0 
+2026-05-19 20:31:15,585 93221 INFO ? odoo: Using configuration file at /Users/rohitkumar/IdeaProjects/odoo/odoo.conf 
+2026-05-19 20:31:15,585 93221 INFO ? odoo: addons paths: ['/Users/rohitkumar/IdeaProjects/odoo/odoo/addons', '/Users/rohitkumar/Library/Application Support/Odoo/addons/18.0', '/Users/rohitkumar/IdeaProjects/odoo/addons'] 
+2026-05-19 20:31:15,585 93221 INFO ? odoo: database: rohitkumar@localhost:5432 
+2026-05-19 20:31:15,659 93221 INFO ? odoo.addons.base.models.ir_actions_report: You need Wkhtmltopdf to print a pdf version of the reports. 
+2026-05-19 20:31:15,659 93221 INFO ? odoo.addons.base.models.ir_actions_report: You need Wkhtmltoimage to generate images from html. 
+2026-05-19 20:31:15,738 93221 INFO ? odoo.service.server: HTTP service (werkzeug) running on Rohits-MacBook-Pro.local:8069 
+2026-05-19 20:31:15,757 93221 INFO odoo_db odoo.modules.loading: loading 1 modules... 
+2026-05-19 20:31:15,760 93221 INFO odoo_db odoo.modules.loading: 1 modules loaded in 0.00s, 0 queries (+0 extra) 
+2026-05-19 20:31:15,771 93221 INFO odoo_db odoo.modules.loading: updating modules list 
+2026-05-19 20:31:15,773 93221 INFO odoo_db odoo.addons.base.models.ir_module: ALLOW access to module.update_list on [] to user __system__ #1 via n/a 
+2026-05-19 20:31:16,268 93221 INFO odoo_db odoo.addons.base.models.ir_module: ALLOW access to module.button_upgrade on ['Material Indent'] to user __system__ #1 via n/a 
+2026-05-19 20:31:16,268 93221 INFO odoo_db odoo.addons.base.models.ir_module: ALLOW access to module.update_list on ['Material Indent'] to user __system__ #1 via n/a 
+2026-05-19 20:31:16,515 93221 INFO odoo_db odoo.addons.base.models.ir_module: ALLOW access to module.button_install on [] to user __system__ #1 via n/a 
+2026-05-19 20:31:16,532 93221 INFO odoo_db odoo.modules.loading: loading 118 modules... 
+2026-05-19 20:31:16,976 93221 INFO odoo_db odoo.modules.loading: Loading module material_indent (95/118) 
+2026-05-19 20:31:17,172 93221 INFO odoo_db odoo.modules.registry: module material_indent: creating or updating database tables 
+2026-05-19 20:31:17,280 93221 INFO odoo_db odoo.modules.loading: loading material_indent/security/ir.model.access.csv 
+2026-05-19 20:31:17,290 93221 INFO odoo_db odoo.modules.loading: loading material_indent/data/sequence_data.xml 
+2026-05-19 20:31:17,292 93221 INFO odoo_db odoo.modules.loading: loading material_indent/views/mrp_bom_views.xml 
+2026-05-19 20:31:17,313 93221 INFO odoo_db odoo.modules.loading: loading material_indent/views/material_indent_views.xml 
+2026-05-19 20:31:17,333 93221 INFO odoo_db odoo.modules.loading: loading material_indent/views/product_template_views.xml 
+2026-05-19 20:31:17,380 93221 INFO odoo_db odoo.modules.loading: loading material_indent/views/purchase_order_views.xml 
+2026-05-19 20:31:17,401 93221 INFO odoo_db odoo.modules.loading: loading material_indent/views/sale_order_views.xml 
+2026-05-19 20:31:17,411 93221 INFO odoo_db odoo.modules.loading: loading material_indent/report/sale_report_templates.xml 
+2026-05-19 20:31:17,422 93221 WARNING odoo_db odoo.modules.loading: The models ['material.indent.import.wizard'] have no access rules in module material_indent, consider adding some, like:
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+material_indent.access_material_indent_import_wizard,access_material_indent_import_wizard,material_indent.model_material_indent_import_wizard,base.group_user,1,0,0,0 
+2026-05-19 20:31:17,425 93221 INFO odoo_db odoo.modules.loading: Module material_indent loaded in 0.45s, 390 queries (+390 other) 
+2026-05-19 20:31:17,451 93221 INFO odoo_db odoo.modules.loading: Loading module sale_order_enhancement (110/118) 
+2026-05-19 20:31:17,593 93221 INFO odoo_db odoo.modules.registry: module sale_order_enhancement: creating or updating database tables 
+2026-05-19 20:31:17,634 93221 WARNING odoo_db odoo.addons.base.models.ir_model: Two fields (amount_untaxed_display, amount_untaxed) of sale.order() have the same label: Basic Amount. [Modules: sale_order_enhancement and sale] 
+2026-05-19 20:31:17,634 93221 WARNING odoo_db odoo.addons.base.models.ir_model: Two fields (amount_tax_display, amount_tax) of sale.order() have the same label: Taxes. [Modules: sale_order_enhancement and sale] 
+2026-05-19 20:31:17,634 93221 WARNING odoo_db odoo.addons.base.models.ir_model: Two fields (amount_total_display, amount_total) of sale.order() have the same label: Total. [Modules: sale_order_enhancement and sale] 
+2026-05-19 20:31:17,723 93221 INFO odoo_db odoo.modules.loading: loading sale_order_enhancement/data/ir_sequence_data.xml 
+2026-05-19 20:31:17,727 93221 INFO odoo_db odoo.modules.loading: loading sale_order_enhancement/data/res_company_data.xml 
+2026-05-19 20:31:17,729 93221 INFO odoo_db odoo.modules.loading: loading sale_order_enhancement/views/sale_order_views.xml 
+2026-05-19 20:31:17,771 93221 INFO odoo_db odoo.modules.loading: loading sale_order_enhancement/views/sale_report_templates.xml 
+2026-05-19 20:31:17,779 93221 INFO odoo_db odoo.modules.loading: loading sale_order_enhancement/views/invoice_report_templates.xml 
+2026-05-19 20:31:17,787 93221 INFO odoo_db odoo.modules.loading: loading sale_order_enhancement/views/sale_portal_templates.xml 
+2026-05-19 20:31:17,795 93221 WARNING odoo_db odoo.addons.base.models.ir_ui_view: Error-prone use of @class in view sale_order_portal_content_enhanced (sale_order_enhancement.sale_order_portal_content_enhanced): use the hasclass(*classes) function to filter elements by their classes 
+2026-05-19 20:31:17,795 93221 WARNING odoo_db odoo.addons.base.models.ir_ui_view: Error-prone use of @class in view sale_order_portal_content_enhanced (sale_order_enhancement.sale_order_portal_content_enhanced): use the hasclass(*classes) function to filter elements by their classes 
+2026-05-19 20:31:17,808 93221 INFO odoo_db odoo.modules.loading: Module sale_order_enhancement loaded in 0.36s, 251 queries (+251 other) 
+2026-05-19 20:31:17,821 93221 INFO odoo_db odoo.modules.loading: 118 modules loaded in 1.29s, 641 queries (+641 extra) 
+2026-05-19 20:31:18,059 93221 INFO odoo_db odoo.modules.registry: verifying fields for every extended model 
+2026-05-19 20:31:18,088 93221 WARNING odoo_db odoo.addons.base.models.ir_model: Two fields (amount_untaxed_display, amount_untaxed) of sale.order() have the same label: Basic Amount. [Modules: sale_order_enhancement and sale] 
+2026-05-19 20:31:18,088 93221 WARNING odoo_db odoo.addons.base.models.ir_model: Two fields (amount_tax_display, amount_tax) of sale.order() have the same label: Taxes. [Modules: sale_order_enhancement and sale] 
+2026-05-19 20:31:18,088 93221 WARNING odoo_db odoo.addons.base.models.ir_model: Two fields (amount_total_display, amount_total) of sale.order() have the same label: Total. [Modules: sale_order_enhancement and sale] 
+2026-05-19 20:31:18,441 93221 INFO odoo_db odoo.modules.loading: Modules loaded. 
+2026-05-19 20:31:18,444 93221 INFO odoo_db odoo.modules.registry: Registry changed, signaling through the database 
+2026-05-19 20:31:18,445 93221 INFO odoo_db odoo.modules.registry: Registry loaded in 2.706s 
+2026-05-19 20:31:18,446 93221 INFO odoo_db odoo.addons.base.models.ir_http: Generating routing map for key None 
+2026-05-19 20:31:18,509 93221 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 20:31:18] "GET /websocket?version=18.0-2 HTTP/1.1" 101 - 6 0.022 0.358
+2026-05-19 20:31:18,847 93221 INFO ? odoo.addons.bus.models.bus: Bus.loop listen imbus on db postgres 
+2026-05-19 20:31:40,887 93221 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 20:31:40] "POST /web/dataset/call_kw/mrp.bom/web_search_read HTTP/1.1" 200 - 11 0.009 0.039
+2026-05-19 20:31:42,122 93221 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 20:31:42] "POST /web/dataset/call_kw/mrp.bom/web_read HTTP/1.1" 200 - 43 0.026 0.030
+2026-05-19 20:31:42,188 93221 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 20:31:42] "POST /mail/thread/data HTTP/1.1" 200 - 25 0.016 0.012
+2026-05-19 20:31:42,194 93221 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 20:31:42] "POST /mail/thread/messages HTTP/1.1" 200 - 4 0.004 0.019
+2026-05-19 20:31:47,555 93221 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 20:31:47] "POST /web/dataset/call_button/mrp.bom/action_view_indents HTTP/1.1" 200 - 1 0.001 0.005
+2026-05-19 20:31:47,582 93221 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 20:31:47] "POST /web/dataset/call_kw/material.indent/web_search_read HTTP/1.1" 200 - 12 0.008 0.008
+2026-05-19 20:31:49,049 93221 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 20:31:49] "POST /web/dataset/call_kw/material.indent/onchange HTTP/1.1" 200 - 5 0.004 0.013
+2026-05-19 20:31:50,782 93221 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 20:31:50] "POST /web/dataset/call_kw/project.project/name_search HTTP/1.1" 200 - 8 0.007 0.010
+2026-05-19 20:31:52,752 93221 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 20:31:52] "POST /web/dataset/call_kw/material.indent.line/onchange HTTP/1.1" 200 - 3 0.002 0.003
+2026-05-19 20:31:53,393 93221 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 20:31:53] "POST /web/dataset/call_kw/product.product/name_search HTTP/1.1" 200 - 9 0.007 0.012
+2026-05-19 20:31:56,836 93221 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 20:31:56] "POST /web/dataset/call_kw/material.indent.line/onchange HTTP/1.1" 200 - 28 0.028 0.028
+2026-05-19 20:32:00,519 93221 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 20:32:00] "POST /web/dataset/call_kw/material.indent/web_save HTTP/1.1" 200 - 55 0.044 0.046
+2026-05-19 20:32:00,565 93221 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 20:32:00] "POST /web/dataset/call_button/material.indent/action_submit HTTP/1.1" 200 - 33 0.018 0.020
+2026-05-19 20:32:00,590 93221 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 20:32:00] "POST /web/dataset/call_kw/material.indent/web_read HTTP/1.1" 200 - 21 0.010 0.012
+2026-05-19 20:32:01,452 93221 WARNING odoo_db odoo.http: Cannot approve and create Purchase Orders. The following products do not have any vendor configured:
+
+- Bolt
+
+Please configure a vendor on these products (under the Purchase tab) before proceeding. 
+2026-05-19 20:32:01,452 93221 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 20:32:01] "POST /web/dataset/call_button/material.indent/action_approve HTTP/1.1" 200 - 24 0.016 0.033
+2026-05-19 20:32:12,606 93221 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 20:32:12] "POST /web/dataset/call_kw/mrp.bom/web_search_read HTTP/1.1" 200 - 6 0.004 0.008
+2026-05-19 20:32:13,935 93221 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 20:32:13] "POST /web/dataset/call_kw/mrp.bom/web_read HTTP/1.1" 200 - 26 0.014 0.024
+2026-05-19 20:32:14,001 93221 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 20:32:14] "POST /mail/thread/data HTTP/1.1" 200 - 13 0.005 0.010
+2026-05-19 20:32:14,012 93221 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 20:32:14] "POST /mail/thread/messages HTTP/1.1" 200 - 3 0.002 0.004
+2026-05-19 20:34:12,207 93221 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 20:34:12] "GET /websocket?version=18.0-2 HTTP/1.1" 101 - 1 0.002 0.015
+2026-05-19 20:52:12,923 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) starting 
+2026-05-19 20:52:12,933 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) done in 0.010s 
+2026-05-19 20:52:12,937 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) processed 0 records, 0 records remaining 
+2026-05-19 20:52:12,955 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) completed 
+2026-05-19 21:08:44,502 93221 INFO odoo_db odoo.addons.base.models.res_device: User 2 inserts device log (5371g-yM6FqQ74ZG-o-ew-JdX1za-1yb9IowdJN7AC) 
+2026-05-19 21:08:44,508 93221 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 21:08:44] "GET /websocket?version=18.0-2 HTTP/1.1" 101 - 2 0.004 0.014
+2026-05-19 22:13:47,124 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Notification: Notify scheduled messages' (8) starting 
+2026-05-19 22:13:47,136 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Notification: Notify scheduled messages' (8) done in 0.011s 
+2026-05-19 22:13:47,138 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Notification: Notify scheduled messages' (8) processed 0 records, 0 records remaining 
+2026-05-19 22:13:47,146 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Notification: Notify scheduled messages' (8) completed 
+2026-05-19 22:13:47,151 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'SMS: SMS Queue Manager' (14) starting 
+2026-05-19 22:13:47,155 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'SMS: SMS Queue Manager' (14) done in 0.004s 
+2026-05-19 22:13:47,157 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'SMS: SMS Queue Manager' (14) processed 0 records, 0 records remaining 
+2026-05-19 22:13:47,158 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'SMS: SMS Queue Manager' (14) completed 
+2026-05-19 22:13:47,163 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Snailmail: process letters queue' (15) starting 
+2026-05-19 22:13:47,166 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Snailmail: process letters queue' (15) done in 0.003s 
+2026-05-19 22:13:47,168 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Snailmail: process letters queue' (15) processed 0 records, 0 records remaining 
+2026-05-19 22:13:47,170 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Snailmail: process letters queue' (15) completed 
+2026-05-19 22:13:47,175 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) starting 
+2026-05-19 22:13:47,178 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) done in 0.003s 
+2026-05-19 22:13:47,180 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) processed 0 records, 0 records remaining 
+2026-05-19 22:13:47,183 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) completed 
+2026-05-19 22:13:47,188 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'CRM: enrich leads (IAP)' (33) starting 
+2026-05-19 22:13:47,195 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'CRM: enrich leads (IAP)' (33) done in 0.007s 
+2026-05-19 22:13:47,197 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'CRM: enrich leads (IAP)' (33) processed 0 records, 0 records remaining 
+2026-05-19 22:13:47,199 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'CRM: enrich leads (IAP)' (33) completed 
+2026-05-19 22:13:47,204 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Mail: Email Queue Manager' (3) starting 
+2026-05-19 22:13:47,209 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Mail: Email Queue Manager' (3) done in 0.005s 
+2026-05-19 22:13:47,210 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Mail: Email Queue Manager' (3) processed 0 records, 0 records remaining 
+2026-05-19 22:13:47,212 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Mail: Email Queue Manager' (3) completed 
+2026-05-19 22:13:47,217 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Partner Autocomplete: Sync with remote DB' (13) starting 
+2026-05-19 22:13:47,220 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Partner Autocomplete: Sync with remote DB' (13) done in 0.003s 
+2026-05-19 22:13:47,221 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Partner Autocomplete: Sync with remote DB' (13) processed 0 records, 0 records remaining 
+2026-05-19 22:13:47,223 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Partner Autocomplete: Sync with remote DB' (13) completed 
+2026-05-19 22:30:17,685 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Notification: Notify scheduled messages' (8) starting 
+2026-05-19 22:30:17,695 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Notification: Notify scheduled messages' (8) done in 0.009s 
+2026-05-19 22:30:17,697 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Notification: Notify scheduled messages' (8) processed 0 records, 0 records remaining 
+2026-05-19 22:30:17,707 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Notification: Notify scheduled messages' (8) completed 
+2026-05-19 22:30:17,714 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'SMS: SMS Queue Manager' (14) starting 
+2026-05-19 22:30:17,718 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'SMS: SMS Queue Manager' (14) done in 0.004s 
+2026-05-19 22:30:17,720 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'SMS: SMS Queue Manager' (14) processed 0 records, 0 records remaining 
+2026-05-19 22:30:17,724 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'SMS: SMS Queue Manager' (14) completed 
+2026-05-19 22:30:17,729 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Snailmail: process letters queue' (15) starting 
+2026-05-19 22:30:17,733 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Snailmail: process letters queue' (15) done in 0.004s 
+2026-05-19 22:30:17,735 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Snailmail: process letters queue' (15) processed 0 records, 0 records remaining 
+2026-05-19 22:30:17,738 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Snailmail: process letters queue' (15) completed 
+2026-05-19 22:30:17,744 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) starting 
+2026-05-19 22:30:17,748 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) done in 0.004s 
+2026-05-19 22:30:17,750 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) processed 0 records, 0 records remaining 
+2026-05-19 22:30:17,753 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) completed 
+2026-05-19 22:30:17,758 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'CRM: enrich leads (IAP)' (33) starting 
+2026-05-19 22:30:17,765 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'CRM: enrich leads (IAP)' (33) done in 0.007s 
+2026-05-19 22:30:17,767 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'CRM: enrich leads (IAP)' (33) processed 0 records, 0 records remaining 
+2026-05-19 22:30:17,770 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'CRM: enrich leads (IAP)' (33) completed 
+2026-05-19 22:30:17,777 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Mail: Email Queue Manager' (3) starting 
+2026-05-19 22:30:17,782 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Mail: Email Queue Manager' (3) done in 0.004s 
+2026-05-19 22:30:17,784 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Mail: Email Queue Manager' (3) processed 0 records, 0 records remaining 
+2026-05-19 22:30:17,787 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Mail: Email Queue Manager' (3) completed 
+2026-05-19 22:30:17,792 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Partner Autocomplete: Sync with remote DB' (13) starting 
+2026-05-19 22:30:17,796 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Partner Autocomplete: Sync with remote DB' (13) done in 0.004s 
+2026-05-19 22:30:17,798 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Partner Autocomplete: Sync with remote DB' (13) processed 0 records, 0 records remaining 
+2026-05-19 22:30:17,801 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Partner Autocomplete: Sync with remote DB' (13) completed 
+2026-05-19 23:09:15,942 93221 INFO odoo_db odoo.addons.base.models.res_device: User 2 inserts device log (5371g-yM6FqQ74ZG-o-ew-JdX1za-1yb9IowdJN7AC) 
+2026-05-19 23:09:15,946 93221 INFO odoo_db werkzeug: 127.0.0.1 - - [19/May/2026 23:09:15] "GET /websocket?version=18.0-2 HTTP/1.1" 101 - 2 0.004 0.009
+2026-05-20 00:26:21,600 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Notification: Notify scheduled messages' (8) starting 
+2026-05-20 00:26:21,611 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Notification: Notify scheduled messages' (8) done in 0.010s 
+2026-05-20 00:26:21,614 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Notification: Notify scheduled messages' (8) processed 0 records, 0 records remaining 
+2026-05-20 00:26:21,628 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Notification: Notify scheduled messages' (8) completed 
+2026-05-20 00:26:21,634 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'SMS: SMS Queue Manager' (14) starting 
+2026-05-20 00:26:21,637 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'SMS: SMS Queue Manager' (14) done in 0.003s 
+2026-05-20 00:26:21,639 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'SMS: SMS Queue Manager' (14) processed 0 records, 0 records remaining 
+2026-05-20 00:26:21,640 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'SMS: SMS Queue Manager' (14) completed 
+2026-05-20 00:26:21,645 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Snailmail: process letters queue' (15) starting 
+2026-05-20 00:26:21,648 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Snailmail: process letters queue' (15) done in 0.003s 
+2026-05-20 00:26:21,649 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Snailmail: process letters queue' (15) processed 0 records, 0 records remaining 
+2026-05-20 00:26:21,651 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Snailmail: process letters queue' (15) completed 
+2026-05-20 00:26:21,656 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) starting 
+2026-05-20 00:26:21,659 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) done in 0.003s 
+2026-05-20 00:26:21,661 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) processed 0 records, 0 records remaining 
+2026-05-20 00:26:21,663 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) completed 
+2026-05-20 00:26:21,666 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'CRM: enrich leads (IAP)' (33) starting 
+2026-05-20 00:26:21,672 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'CRM: enrich leads (IAP)' (33) done in 0.006s 
+2026-05-20 00:26:21,674 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'CRM: enrich leads (IAP)' (33) processed 0 records, 0 records remaining 
+2026-05-20 00:26:21,677 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'CRM: enrich leads (IAP)' (33) completed 
+2026-05-20 00:26:21,682 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Mail: Email Queue Manager' (3) starting 
+2026-05-20 00:26:21,687 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Mail: Email Queue Manager' (3) done in 0.005s 
+2026-05-20 00:26:21,688 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Mail: Email Queue Manager' (3) processed 0 records, 0 records remaining 
+2026-05-20 00:26:21,690 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Mail: Email Queue Manager' (3) completed 
+2026-05-20 00:26:21,696 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Partner Autocomplete: Sync with remote DB' (13) starting 
+2026-05-20 00:26:21,699 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Partner Autocomplete: Sync with remote DB' (13) done in 0.003s 
+2026-05-20 00:26:21,700 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Partner Autocomplete: Sync with remote DB' (13) processed 0 records, 0 records remaining 
+2026-05-20 00:26:21,702 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Partner Autocomplete: Sync with remote DB' (13) completed 
+2026-05-20 00:37:13,140 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) starting 
+2026-05-20 00:37:13,150 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) done in 0.009s 
+2026-05-20 00:37:13,152 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) processed 0 records, 0 records remaining 
+2026-05-20 00:37:13,163 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) completed 
+2026-05-20 00:53:33,668 93221 INFO odoo_db odoo.addons.base.models.res_device: User 2 inserts device log (5371g-yM6FqQ74ZG-o-ew-JdX1za-1yb9IowdJN7AC) 
+2026-05-20 00:53:33,670 93221 INFO odoo_db werkzeug: 127.0.0.1 - - [20/May/2026 00:53:33] "GET /websocket?version=18.0-2 HTTP/1.1" 101 - 2 0.015 0.014
+2026-05-20 02:29:42,563 93221 INFO odoo_db odoo.addons.base.models.res_device: User 2 inserts device log (5371g-yM6FqQ74ZG-o-ew-JdX1za-1yb9IowdJN7AC) 
+2026-05-20 02:29:42,568 93221 INFO odoo_db werkzeug: 127.0.0.1 - - [20/May/2026 02:29:42] "GET /websocket?version=18.0-2 HTTP/1.1" 101 - 2 0.003 0.011
+2026-05-20 02:39:13,062 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Notification: Notify scheduled messages' (8) starting 
+2026-05-20 02:39:13,074 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Notification: Notify scheduled messages' (8) done in 0.011s 
+2026-05-20 02:39:13,078 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Notification: Notify scheduled messages' (8) processed 0 records, 0 records remaining 
+2026-05-20 02:39:13,082 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Notification: Notify scheduled messages' (8) completed 
+2026-05-20 02:39:13,093 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'SMS: SMS Queue Manager' (14) starting 
+2026-05-20 02:39:13,099 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'SMS: SMS Queue Manager' (14) done in 0.006s 
+2026-05-20 02:39:13,102 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'SMS: SMS Queue Manager' (14) processed 0 records, 0 records remaining 
+2026-05-20 02:39:13,107 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'SMS: SMS Queue Manager' (14) completed 
+2026-05-20 02:39:13,114 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Snailmail: process letters queue' (15) starting 
+2026-05-20 02:39:13,118 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Snailmail: process letters queue' (15) done in 0.004s 
+2026-05-20 02:39:13,121 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Snailmail: process letters queue' (15) processed 0 records, 0 records remaining 
+2026-05-20 02:39:13,125 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Snailmail: process letters queue' (15) completed 
+2026-05-20 02:39:13,132 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) starting 
+2026-05-20 02:39:13,136 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) done in 0.004s 
+2026-05-20 02:39:13,138 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) processed 0 records, 0 records remaining 
+2026-05-20 02:39:13,141 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) completed 
+2026-05-20 02:39:13,145 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Account: Post draft entries with auto_post enabled and accounting date up to today' (18) starting 
+2026-05-20 02:39:13,165 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Account: Post draft entries with auto_post enabled and accounting date up to today' (18) done in 0.019s 
+2026-05-20 02:39:13,167 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Account: Post draft entries with auto_post enabled and accounting date up to today' (18) processed 0 records, 0 records remaining 
+2026-05-20 02:39:13,169 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Account: Post draft entries with auto_post enabled and accounting date up to today' (18) completed 
+2026-05-20 02:39:13,176 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'CRM: enrich leads (IAP)' (33) starting 
+2026-05-20 02:39:13,183 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'CRM: enrich leads (IAP)' (33) done in 0.008s 
+2026-05-20 02:39:13,186 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'CRM: enrich leads (IAP)' (33) processed 0 records, 0 records remaining 
+2026-05-20 02:39:13,189 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'CRM: enrich leads (IAP)' (33) completed 
+2026-05-20 02:39:13,196 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Mail: Email Queue Manager' (3) starting 
+2026-05-20 02:39:13,202 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Mail: Email Queue Manager' (3) done in 0.006s 
+2026-05-20 02:39:13,204 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Mail: Email Queue Manager' (3) processed 0 records, 0 records remaining 
+2026-05-20 02:39:13,208 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Mail: Email Queue Manager' (3) completed 
+2026-05-20 02:39:13,215 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Partner Autocomplete: Sync with remote DB' (13) starting 
+2026-05-20 02:39:13,219 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Partner Autocomplete: Sync with remote DB' (13) done in 0.004s 
+2026-05-20 02:39:13,221 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Partner Autocomplete: Sync with remote DB' (13) processed 0 records, 0 records remaining 
+2026-05-20 02:39:13,224 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Partner Autocomplete: Sync with remote DB' (13) completed 
+2026-05-20 02:57:12,475 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) starting 
+2026-05-20 02:57:12,514 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) done in 0.038s 
+2026-05-20 02:57:12,523 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) processed 0 records, 0 records remaining 
+2026-05-20 02:57:12,552 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) completed 
+2026-05-20 03:34:04,556 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Notification: Delete Notifications older than 6 Month' (5) starting 
+2026-05-20 03:34:04,573 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Notification: Delete Notifications older than 6 Month' (5) done in 0.016s 
+2026-05-20 03:34:04,576 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Notification: Delete Notifications older than 6 Month' (5) processed 0 records, 0 records remaining 
+2026-05-20 03:34:04,587 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Notification: Delete Notifications older than 6 Month' (5) completed 
+2026-05-20 03:34:04,596 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Mail: Post scheduled messages' (7) starting 
+2026-05-20 03:34:04,599 93221 INFO odoo_db odoo.addons.mail.models.mail_scheduled_message: Posting 0 scheduled messages 
+2026-05-20 03:34:04,600 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Mail: Post scheduled messages' (7) done in 0.004s 
+2026-05-20 03:34:04,602 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Mail: Post scheduled messages' (7) processed 0 records, 0 records remaining 
+2026-05-20 03:34:04,605 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Mail: Post scheduled messages' (7) completed 
+2026-05-20 03:34:04,610 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Notification: Notify scheduled messages' (8) starting 
+2026-05-20 03:34:04,614 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Notification: Notify scheduled messages' (8) done in 0.004s 
+2026-05-20 03:34:04,616 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Notification: Notify scheduled messages' (8) processed 0 records, 0 records remaining 
+2026-05-20 03:34:04,620 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Notification: Notify scheduled messages' (8) completed 
+2026-05-20 03:34:04,626 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Mail: send web push notification' (9) starting 
+2026-05-20 03:34:04,631 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Mail: send web push notification' (9) done in 0.005s 
+2026-05-20 03:34:04,632 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Mail: send web push notification' (9) processed 0 records, 0 records remaining 
+2026-05-20 03:34:04,635 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Mail: send web push notification' (9) completed 
+2026-05-20 03:34:04,641 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Discuss: channel member unmute' (10) starting 
+2026-05-20 03:34:04,648 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Discuss: channel member unmute' (10) done in 0.007s 
+2026-05-20 03:34:04,650 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Discuss: channel member unmute' (10) processed 0 records, 0 records remaining 
+2026-05-20 03:34:04,653 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Discuss: channel member unmute' (10) completed 
+2026-05-20 03:34:04,659 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Discuss: users settings unmute' (11) starting 
+2026-05-20 03:34:04,662 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Discuss: users settings unmute' (11) done in 0.003s 
+2026-05-20 03:34:04,664 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Discuss: users settings unmute' (11) processed 0 records, 0 records remaining 
+2026-05-20 03:34:04,666 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Discuss: users settings unmute' (11) completed 
+2026-05-20 03:34:04,672 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'SMS: SMS Queue Manager' (14) starting 
+2026-05-20 03:34:04,675 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'SMS: SMS Queue Manager' (14) done in 0.002s 
+2026-05-20 03:34:04,676 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'SMS: SMS Queue Manager' (14) processed 0 records, 0 records remaining 
+2026-05-20 03:34:04,678 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'SMS: SMS Queue Manager' (14) completed 
+2026-05-20 03:34:04,682 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Snailmail: process letters queue' (15) starting 
+2026-05-20 03:34:04,685 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Snailmail: process letters queue' (15) done in 0.003s 
+2026-05-20 03:34:04,686 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Snailmail: process letters queue' (15) processed 0 records, 0 records remaining 
+2026-05-20 03:34:04,688 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Snailmail: process letters queue' (15) completed 
+2026-05-20 03:34:04,692 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) starting 
+2026-05-20 03:34:04,696 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) done in 0.004s 
+2026-05-20 03:34:04,698 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) processed 0 records, 0 records remaining 
+2026-05-20 03:34:04,700 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) completed 
+2026-05-20 03:34:04,704 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Send invoices automatically' (19) starting 
+2026-05-20 03:34:04,710 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Send invoices automatically' (19) done in 0.006s 
+2026-05-20 03:34:04,712 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Send invoices automatically' (19) processed 0 records, 0 records remaining 
+2026-05-20 03:34:04,714 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Send invoices automatically' (19) completed 
+2026-05-20 03:34:04,718 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Sales: Send pending emails' (21) starting 
+2026-05-20 03:34:04,723 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Sales: Send pending emails' (21) done in 0.004s 
+2026-05-20 03:34:04,724 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Sales: Send pending emails' (21) processed 0 records, 0 records remaining 
+2026-05-20 03:34:04,726 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Sales: Send pending emails' (21) completed 
+2026-05-20 03:34:04,730 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Procurement: run scheduler' (23) starting 
+2026-05-20 03:34:04,848 93221 INFO odoo_db odoo.addons.stock.models.stock_orderpoint: A batch of 4 orderpoints is processed and committed 
+2026-05-20 03:34:04,856 93221 INFO odoo_db odoo.addons.stock.models.stock_rule: _run_scheduler_tasks is finished and committed 
+2026-05-20 03:34:04,856 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Procurement: run scheduler' (23) done in 0.126s 
+2026-05-20 03:34:04,860 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Procurement: run scheduler' (23) processed 0 records, 0 records remaining 
+2026-05-20 03:34:04,862 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Procurement: run scheduler' (23) completed 
+2026-05-20 03:34:04,866 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'HR Employee: check work permit validity' (26) starting 
+2026-05-20 03:34:04,870 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'HR Employee: check work permit validity' (26) done in 0.004s 
+2026-05-20 03:34:04,871 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'HR Employee: check work permit validity' (26) processed 0 records, 0 records remaining 
+2026-05-20 03:34:04,873 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'HR Employee: check work permit validity' (26) completed 
+2026-05-20 03:34:04,876 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'CRM: enrich leads (IAP)' (33) starting 
+2026-05-20 03:34:04,882 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'CRM: enrich leads (IAP)' (33) done in 0.006s 
+2026-05-20 03:34:04,883 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'CRM: enrich leads (IAP)' (33) processed 0 records, 0 records remaining 
+2026-05-20 03:34:04,885 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'CRM: enrich leads (IAP)' (33) completed 
+2026-05-20 03:34:04,890 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Mail: Email Queue Manager' (3) starting 
+2026-05-20 03:34:04,894 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Mail: Email Queue Manager' (3) done in 0.004s 
+2026-05-20 03:34:04,896 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Mail: Email Queue Manager' (3) processed 0 records, 0 records remaining 
+2026-05-20 03:34:04,897 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Mail: Email Queue Manager' (3) completed 
+2026-05-20 03:34:04,901 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Users: Notify About Unregistered Users' (12) starting 
+2026-05-20 03:34:04,907 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Users: Notify About Unregistered Users' (12) done in 0.006s 
+2026-05-20 03:34:04,907 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Users: Notify About Unregistered Users' (12) processed 0 records, 0 records remaining 
+2026-05-20 03:34:04,909 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Users: Notify About Unregistered Users' (12) completed 
+2026-05-20 03:34:04,914 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Partner Autocomplete: Sync with remote DB' (13) starting 
+2026-05-20 03:34:04,916 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Partner Autocomplete: Sync with remote DB' (13) done in 0.002s 
+2026-05-20 03:34:04,918 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Partner Autocomplete: Sync with remote DB' (13) processed 0 records, 0 records remaining 
+2026-05-20 03:34:04,920 93221 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Partner Autocomplete: Sync with remote DB' (13) completed 
