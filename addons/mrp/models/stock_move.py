@@ -6,7 +6,7 @@ from dateutil.relativedelta import relativedelta
 from odoo import _, api, Command, fields, models
 from odoo.osv import expression
 from odoo.tools import float_compare, float_round, float_is_zero, OrderedSet
-from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError, ValidationError
 
 
 class StockMoveLine(models.Model):
@@ -738,3 +738,24 @@ class StockMove(models.Model):
                         for move in self):
             res = 'assigned'
         return res
+
+    def action_generate_serial_component(self):
+        self.ensure_one()
+        if self.has_tracking != 'serial':
+            return
+        name = self.env['ir.sequence'].next_by_code('stock.lot.serial')
+        exist_lot = not name or self.env['stock.lot'].search([
+            ('product_id', '=', self.product_id.id),
+            '|', ('company_id', '=', False), ('company_id', '=', self.company_id.id),
+            ('name', '=', name),
+        ], limit=1)
+        if exist_lot:
+            name = self.env['stock.lot']._get_next_serial(self.company_id, self.product_id)
+        if not name:
+            raise UserError(_("Please set the first Serial Number or a default sequence"))
+        lot = self.env['stock.lot'].create({
+            'product_id': self.product_id.id,
+            'name': name,
+            'company_id': self.company_id.id,
+        })
+        self.lot_ids = [Command.link(lot.id)]
