@@ -111,6 +111,7 @@
             <page string="Indent Lines" name="indent_lines">
               <field name="indent_line_ids" readonly="state != 'draft'">
                 <list editable="bottom" decoration-danger="available_qty &lt; product_qty">
+                  <field name="serial_no" string="Sr. No." readonly="1"/>
                   <field name="product_id" 
                          options="{'no_create': True}"
                          domain="[('type', 'in', ['product', 'consu'])]"/>

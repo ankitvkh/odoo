@@ -301,6 +301,26 @@ class MaterialIndentLine(models.Model):
         ondelete='cascade',
         required=True
     )
+    serial_no = fields.Integer(
+        string='Sr. No.',
+        compute='_compute_serial_no',
+        store=False
+    )
+
+    @api.depends('indent_id.indent_line_ids')
+    def _compute_serial_no(self):
+        for indent in self.mapped('indent_id'):
+            lines = indent.indent_line_ids.sorted(key=lambda l: (
+                1 if not isinstance(l.id, int) else 0,
+                l.id or 0
+            ))
+            for idx, line in enumerate(lines, start=1):
+                if line in self:
+                    line.serial_no = idx
+        # Fallback for lines not belonging to an indent
+        for line in self:
+            if not line.indent_id:
+                line.serial_no = 0
     
     product_id = fields.Many2one(
         'product.product', 

@@ -95,7 +95,28 @@ class MaterialIndentLineBom(models.Model):
     _description = 'Material Indent Line for BOM'
 
     bom_id = fields.Many2one('mrp.bom', string='BOM', ondelete='cascade')
+    serial_no = fields.Integer(
+        string='Sr. No.',
+        compute='_compute_serial_no',
+        store=False
+    )
     indent_reference = fields.Char(string='Indent Reference', default='New')
+
+    @api.depends('bom_id.material_indent_line_ids')
+    def _compute_serial_no(self):
+        for bom in self.mapped('bom_id'):
+            lines = bom.material_indent_line_ids.sorted(key=lambda l: (
+                1 if not isinstance(l.id, int) else 0,
+                l.id or 0
+            ))
+            for idx, line in enumerate(lines, start=1):
+                if line in self:
+                    line.serial_no = idx
+        # Fallback for lines not belonging to a BOM
+        for line in self:
+            if not line.bom_id:
+                line.serial_no = 0
+
     product_id = fields.Many2one('product.product', string='Inventory Product', required=True,
                                 help="The actual inventory product to be procured")
     product_name = fields.Char(string='Inventory Product Name', related='product_id.display_name')
@@ -147,6 +168,28 @@ class MaterialIndentLineBom(models.Model):
 class MrpBomLine(models.Model):
     _inherit = 'mrp.bom.line'
     
+    serial_no = fields.Integer(
+        string='Sr. No.',
+        compute='_compute_serial_no',
+        store=False
+    )
+
+    @api.depends('bom_id.bom_line_ids')
+    def _compute_serial_no(self):
+        for bom in self.mapped('bom_id'):
+            lines = bom.bom_line_ids.sorted(key=lambda l: (
+                1 if not isinstance(l.id, int) else 0,
+                l.sequence or 0,
+                l.id or 0
+            ))
+            for idx, line in enumerate(lines, start=1):
+                if line in self:
+                    line.serial_no = idx
+        # Fallback for lines not belonging to a BOM
+        for line in self:
+            if not line.bom_id:
+                line.serial_no = 0
+
     custom_product_description = fields.Char(
         string='Custom Product Description',
         help="For Project BOM: Custom description that will be mapped to inventory product during indent creation.\n"
