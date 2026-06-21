@@ -382,3 +382,10 @@ class CrmTeam(models.Model):
                 # we use unrealistic values for the sample data
                 value['value'] = random.randint(0, 20)
         return [{'values': values, 'area': True, 'title': graph_title, 'key': graph_key, 'color': color}]
+
+
+class ResUsers(models.Model):
+    _inherit = 'res.users'
+
+    def get_accessible_locations(self):
+        return []

@@ -172,3 +172,35 @@ class PurchaseOrder(models.Model):
             if '/PO/' in order.name:
                 order.name = order.name.replace('/PO/', '/RFQ/')
         return res
+
+
+class PurchaseOrderLine(models.Model):
+    _inherit = 'purchase.order.line'
+
+    serial_no = fields.Integer(
+        string='Sr. No.',
+        compute='_compute_serial_no',
+        store=False
+    )
+
+    @api.depends('order_id.order_line')
+    def _compute_serial_no(self):
+        """
+        Optimized serial number computation to avoid O(N^2) complexity.
+        Computes serial numbers for all lines in the order in one pass.
+        """
+        # Group by order to compute everything at once
+        orders = self.mapped('order_id')
+        for order in orders:
+            # Sort lines once per order, pushing new/draft lines (NewId) to the end
+            lines = order.order_line.sorted(key=lambda l: (1 if not isinstance(l.id, int) else 0, l.sequence or 0))
+            for idx, line in enumerate(lines, start=1):
+                # Only update lines that are in the current batch (self)
+                if line in self:
+                    line.serial_no = idx
+
+        # Handle lines without an order_id
+        for line in self:
+            if not line.order_id:
+                line.serial_no = 0
+

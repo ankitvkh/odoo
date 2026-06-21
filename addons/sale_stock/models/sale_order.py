@@ -21,7 +21,7 @@ class SaleOrder(models.Model):
     picking_policy = fields.Selection([
         ('direct', 'As soon as possible'),
         ('one', 'When all products are ready')],
-        string='Shipping Policy', required=True, default='direct',
+        string='Shipping Policy', required=False, default='direct',
         help="If you deliver all products at once, the delivery order will be scheduled based on the greatest "
         "product lead time. Otherwise, it will be based on the shortest.")
     warehouse_id = fields.Many2one(

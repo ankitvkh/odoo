@@ -8,12 +8,6 @@
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
             
-            <!-- Enhance Order Lines Tree View - Add Tax Amount and Total columns -->
-            <!-- We are modifying the tree view definition directly below, so we don't need to inject fields here via xpath if we use the custom tree view -->
-            <!-- But wait, the form view uses an inline tree view or a referenced one? -->
-            <!-- The context 'tree_view_ref': 'sale_order_enhancement.view_order_line_tree_enhanced' tells it to use our custom view. -->
-            <!-- So we don't need to inject fields into the default view via xpath. -->
-            
             <!-- Add control buttons for Order Lines -->
             <xpath expr="//field[@name='order_line']" position="attributes">
                 <attribute name="context">{
@@ -27,41 +21,15 @@
                 <field name="serial_no" string="Sr. No." readonly="1"/>
             </xpath>
 
-            <!-- Replace fields in the inline tree view of order_line -->
-            <xpath expr="//field[@name='order_line']/list//field[@name='product_template_id']" position="attributes">
-                <attribute name="column_invisible">True</attribute>
-                <attribute name="required">0</attribute>
-            </xpath>
-            
-            <xpath expr="//field[@name='order_line']/list//field[@name='product_id']" position="attributes">
-                <attribute name="required">0</attribute>
-            </xpath>
-            
-            <!-- Hide first UoM field occurrence -->
-            <xpath expr="//field[@name='order_line']/list//field[@name='product_uom'][1]" position="attributes">
-                <attribute name="required">0</attribute>
-                <attribute name="column_invisible">True</attribute>
-            </xpath>
-            
-            <!-- Hide second UoM field occurrence if it exists -->
-            <xpath expr="//field[@name='order_line']/list//field[@name='product_uom'][2]" position="attributes" raise_if_not_found="0">
-                <attribute name="required">0</attribute>
-                <attribute name="column_invisible">True</attribute>
-            </xpath>
-            
-            <!-- Add custom_uom after the first occurrence -->
-            <xpath expr="//field[@name='order_line']/list//field[@name='product_uom'][1]" position="after">
-                <field name="custom_uom" optional="show" invisible="display_type in ('line_section', 'line_note')"/>
-            </xpath>
-            
+            <!-- Add brand/make, short description, and alias to order lines list view -->
             <xpath expr="//field[@name='order_line']/list//field[@name='product_template_id']" position="after">
-                <field name="custom_item_name" optional="show" required="not display_type"/>
-                <field name="make" optional="show"/>
-                <field name="description_short" optional="show"/>
+                <field name="make" optional="show" readonly="1"/>
+                <field name="description_short" optional="show" readonly="1"/>
+                <field name="alias" optional="show"/>
             </xpath>
 
+            <!-- Conditional display of prices and subtotals based on offer_type in inline tree view -->
             <xpath expr="//field[@name='order_line']/list//field[@name='price_unit']" position="replace">
-                <field name="offer_type" column_invisible="True"/>
                 <field name="price_unit" string="Unit Price" column_invisible="parent.offer_type == 'technical'"/>
                 <field name="price_unit_display" string="Unit Price" column_invisible="parent.offer_type != 'technical'"/>
             </xpath>
@@ -71,90 +39,16 @@
                 <field name="price_subtotal_display" string="Subtotal" column_invisible="parent.offer_type != 'technical'"/>
             </xpath>
             
-            <xpath expr="//field[@name='order_line']/list//field[@name='price_tax']" position="replace">
-                <field name="price_tax" string="Taxes" column_invisible="parent.offer_type == 'technical'"/>
-                <field name="price_tax_display" string="Taxes" column_invisible="parent.offer_type != 'technical'"/>
-            </xpath>
-            
             <xpath expr="//field[@name='order_line']/list//field[@name='price_total']" position="replace">
                 <field name="price_total" string="Total" column_invisible="parent.offer_type == 'technical'"/>
                 <field name="price_total_display" string="Total" column_invisible="parent.offer_type != 'technical'"/>
             </xpath>
-            
-            <!-- Add control buttons for Optional Products -->
-            <xpath expr="//field[@name='sale_order_option_ids']" position="attributes">
-                <attribute name="context">{
-                    'default_order_id': id,
-                    'default_offer_type': offer_type,
-                    'tree_view_ref': 'sale_order_enhancement.view_sale_order_option_tree_enhanced',
-                }</attribute>
+
+            <xpath expr="//field[@name='order_line']/list//field[@name='price_tax']" position="replace">
+                <field name="price_tax" string="Taxes" column_invisible="parent.offer_type == 'technical'"/>
+                <field name="price_tax_display" string="Taxes" column_invisible="parent.offer_type != 'technical'"/>
             </xpath>
-            
-            <xpath expr="//field[@name='sale_order_option_ids']" position="inside">
-                <list string="Optional Products" editable="bottom"
-                      decoration-bf="display_type == 'line_section'"
-                      decoration-info="display_type == 'line_note'">
-                    <control>
-                        <create string="Add a product"/>
-                        <create string="Add a section" context="{'default_display_type': 'line_section'}"/>
-                        <create string="Add a note" context="{'default_display_type': 'line_note'}"/>
-                    </control>
-                    
-                    <field name="display_type" column_invisible="True"/>
-                    <field name="sequence" widget="handle"/>
-                    <field name="serial_no" string="Sr. No." readonly="1" invisible="display_type in ('line_section', 'line_note')"/>
-                    
-                    <!-- Section/Note display -->
-                    <field name="name" widget="section_and_note_text" optional="show"/>
-                    
-                    <!-- Product fields -->
-                    <field name="custom_item_name" 
-                           optional="show"
-                           invisible="display_type in ('line_section', 'line_note')"
-                           required="not display_type"
-                           readonly="0"/>
-                    
-                    <field name="make" optional="show" invisible="display_type in ('line_section', 'line_note')"/>
-                    <field name="description_short" optional="show" invisible="display_type in ('line_section', 'line_note')"/>
-                    
-                    <field name="quantity" 
-                           optional="show"
-                           context="{'partner_id': parent.partner_id, 'quantity': quantity, 'pricelist': parent.pricelist_id, 'uom': uom_id, 'company_id': parent.company_id}"
-                           readonly="0"
-                           invisible="display_type in ('line_section', 'line_note')"/>
-                    
-                    <field name="uom_id" 
-                           optional="show"
-                           invisible="display_type in ('line_section', 'line_note')"
-                           readonly="0"
-                           groups="uom.group_uom"/>
-                    
-                    <!-- Invisible offer_type for compute dependency -->
-                    <field name="offer_type" column_invisible="True"/>
-                    
-                    <field name="price_unit_display" string="Unit Price" invisible="display_type in ('line_section', 'line_note')"/>
-                    
-                    <field name="tax_id" 
-                           widget="many2many_tags" 
-                           optional="show"
-                           invisible="display_type in ('line_section', 'line_note')"
-                           readonly="0"
-                           context="{'active_test': True}"
-                           domain="[('type_tax_use', '=', 'sale'), ('company_id', '=', parent.company_id)]"/>
-                    
-                    <field name="discount" 
-                           optional="show"
-                           invisible="display_type in ('line_section', 'line_note')"
-                           readonly="0"/>
-                    
-                    <field name="price_subtotal_display" string="Subtotal" invisible="display_type in ('line_section', 'line_note')"/>
-                    
-                    <field name="price_tax_display" string="Taxes" invisible="display_type in ('line_section', 'line_note')"/>
-                    
-                    <field name="price_total_display" string="Total" invisible="display_type in ('line_section', 'line_note')"/>
-                </list>
-            </xpath>
-            
+
             <!-- Add invisible totals fields so Odoo client tracks them for recomputations -->
             <xpath expr="//field[@name='order_line']" position="before">
                 <field name="amount_untaxed" invisible="1"/>
@@ -183,11 +77,14 @@
                 </group>
             </xpath>
             
-            <!-- Enhance Optional Products Tab if it exists -->
-            <!-- We are replacing fields in the tree view definition directly, so this xpath might not be needed or needs adjustment if it targets the form view's inline tree -->
-            <!-- But since we defined a custom tree view 'view_sale_order_option_tree_enhanced' and used it in the context, we should be good. -->
-            <!-- However, the original xpath at line 35 was targeting //field[@name='sale_order_option_ids']/list... -->
-            <!-- Let's remove this xpath since we are modifying the tree view definition itself below -->
+            <!-- Add control buttons and custom tree view for Optional Products -->
+            <xpath expr="//field[@name='sale_order_option_ids']" position="attributes">
+                <attribute name="context">{
+                    'default_order_id': id,
+                    'default_offer_type': offer_type,
+                    'tree_view_ref': 'sale_order_enhancement.view_sale_order_option_tree_enhanced',
+                }</attribute>
+            </xpath>
             
             <!-- Add totals summary below Optional Products -->
             <xpath expr="//page[@name='optional_products']" position="inside">
@@ -232,17 +129,33 @@
                 <field name="name" widget="section_and_note_text" optional="show"/>
                 
                 <!-- Product fields -->
-                <field name="custom_item_name" 
-                       optional="show"
-                       invisible="display_type in ('line_section', 'line_note')"
+                <field name="product_template_id"
+                       string="Product"
                        readonly="state in ('sale', 'done', 'cancel')"
-                       required="not display_type"/>
+                       required="not display_type and not is_downpayment"
+                       context="{
+                           'partner_id': parent.partner_id,
+                           'quantity': product_uom_qty,
+                           'pricelist': parent.pricelist_id,
+                           'uom':product_uom,
+                           'company_id': parent.company_id,
+                           'default_list_price': price_unit,
+                       }"
+                       options="{
+                           'no_open': True,
+                       }"
+                       optional="show"
+                       domain="[('sale_ok', '=', True)]"
+                       widget="sol_product_many2one"
+                       placeholder="Type to find a product..."/>
                 
+                <field name="product_id" column_invisible="True"/>
                 <field name="make" optional="show" invisible="display_type in ('line_section', 'line_note')"/>
                 <field name="description_short" optional="show" invisible="display_type in ('line_section', 'line_note')"/>
+                <field name="alias" optional="show" invisible="display_type in ('line_section', 'line_note')"/>
                 
-                <field name="product_template_id" column_invisible="True"/>
                 <field name="product_uom_category_id" column_invisible="True"/>
+                <field name="is_downpayment" column_invisible="True"/>
                 
                 <!-- Invisible offer_type for compute dependency -->
                 <field name="offer_type" column_invisible="True"/>
@@ -253,11 +166,15 @@
                        readonly="state in ('sale', 'done', 'cancel')"
                        context="{'partner_id': parent.partner_id, 'quantity': product_uom_qty, 'pricelist': parent.pricelist_id, 'uom': product_uom, 'company_id': parent.company_id}"/>
                 
-                <field name="product_uom" column_invisible="True"/>
-                <field name="custom_uom" 
-                       optional="show"
-                       invisible="display_type in ('line_section', 'line_note')"
-                       readonly="state in ('sale', 'done', 'cancel')"/>
+                <field name="product_uom"
+                       force_save="1"
+                       string="UoM"
+                       readonly="state in ('sale', 'done', 'cancel')"
+                       required="not display_type and not is_downpayment"
+                       context="{'company_id': parent.company_id}"
+                       groups="uom.group_uom"
+                       options='{"no_open": True}'
+                       optional="show"/>
                 
                 <field name="price_unit_display" string="Unit Price"/>
                 
@@ -307,14 +224,15 @@
                 <field name="name" widget="section_and_note_text" optional="show"/>
                 
                 <!-- Product fields -->
-                    <field name="custom_item_name" 
-                           optional="show"
-                           invisible="display_type in ('line_section', 'line_note')"
-                           required="not display_type"
-                           readonly="0"/>
+                <field name="product_id" 
+                       optional="show"
+                       invisible="display_type in ('line_section', 'line_note')"
+                       required="not display_type"
+                       readonly="0"
+                       domain="[('sale_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]"/>
                     
-                    <field name="make" optional="show" invisible="display_type in ('line_section', 'line_note')"/>
-                    <field name="description_short" optional="show" invisible="display_type in ('line_section', 'line_note')"/>
+                <field name="make" optional="show" invisible="display_type in ('line_section', 'line_note')"/>
+                <field name="description_short" optional="show" invisible="display_type in ('line_section', 'line_note')"/>
                 
                 <field name="quantity" 
                        optional="show"

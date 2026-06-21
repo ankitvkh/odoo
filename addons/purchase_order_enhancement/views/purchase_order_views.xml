@@ -11,6 +11,11 @@
                        placeholder="Reference Code (XXXXX)"
                        readonly="state not in ['draft', 'sent']"/>
             </xpath>
+
+            <!-- Add Serial Number column as first column in order_line -->
+            <xpath expr="//field[@name='order_line']/list//field[@name='sequence']" position="after">
+                <field name="serial_no" string="Sr. No." readonly="1"/>
+            </xpath>
         </field>
     </record>
 </odoo>

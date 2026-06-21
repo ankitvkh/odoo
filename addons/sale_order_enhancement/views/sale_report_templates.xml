@@ -118,5 +118,11 @@
                 </div>
             </div>
         </xpath>
+        
+        <!-- Replace Description/Product Name display with alias if present in PDF -->
+        <xpath expr="//td[@name='td_name']/span[@t-field='line.name']" position="replace">
+            <span t-if="line.alias" t-out="line.alias"/>
+            <span t-else="" t-field="line.name"/>
+        </xpath>
     </template>
 </odoo>

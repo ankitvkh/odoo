@@ -23,6 +23,7 @@
         'material_indent',
     ],
     'data': [
+        'security/ir.model.access.csv',
         'data/ir_sequence_data.xml',
         'data/res_company_data.xml',
         'views/sale_order_views.xml',
@@ -30,6 +31,11 @@
         'views/invoice_report_templates.xml',
         'views/sale_portal_templates.xml',
     ],
+    'assets': {
+        'web.assets_backend': [
+            'sale_order_enhancement/static/src/js/sale_order_line_renderer.js',
+        ],
+    },
     'installable': True,
     'application': False,
     'auto_install': False,

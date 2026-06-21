@@ -114,5 +114,11 @@
                 <t t-call="sale.sale_order_portal_content_totals_table"/>
             </t>
         </xpath>
+        
+        <!-- Replace Product Name display with alias if present in portal preview -->
+        <xpath expr="//td[@id='product_name']/span[@t-field='line.name']" position="replace">
+            <span t-if="line.alias" t-out="line.alias"/>
+            <span t-else="" t-field="line.name"/>
+        </xpath>
     </template>
 </odoo>

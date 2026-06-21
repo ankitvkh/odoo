@@ -39,9 +39,13 @@
         <!-- Body: Subtotal -->
         <xpath expr="//td[@name='td_subtotal']" position="replace">
             <td name="td_subtotal" class="text-end o_price_total">
-                <span t-if="o.offer_type == 'technical'">Quoted</span>
-                <span t-else="" t-field="line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>
-                <span t-else="" t-field="line.price_total" groups="account.group_show_line_subtotals_tax_included"/>
+                <t t-if="o.offer_type == 'technical'">
+                    <span>Quoted</span>
+                </t>
+                <t t-else="">
+                    <span t-field="line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>
+                    <span t-field="line.price_total" groups="account.group_show_line_subtotals_tax_included"/>
+                </t>
             </td>
         </xpath>
 
