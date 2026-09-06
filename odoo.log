@@ -38668,3 +38668,348 @@ psycopg2.OperationalError: server closed the connection unexpectedly
 2026-09-06 17:32:51,469 18453 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Publisher: Update Notification' (4) done in 0.389s 
 2026-09-06 17:32:51,474 18453 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Publisher: Update Notification' (4) processed 0 records, 0 records remaining 
 2026-09-06 17:32:51,479 18453 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Publisher: Update Notification' (4) completed 
+2026-09-06 17:39:51,183 18453 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) starting 
+2026-09-06 17:39:51,195 18453 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) done in 0.010s 
+2026-09-06 17:39:51,199 18453 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) processed 0 records, 0 records remaining 
+2026-09-06 17:39:51,205 18453 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) completed 
+2026-09-06 17:44:17,115 18453 INFO odoo_db odoo.modules.registry: Reloading the model registry after database signaling. 
+2026-09-06 17:44:17,118 18453 INFO odoo_db odoo.modules.registry: Reloading the model registry after database signaling. 
+2026-09-06 17:44:17,125 18453 INFO odoo_db odoo.modules.loading: loading 1 modules... 
+2026-09-06 17:44:17,133 18453 INFO odoo_db odoo.modules.loading: 1 modules loaded in 0.01s, 0 queries (+0 extra) 
+2026-09-06 17:44:17,138 18453 INFO odoo_db odoo.modules.loading: loading 133 modules... 
+2026-09-06 17:44:17,173 18453 INFO odoo_db odoo.modules.loading: 133 modules loaded in 0.03s, 0 queries (+0 extra) 
+2026-09-06 17:44:17,328 18453 INFO odoo_db odoo.modules.loading: Modules loaded. 
+2026-09-06 17:44:17,330 18453 INFO odoo_db odoo.modules.registry: Registry loaded in 0.215s 
+2026-09-06 17:44:17,333 18453 INFO odoo_db odoo.modules.loading: loading 1 modules... 
+2026-09-06 17:44:17,336 18453 INFO odoo_db odoo.modules.loading: 1 modules loaded in 0.00s, 0 queries (+0 extra) 
+2026-09-06 17:44:17,342 18453 INFO odoo_db odoo.modules.loading: loading 133 modules... 
+2026-09-06 17:44:17,371 18453 INFO odoo_db odoo.modules.loading: 133 modules loaded in 0.03s, 0 queries (+0 extra) 
+2026-09-06 17:44:17,465 18453 INFO odoo_db odoo.modules.loading: Modules loaded. 
+2026-09-06 17:44:17,467 18453 INFO odoo_db odoo.modules.registry: Registry loaded in 0.137s 
+2026-09-06 17:44:17,467 18453 INFO odoo_db odoo.addons.base.models.ir_http: Generating routing map for key None 
+2026-09-06 17:44:17,467 18453 INFO odoo_db odoo.addons.base.models.ir_http: Generating routing map for key None 
+2026-09-06 17:44:17,499 18453 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:44:17] "GET /web/assets/b583577/web.report_assets_common.min.css HTTP/1.1" 200 - 27 0.019 0.644
+2026-09-06 17:44:17,508 18453 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:44:17] "GET /web/assets/7b51c94/web.report_assets_pdf.min.css HTTP/1.1" 200 - 26 0.032 0.643
+2026-09-06 17:44:17,526 18453 INFO ? werkzeug: 127.0.0.1 - - [06/Sep/2026 17:44:17] "GET /web/static/fonts/lato/Lato-Reg-webfont.ttf HTTP/1.1" 200 - 0 0.000 0.001
+2026-09-06 17:44:17,530 18453 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:44:17] "GET / HTTP/1.1" 303 - 4 0.004 0.003
+2026-09-06 17:44:17,532 18453 INFO ? werkzeug: 127.0.0.1 - - [06/Sep/2026 17:44:17] "GET /web/static/fonts/lato/Lato-Lig-webfont.ttf HTTP/1.1" 200 - 0 0.000 0.001
+2026-09-06 17:44:17,532 18453 INFO ? werkzeug: 127.0.0.1 - - [06/Sep/2026 17:44:17] "GET /web/static/fonts/lato/Lato-Hai-webfont.ttf HTTP/1.1" 200 - 0 0.000 0.001
+2026-09-06 17:44:17,533 18453 INFO ? werkzeug: 127.0.0.1 - - [06/Sep/2026 17:44:17] "GET /web/static/fonts/lato/Lato-Bol-webfont.ttf HTTP/1.1" 200 - 0 0.000 0.001
+2026-09-06 17:44:17,533 18453 INFO ? werkzeug: 127.0.0.1 - - [06/Sep/2026 17:44:17] "GET /web/static/fonts/lato/Lato-Bla-webfont.ttf HTTP/1.1" 200 - 0 0.000 0.001
+2026-09-06 17:44:17,537 18453 INFO ? werkzeug: 127.0.0.1 - - [06/Sep/2026 17:44:17] "GET /web/static/src/libs/fontawesome/fonts/fontawesome-webfont.woff?v=4.7.0 HTTP/1.1" 200 - 0 0.000 0.001
+2026-09-06 17:44:17,555 18453 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:44:17] "GET /odoo HTTP/1.1" 303 - 4 0.002 0.002
+2026-09-06 17:44:20,140 18453 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:44:20] "GET /web/login?redirect=/odoo? HTTP/1.1" 200 - 61 0.027 0.112
+2026-09-06 17:44:24,205 18453 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:44:24] "GET /web/assets/7b51c94/web.report_assets_pdf.min.css HTTP/1.1" 200 - 7 0.003 0.004
+2026-09-06 17:44:24,205 18453 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:44:24] "GET /web/assets/b583577/web.report_assets_common.min.css HTTP/1.1" 200 - 7 0.004 0.003
+2026-09-06 17:44:24,226 18453 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:44:24] "GET / HTTP/1.1" 303 - 4 0.002 0.002
+2026-09-06 17:44:24,230 18453 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:44:24] "GET /odoo HTTP/1.1" 303 - 4 0.002 0.002
+2026-09-06 17:44:24,235 18453 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:44:24] "GET /web/login?redirect=/odoo? HTTP/1.1" 200 - 6 0.002 0.003
+2026-09-06 17:44:24,236 18453 INFO ? werkzeug: 127.0.0.1 - - [06/Sep/2026 17:44:24] "GET /web/static/fonts/lato/Lato-Reg-webfont.ttf HTTP/1.1" 200 - 0 0.000 0.001
+2026-09-06 17:44:24,238 18453 INFO ? werkzeug: 127.0.0.1 - - [06/Sep/2026 17:44:24] "GET /web/static/fonts/lato/Lato-Lig-webfont.ttf HTTP/1.1" 200 - 0 0.000 0.001
+2026-09-06 17:44:24,238 18453 INFO ? werkzeug: 127.0.0.1 - - [06/Sep/2026 17:44:24] "GET /web/static/fonts/lato/Lato-Hai-webfont.ttf HTTP/1.1" 200 - 0 0.000 0.001
+2026-09-06 17:44:24,239 18453 INFO ? werkzeug: 127.0.0.1 - - [06/Sep/2026 17:44:24] "GET /web/static/fonts/lato/Lato-Bol-webfont.ttf HTTP/1.1" 200 - 0 0.000 0.001
+2026-09-06 17:44:24,239 18453 INFO ? werkzeug: 127.0.0.1 - - [06/Sep/2026 17:44:24] "GET /web/static/fonts/lato/Lato-Bla-webfont.ttf HTTP/1.1" 200 - 0 0.000 0.001
+2026-09-06 17:45:25,462 18453 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:45:25] "GET /web/assets/b583577/web.report_assets_common.min.css HTTP/1.1" 200 - 7 0.011 0.005
+2026-09-06 17:45:25,462 18453 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:45:25] "GET /web/assets/7b51c94/web.report_assets_pdf.min.css HTTP/1.1" 200 - 7 0.006 0.012
+2026-09-06 17:45:25,490 18453 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:45:25] "GET / HTTP/1.1" 303 - 4 0.003 0.003
+2026-09-06 17:45:25,495 18453 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:45:25] "GET /odoo HTTP/1.1" 303 - 4 0.002 0.002
+2026-09-06 17:45:25,502 18453 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:45:25] "GET /web/login?redirect=/odoo? HTTP/1.1" 200 - 6 0.004 0.004
+2026-09-06 17:45:25,505 18453 INFO ? werkzeug: 127.0.0.1 - - [06/Sep/2026 17:45:25] "GET /web/static/fonts/lato/Lato-Reg-webfont.ttf HTTP/1.1" 200 - 0 0.000 0.001
+2026-09-06 17:45:25,510 18453 INFO ? werkzeug: 127.0.0.1 - - [06/Sep/2026 17:45:25] "GET /web/static/fonts/lato/Lato-Lig-webfont.ttf HTTP/1.1" 200 - 0 0.000 0.001
+2026-09-06 17:45:25,511 18453 INFO ? werkzeug: 127.0.0.1 - - [06/Sep/2026 17:45:25] "GET /web/static/fonts/lato/Lato-Hai-webfont.ttf HTTP/1.1" 200 - 0 0.000 0.001
+2026-09-06 17:45:25,512 18453 INFO ? werkzeug: 127.0.0.1 - - [06/Sep/2026 17:45:25] "GET /web/static/fonts/lato/Lato-Bol-webfont.ttf HTTP/1.1" 200 - 0 0.000 0.001
+2026-09-06 17:45:25,512 18453 INFO ? werkzeug: 127.0.0.1 - - [06/Sep/2026 17:45:25] "GET /web/static/fonts/lato/Lato-Bla-webfont.ttf HTTP/1.1" 200 - 0 0.000 0.001
+2026-09-06 17:45:25,514 18453 INFO ? werkzeug: 127.0.0.1 - - [06/Sep/2026 17:45:25] "GET /web/static/src/libs/fontawesome/fonts/fontawesome-webfont.woff?v=4.7.0 HTTP/1.1" 200 - 0 0.000 0.000
+2026-09-06 17:45:30,064 18453 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:45:30] "GET /web/assets/7b51c94/web.report_assets_pdf.min.css HTTP/1.1" 200 - 7 0.005 0.003
+2026-09-06 17:45:30,065 18453 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:45:30] "GET /web/assets/b583577/web.report_assets_common.min.css HTTP/1.1" 200 - 7 0.005 0.003
+2026-09-06 17:45:30,087 18453 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:45:30] "GET / HTTP/1.1" 303 - 4 0.003 0.002
+2026-09-06 17:45:30,091 18453 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:45:30] "GET /odoo HTTP/1.1" 303 - 4 0.002 0.002
+2026-09-06 17:45:30,095 18453 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:45:30] "GET /web/login?redirect=/odoo? HTTP/1.1" 200 - 6 0.002 0.003
+2026-09-06 17:45:30,097 18453 INFO ? werkzeug: 127.0.0.1 - - [06/Sep/2026 17:45:30] "GET /web/static/fonts/lato/Lato-Reg-webfont.ttf HTTP/1.1" 200 - 0 0.000 0.000
+2026-09-06 17:45:30,098 18453 INFO ? werkzeug: 127.0.0.1 - - [06/Sep/2026 17:45:30] "GET /web/static/fonts/lato/Lato-Lig-webfont.ttf HTTP/1.1" 200 - 0 0.000 0.000
+2026-09-06 17:45:30,099 18453 INFO ? werkzeug: 127.0.0.1 - - [06/Sep/2026 17:45:30] "GET /web/static/fonts/lato/Lato-Bol-webfont.ttf HTTP/1.1" 200 - 0 0.000 0.001
+2026-09-06 17:45:30,099 18453 INFO ? werkzeug: 127.0.0.1 - - [06/Sep/2026 17:45:30] "GET /web/static/fonts/lato/Lato-Hai-webfont.ttf HTTP/1.1" 200 - 0 0.000 0.001
+2026-09-06 17:45:30,099 18453 INFO ? werkzeug: 127.0.0.1 - - [06/Sep/2026 17:45:30] "GET /web/static/fonts/lato/Lato-Bla-webfont.ttf HTTP/1.1" 200 - 0 0.000 0.001
+2026-09-06 17:45:57,573 19649 INFO ? odoo: Odoo version 18.0 
+2026-09-06 17:45:57,573 19649 INFO ? odoo: Using configuration file at /Users/rohitkumar/IdeaProjects/odoo/odoo.conf 
+2026-09-06 17:45:57,573 19649 INFO ? odoo: addons paths: ['/Users/rohitkumar/IdeaProjects/odoo/odoo/addons', '/Users/rohitkumar/Library/Application Support/Odoo/addons/18.0', '/Users/rohitkumar/IdeaProjects/odoo/addons'] 
+2026-09-06 17:45:57,574 19649 INFO ? odoo: database: rohitkumar@localhost:5432 
+2026-09-06 17:45:57,661 19649 INFO ? odoo.addons.base.models.ir_actions_report: Will use the Wkhtmltopdf binary at /usr/local/bin/wkhtmltopdf 
+2026-09-06 17:45:57,717 19649 INFO ? odoo.addons.base.models.ir_actions_report: Will use the Wkhtmltoimage binary at /usr/local/bin/wkhtmltoimage 
+Address already in use
+Port 8069 is in use by another program. Either identify and stop that program, or start the server with a different port.
+2026-09-06 17:46:16,874 19664 INFO ? odoo: Odoo version 18.0 
+2026-09-06 17:46:16,874 19664 INFO ? odoo: Using configuration file at /Users/rohitkumar/IdeaProjects/odoo/odoo.conf 
+2026-09-06 17:46:16,874 19664 INFO ? odoo: addons paths: ['/Users/rohitkumar/IdeaProjects/odoo/odoo/addons', '/Users/rohitkumar/Library/Application Support/Odoo/addons/18.0', '/Users/rohitkumar/IdeaProjects/odoo/addons'] 
+2026-09-06 17:46:16,874 19664 INFO ? odoo: database: rohitkumar@localhost:5432 
+2026-09-06 17:46:16,961 19664 INFO ? odoo.addons.base.models.ir_actions_report: Will use the Wkhtmltopdf binary at /usr/local/bin/wkhtmltopdf 
+2026-09-06 17:46:16,989 19664 INFO ? odoo.addons.base.models.ir_actions_report: Will use the Wkhtmltoimage binary at /usr/local/bin/wkhtmltoimage 
+2026-09-06 17:46:17,115 19664 INFO ? odoo.service.server: HTTP service (werkzeug) running on Rohits-MacBook-Pro.local:8069 
+2026-09-06 17:46:17,132 19664 INFO odoo_db odoo.modules.loading: loading 1 modules... 
+2026-09-06 17:46:17,136 19664 INFO odoo_db odoo.modules.loading: 1 modules loaded in 0.00s, 0 queries (+0 extra) 
+2026-09-06 17:46:17,177 19664 INFO odoo_db odoo.modules.loading: loading 133 modules... 
+2026-09-06 17:46:17,661 19664 INFO odoo_db odoo.modules.loading: 133 modules loaded in 0.48s, 0 queries (+0 extra) 
+2026-09-06 17:46:17,792 19664 INFO odoo_db odoo.modules.loading: Modules loaded. 
+2026-09-06 17:46:17,796 19664 INFO odoo_db odoo.modules.registry: Registry loaded in 0.680s 
+2026-09-06 17:46:25,179 19664 INFO odoo_db odoo.addons.base.models.ir_http: Generating routing map for key None 
+2026-09-06 17:46:25,297 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:25] "HEAD /web/login HTTP/1.1" 200 - 63 0.025 0.095
+2026-09-06 17:46:38,608 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:38] "GET / HTTP/1.1" 303 - 4 0.013 0.010
+2026-09-06 17:46:38,624 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:38] "GET /odoo HTTP/1.1" 303 - 4 0.002 0.006
+2026-09-06 17:46:38,642 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:38] "GET /web/login?redirect=/odoo? HTTP/1.1" 200 - 6 0.002 0.005
+2026-09-06 17:46:38,964 19664 INFO ? werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:38] "GET /web/static/src/libs/fontawesome/fonts/fontawesome-webfont.woff2?v=4.7.0 HTTP/1.1" 200 - 0 0.000 0.315
+2026-09-06 17:46:38,983 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:38] "GET /web/assets/1dec9e5/web.assets_frontend.min.css HTTP/1.1" 200 - 7 0.006 0.328
+2026-09-06 17:46:38,994 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:38] "GET /web/assets/b34f703/web.assets_frontend_minimal.min.js HTTP/1.1" 200 - 7 0.017 0.327
+2026-09-06 17:46:39,001 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:39] "GET /web/binary/company_logo HTTP/1.1" 200 - 5 0.010 0.002
+2026-09-06 17:46:39,046 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:39] "GET /web/assets/720b802/web.assets_frontend_lazy.min.js HTTP/1.1" 200 - 7 0.003 0.005
+2026-09-06 17:46:39,085 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:39] "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 - 39 0.014 0.033
+2026-09-06 17:46:39,121 19664 INFO ? werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:39] "GET /web/static/img/favicon.ico HTTP/1.1" 200 - 0 0.000 0.001
+2026-09-06 17:46:39,129 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:39] "GET /website/translations/bae2c99f8d0f22782ef6eb4e53bafc8d985e03e3 HTTP/1.1" 200 - 8 0.003 0.005
+2026-09-06 17:46:39,156 19664 INFO ? werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:39] "GET /web/static/img/spin.svg HTTP/1.1" 200 - 0 0.000 0.004
+2026-09-06 17:46:39,197 19664 INFO odoo_db odoo.addons.base.models.ir_rule: Access Denied by record rules for operation: read on record ids: [7], uid: 4, model: res.partner 
+2026-09-06 17:46:39,197 19664 INFO odoo_db odoo.addons.base.models.ir_rule: Access Denied by record rules for operation: read on record ids: [3], uid: 4, model: res.partner 
+2026-09-06 17:46:39,216 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:39] "GET /apple-touch-icon.png HTTP/1.1" 404 - 12 0.011 0.012
+2026-09-06 17:46:39,228 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:39] "GET /web/image/res.partner/3/avatar_128?unique=1781667883000 HTTP/1.1" 200 - 34 0.054 0.028
+2026-09-06 17:46:39,228 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:39] "GET /web/image/res.partner/7/avatar_128?unique=1778388730000 HTTP/1.1" 200 - 33 0.054 0.027
+2026-09-06 17:46:39,652 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:39] "GET /web/service-worker.js HTTP/1.1" 200 - 5 0.004 0.011
+2026-09-06 17:46:39,696 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:39] "GET /odoo/offline HTTP/1.1" 200 - 13 0.006 0.021
+2026-09-06 17:46:44,358 19664 INFO odoo_db odoo.addons.base.models.res_users: Login failed for db:odoo_db login:admin from 127.0.0.1 
+2026-09-06 17:46:44,360 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:44] "POST /web/login HTTP/1.1" 200 - 11 0.006 0.213
+2026-09-06 17:46:44,369 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:44] "GET /web/binary/company_logo HTTP/1.1" 304 - 5 0.002 0.003
+2026-09-06 17:46:50,870 19664 INFO odoo_db odoo.addons.base.models.res_users: Login successful for db:odoo_db login:admin from 127.0.0.1 
+2026-09-06 17:46:50,877 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:50] "POST /web/login HTTP/1.1" 303 - 35 0.023 0.243
+2026-09-06 17:46:50,893 19664 INFO odoo_db odoo.addons.base.models.res_device: User 2 inserts device log (XKYy00qRpUZohI1Wm97lYuZ4gNVRu_3QTEhq_cjab0) 
+2026-09-06 17:46:51,161 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:51] "GET /odoo HTTP/1.1" 200 - 87 0.060 0.212
+2026-09-06 17:46:51,196 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:51] "GET /web/webclient/translations/2737948b0b4519f137d1474d8046bcd8e44cc86f?lang=en_US HTTP/1.1" 200 - 1 0.002 0.018
+2026-09-06 17:46:51,198 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:51] "GET /web/assets/b606b3e/web.assets_web.min.css HTTP/1.1" 200 - 3 0.002 0.020
+2026-09-06 17:46:51,200 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:51] "GET /web/manifest.webmanifest HTTP/1.1" 200 - 9 0.007 0.020
+2026-09-06 17:46:51,202 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:51] "GET /web/assets/b28c3e9/web.assets_web.min.js HTTP/1.1" 200 - 3 0.004 0.021
+2026-09-06 17:46:51,220 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:51] "GET /web/assets/3c68f01/web.assets_web_print.min.css HTTP/1.1" 200 - 3 0.001 0.002
+2026-09-06 17:46:51,260 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:51] "GET /web/webclient/load_menus/5339c2cdc3792327c0c4c05a486505e3ce4917363203225d27b91d9cd8f748b8 HTTP/1.1" 200 - 198 0.040 0.045
+2026-09-06 17:46:51,360 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:51] "GET /web/webclient/translations/2737948b0b4519f137d1474d8046bcd8e44cc86f?lang=en_US HTTP/1.1" 200 - 1 0.001 0.001
+2026-09-06 17:46:51,443 19664 INFO ? werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:51] "GET /web/static/img/spin.svg HTTP/1.1" 200 - 0 0.000 0.002
+2026-09-06 17:46:51,452 19664 INFO ? werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:51] "GET /web/static/lib/odoo_ui_icons/fonts/odoo_ui_icons.woff2 HTTP/1.1" 200 - 0 0.000 0.004
+2026-09-06 17:46:51,453 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:51] "GET /bus/websocket_worker_bundle?v=18.0-2 HTTP/1.1" 200 - 4 0.003 0.009
+2026-09-06 17:46:51,455 19664 INFO ? werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:51] "GET /web/static/src/libs/fontawesome/fonts/fontawesome-webfont.woff2?v=4.7.0 HTTP/1.1" 200 - 0 0.000 0.001
+2026-09-06 17:46:51,465 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:51] "POST /web/action/load HTTP/1.1" 200 - 6 0.014 0.006
+2026-09-06 17:46:51,468 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:51] "GET /websocket?version=18.0-2 HTTP/1.1" 101 - 1 0.001 0.004
+2026-09-06 17:46:51,468 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:51] "GET /web/image?model=res.users&field=avatar_128&id=2 HTTP/1.1" 200 - 9 0.016 0.009
+2026-09-06 17:46:51,474 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:51] "GET /web/image/res.partner/3/avatar_128?unique=1781667883000 HTTP/1.1" 200 - 15 0.023 0.008
+2026-09-06 17:46:51,556 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:51] "POST /mail/action HTTP/1.1" 200 - 95 0.086 0.027
+2026-09-06 17:46:51,560 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:51] "POST /mail/data HTTP/1.1" 200 - 65 0.053 0.018
+2026-09-06 17:46:51,615 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:51] "GET /web/image/discuss.channel/2/avatar_128?unique=7cf138a4196f32cb217db74f80642b367333829779c2cbfcdd94b407b1a37532801a153dad231d9dc3938c29a38c3958a198611c61e2840a19a23e8cbb590a89 HTTP/1.1" 200 - 4 0.003 0.004
+2026-09-06 17:46:51,616 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:51] "GET /web/image/discuss.channel/1/avatar_128?unique=99136a60291d45fb5a72a1a18b8b19c81eccd0d4cbcc1f471a0213752cf8f50d5bff652715895a385870af3c638074dcf4b80efe61b82e98c052ce929c3b3a58 HTTP/1.1" 200 - 4 0.004 0.003
+2026-09-06 17:46:51,621 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:51] "GET /web/image/res.partner/2/avatar_128?unique=1783841239000 HTTP/1.1" 200 - 8 0.007 0.004
+2026-09-06 17:46:51,621 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:51] "POST /mail/inbox/messages HTTP/1.1" 200 - 5 0.003 0.003
+2026-09-06 17:46:51,942 19664 INFO ? odoo.addons.bus.models.bus: Bus.loop listen imbus on db postgres 
+2026-09-06 17:46:52,178 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:52] "GET /web/service-worker.js HTTP/1.1" 200 - 1 0.001 0.006
+2026-09-06 17:46:52,199 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:52] "GET /odoo/offline HTTP/1.1" 200 - 2 0.002 0.007
+2026-09-06 17:46:56,001 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:56] "POST /web/action/load HTTP/1.1" 200 - 9 0.008 0.008
+2026-09-06 17:46:56,071 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:56] "POST /web/dataset/call_kw/stock.picking.type/get_views HTTP/1.1" 200 - 53 0.023 0.030
+2026-09-06 17:46:56,127 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:56] "POST /web/dataset/call_kw/stock.picking.type/web_search_read HTTP/1.1" 200 - 32 0.030 0.010
+2026-09-06 17:46:56,140 19664 INFO ? werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:56] "GET /base/static/img/avatar.png HTTP/1.1" 200 - 0 0.000 0.003
+2026-09-06 17:46:56,164 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:56] "GET /web/bundle/web.chartjs_lib?lang=en_US HTTP/1.1" 200 - 2 0.001 0.004
+2026-09-06 17:46:56,172 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:46:56] "GET /web/assets/c04b80b/web.chartjs_lib.min.js HTTP/1.1" 200 - 3 0.001 0.004
+2026-09-06 17:47:00,319 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:00] "POST /web/action/load HTTP/1.1" 200 - 10 0.003 0.008
+2026-09-06 17:47:00,436 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:00] "POST /web/dataset/call_kw/product.template/get_views HTTP/1.1" 200 - 110 0.041 0.063
+2026-09-06 17:47:00,570 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:00] "POST /web/dataset/call_kw/product.template/web_search_read HTTP/1.1" 200 - 56 0.064 0.057
+2026-09-06 17:47:00,698 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:00] "GET /web/image/product.template/23/image_128?unique=1782016607000 HTTP/1.1" 200 - 11 0.017 0.026
+2026-09-06 17:47:00,708 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:00] "GET /web/image/product.template/41/image_128?unique=1783739299000 HTTP/1.1" 200 - 6 0.004 0.046
+2026-09-06 17:47:00,709 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:00] "GET /web/image/product.template/15/image_128?unique=1781976172000 HTTP/1.1" 200 - 6 0.007 0.044
+2026-09-06 17:47:00,710 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:00] "GET /web/image/product.template/36/image_128?unique=1783739299000 HTTP/1.1" 200 - 6 0.008 0.043
+2026-09-06 17:47:00,712 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:00] "GET /web/image/product.template/16/image_128?unique=1779255430000 HTTP/1.1" 200 - 6 0.017 0.035
+2026-09-06 17:47:00,722 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:00] "GET /web/image/product.template/9/image_128?unique=1781980015000 HTTP/1.1" 200 - 6 0.005 0.005
+2026-09-06 17:47:00,722 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:00] "GET /web/image/product.template/10/image_128?unique=1779255430000 HTTP/1.1" 200 - 6 0.006 0.006
+2026-09-06 17:47:00,723 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:00] "GET /web/image/product.template/8/image_128?unique=1779255430000 HTTP/1.1" 200 - 6 0.005 0.005
+2026-09-06 17:47:00,724 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:00] "GET /web/image/product.template/31/image_128?unique=1779073955000 HTTP/1.1" 200 - 6 0.004 0.006
+2026-09-06 17:47:00,728 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:00] "GET /web/image/product.template/37/image_128?unique=1783739299000 HTTP/1.1" 200 - 6 0.020 0.048
+2026-09-06 17:47:00,728 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:00] "GET /web/image/product.template/18/image_128?unique=1779255430000 HTTP/1.1" 200 - 6 0.018 0.009
+2026-09-06 17:47:00,736 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:00] "GET /web/image/product.template/32/image_128?unique=1776400213000 HTTP/1.1" 200 - 6 0.004 0.007
+2026-09-06 17:47:00,738 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:00] "GET /web/image/product.template/24/image_128?unique=1779255430000 HTTP/1.1" 200 - 6 0.004 0.008
+2026-09-06 17:47:00,741 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:00] "GET /web/image/product.template/21/image_128?unique=1779255430000 HTTP/1.1" 200 - 6 0.005 0.010
+2026-09-06 17:47:00,742 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:00] "GET /web/image/product.template/19/image_128?unique=1779255430000 HTTP/1.1" 200 - 6 0.005 0.011
+2026-09-06 17:47:00,746 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:00] "GET /web/image/product.template/50/image_128?unique=1783739299000 HTTP/1.1" 200 - 6 0.005 0.011
+2026-09-06 17:47:00,752 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:00] "GET /web/image/product.template/49/image_128?unique=1783739299000 HTTP/1.1" 200 - 6 0.005 0.017
+2026-09-06 17:47:00,753 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:00] "GET /web/image/product.template/25/image_128?unique=1779255430000 HTTP/1.1" 200 - 6 0.006 0.007
+2026-09-06 17:47:00,756 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:00] "GET /web/image/product.template/20/image_128?unique=1779255430000 HTTP/1.1" 200 - 6 0.006 0.013
+2026-09-06 17:47:00,756 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:00] "GET /web/image/product.template/11/image_128?unique=1779255430000 HTTP/1.1" 200 - 6 0.004 0.008
+2026-09-06 17:47:00,756 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:00] "GET /web/image/product.template/22/image_128?unique=1779255430000 HTTP/1.1" 200 - 6 0.004 0.009
+2026-09-06 17:47:00,760 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:00] "GET /web/image/product.template/13/image_128?unique=1779255430000 HTTP/1.1" 200 - 6 0.004 0.007
+2026-09-06 17:47:00,761 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:00] "GET /web/image/product.template/26/image_128?unique=1779255430000 HTTP/1.1" 200 - 6 0.003 0.006
+2026-09-06 17:47:04,218 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:04] "POST /web/dataset/call_kw/res.users/has_group HTTP/1.1" 200 - 1 0.001 0.005
+2026-09-06 17:47:04,295 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:04] "POST /web/dataset/call_kw/product.template/web_search_read HTTP/1.1" 200 - 35 0.035 0.048
+2026-09-06 17:47:10,110 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:10] "POST /web/dataset/call_kw/stock.picking.type/web_search_read HTTP/1.1" 200 - 18 0.010 0.019
+2026-09-06 17:47:31,945 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:31] "POST /web/dataset/call_kw/product.template/web_search_read HTTP/1.1" 200 - 33 0.028 0.061
+2026-09-06 17:47:32,068 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:32] "GET /web/image/product.template/23/image_128?unique=1782016607000 HTTP/1.1" 200 - 6 0.009 0.041
+2026-09-06 17:47:32,070 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:32] "GET /web/image/product.template/16/image_128?unique=1779255430000 HTTP/1.1" 200 - 6 0.009 0.029
+2026-09-06 17:47:32,071 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:32] "GET /web/image/product.template/36/image_128?unique=1783739299000 HTTP/1.1" 200 - 6 0.007 0.032
+2026-09-06 17:47:32,071 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:32] "GET /web/image/product.template/41/image_128?unique=1783739299000 HTTP/1.1" 200 - 6 0.008 0.043
+2026-09-06 17:47:32,074 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:32] "GET /web/image/product.template/15/image_128?unique=1781976172000 HTTP/1.1" 200 - 6 0.009 0.035
+2026-09-06 17:47:32,074 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:32] "GET /web/image/product.template/37/image_128?unique=1783739299000 HTTP/1.1" 200 - 6 0.008 0.036
+2026-09-06 17:47:32,088 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:32] "GET /web/image/product.template/10/image_128?unique=1779255430000 HTTP/1.1" 200 - 6 0.005 0.012
+2026-09-06 17:47:32,096 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:32] "GET /web/image/product.template/18/image_128?unique=1779255430000 HTTP/1.1" 200 - 6 0.006 0.018
+2026-09-06 17:47:32,098 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:32] "GET /web/image/product.template/9/image_128?unique=1781980015000 HTTP/1.1" 200 - 6 0.008 0.016
+2026-09-06 17:47:32,101 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:32] "GET /web/image/product.template/8/image_128?unique=1779255430000 HTTP/1.1" 200 - 6 0.010 0.015
+2026-09-06 17:47:32,101 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:32] "GET /web/image/product.template/31/image_128?unique=1779073955000 HTTP/1.1" 200 - 6 0.009 0.015
+2026-09-06 17:47:32,104 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:32] "GET /web/image/product.template/32/image_128?unique=1776400213000 HTTP/1.1" 200 - 6 0.008 0.015
+2026-09-06 17:47:32,112 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:32] "GET /web/image/product.template/24/image_128?unique=1779255430000 HTTP/1.1" 200 - 6 0.006 0.008
+2026-09-06 17:47:32,113 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:32] "GET /web/image/product.template/21/image_128?unique=1779255430000 HTTP/1.1" 200 - 6 0.009 0.013
+2026-09-06 17:47:32,115 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:32] "GET /web/image/product.template/19/image_128?unique=1779255430000 HTTP/1.1" 200 - 6 0.004 0.011
+2026-09-06 17:47:32,121 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:32] "GET /web/image/product.template/49/image_128?unique=1783739299000 HTTP/1.1" 200 - 6 0.006 0.013
+2026-09-06 17:47:32,122 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:32] "GET /web/image/product.template/50/image_128?unique=1783739299000 HTTP/1.1" 200 - 6 0.005 0.013
+2026-09-06 17:47:32,126 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:32] "GET /web/image/product.template/20/image_128?unique=1779255430000 HTTP/1.1" 200 - 6 0.005 0.014
+2026-09-06 17:47:32,130 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:32] "GET /web/image/product.template/22/image_128?unique=1779255430000 HTTP/1.1" 200 - 6 0.005 0.008
+2026-09-06 17:47:32,130 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:32] "GET /web/image/product.template/25/image_128?unique=1779255430000 HTTP/1.1" 200 - 6 0.006 0.009
+2026-09-06 17:47:32,132 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:32] "GET /web/image/product.template/11/image_128?unique=1779255430000 HTTP/1.1" 200 - 6 0.004 0.010
+2026-09-06 17:47:32,133 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:32] "GET /web/image/product.template/13/image_128?unique=1779255430000 HTTP/1.1" 200 - 6 0.004 0.006
+2026-09-06 17:47:32,135 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:32] "GET /web/image/product.template/26/image_128?unique=1779255430000 HTTP/1.1" 200 - 6 0.003 0.006
+2026-09-06 17:47:33,904 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:47:33] "POST /web/dataset/call_kw/product.template/web_search_read HTTP/1.1" 200 - 32 0.022 0.053
+2026-09-06 17:48:10,095 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:48:10] "POST /web/action/load HTTP/1.1" 200 - 11 0.008 0.011
+2026-09-06 17:48:10,249 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:48:10] "POST /web/dataset/call_kw/stock.lot/get_views HTTP/1.1" 200 - 43 0.026 0.103
+2026-09-06 17:48:10,297 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:48:10] "POST /web/dataset/call_kw/stock.lot/web_search_read HTTP/1.1" 200 - 18 0.028 0.010
+2026-09-06 17:48:15,228 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:48:15] "POST /web/action/load HTTP/1.1" 200 - 10 0.005 0.007
+2026-09-06 17:48:15,335 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:48:15] "POST /web/dataset/call_kw/product.product/get_views HTTP/1.1" 200 - 50 0.021 0.065
+2026-09-06 17:48:15,427 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:48:15] "POST /web/dataset/call_kw/product.product/web_search_read HTTP/1.1" 200 - 29 0.045 0.035
+2026-09-06 17:48:24,982 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:48:24] "POST /web/dataset/call_kw/stock.picking.type/web_search_read HTTP/1.1" 200 - 18 0.009 0.016
+2026-09-06 17:48:26,207 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:48:26] "POST /web/dataset/call_kw/stock.picking.type/web_search_read HTTP/1.1" 200 - 18 0.012 0.021
+2026-09-06 17:48:27,815 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:48:27] "POST /web/dataset/call_kw/stock.picking.type/web_search_read HTTP/1.1" 200 - 18 0.008 0.020
+2026-09-06 17:48:53,709 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:48:53] "POST /web/action/load HTTP/1.1" 200 - 9 0.012 0.012
+2026-09-06 17:48:53,767 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:48:53] "POST /web/dataset/call_kw/uom.category/get_views HTTP/1.1" 200 - 27 0.014 0.022
+2026-09-06 17:48:53,784 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:48:53] "POST /web/dataset/call_kw/uom.category/web_search_read HTTP/1.1" 200 - 5 0.004 0.005
+2026-09-06 17:48:57,684 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:48:57] "POST /web/action/load HTTP/1.1" 200 - 10 0.003 0.008
+2026-09-06 17:48:57,724 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:48:57] "POST /web/dataset/call_kw/stock.valuation.layer/get_views HTTP/1.1" 200 - 25 0.008 0.020
+2026-09-06 17:48:57,777 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:48:57] "POST /web/dataset/call_kw/stock.valuation.layer/web_search_read HTTP/1.1" 200 - 18 0.019 0.021
+2026-09-06 17:49:17,874 19664 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) starting 
+2026-09-06 17:49:17,881 19664 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) done in 0.006s 
+2026-09-06 17:49:17,884 19664 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) processed 0 records, 0 records remaining 
+2026-09-06 17:49:17,888 19664 INFO odoo_db odoo.addons.base.models.ir_cron: Job 'Payment: Post-process transactions' (17) completed 
+2026-09-06 17:50:03,040 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:50:03] "POST /web/dataset/call_kw/product.template/web_search_read HTTP/1.1" 200 - 33 0.028 0.050
+2026-09-06 17:50:03,144 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:50:03] "GET /web/image/product.template/23/image_128?unique=1782016607000 HTTP/1.1" 200 - 6 0.011 0.016
+2026-09-06 17:50:03,161 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:50:03] "GET /web/image/product.template/15/image_128?unique=1781976172000 HTTP/1.1" 200 - 6 0.007 0.031
+2026-09-06 17:50:03,161 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:50:03] "GET /web/image/product.template/41/image_128?unique=1783739299000 HTTP/1.1" 200 - 6 0.006 0.032
+2026-09-06 17:50:03,166 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:50:03] "GET /web/image/product.template/16/image_128?unique=1779255430000 HTTP/1.1" 200 - 6 0.009 0.028
+2026-09-06 17:50:03,168 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:50:03] "GET /web/image/product.template/36/image_128?unique=1783739299000 HTTP/1.1" 200 - 6 0.012 0.029
+2026-09-06 17:50:03,171 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:50:03] "GET /web/image/product.template/37/image_128?unique=1783739299000 HTTP/1.1" 200 - 6 0.010 0.034
+2026-09-06 17:50:03,186 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:50:03] "GET /web/image/product.template/9/image_128?unique=1781980015000 HTTP/1.1" 200 - 6 0.007 0.011
+2026-09-06 17:50:03,187 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:50:03] "GET /web/image/product.template/18/image_128?unique=1779255430000 HTTP/1.1" 200 - 6 0.020 0.020
+2026-09-06 17:50:03,187 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:50:03] "GET /web/image/product.template/10/image_128?unique=1779255430000 HTTP/1.1" 200 - 6 0.008 0.013
+2026-09-06 17:50:03,189 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:50:03] "GET /web/image/product.template/31/image_128?unique=1779073955000 HTTP/1.1" 200 - 6 0.006 0.011
+2026-09-06 17:50:03,190 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:50:03] "GET /web/image/product.template/32/image_128?unique=1776400213000 HTTP/1.1" 200 - 6 0.005 0.012
+2026-09-06 17:50:03,195 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:50:03] "GET /web/image/product.template/8/image_128?unique=1779255430000 HTTP/1.1" 200 - 6 0.007 0.018
+2026-09-06 17:50:03,205 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:50:03] "GET /web/image/product.template/24/image_128?unique=1779255430000 HTTP/1.1" 200 - 6 0.006 0.010
+2026-09-06 17:50:03,205 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:50:03] "GET /web/image/product.template/19/image_128?unique=1779255430000 HTTP/1.1" 200 - 6 0.007 0.008
+2026-09-06 17:50:03,206 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:50:03] "GET /web/image/product.template/49/image_128?unique=1783739299000 HTTP/1.1" 200 - 6 0.005 0.007
+2026-09-06 17:50:03,206 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:50:03] "GET /web/image/product.template/21/image_128?unique=1779255430000 HTTP/1.1" 200 - 6 0.006 0.012
+2026-09-06 17:50:03,209 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:50:03] "GET /web/image/product.template/50/image_128?unique=1783739299000 HTTP/1.1" 200 - 6 0.005 0.009
+2026-09-06 17:50:03,215 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:50:03] "GET /web/image/product.template/20/image_128?unique=1779255430000 HTTP/1.1" 200 - 6 0.004 0.010
+2026-09-06 17:50:03,219 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:50:03] "GET /web/image/product.template/11/image_128?unique=1779255430000 HTTP/1.1" 200 - 6 0.004 0.006
+2026-09-06 17:50:03,220 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:50:03] "GET /web/image/product.template/25/image_128?unique=1779255430000 HTTP/1.1" 200 - 6 0.005 0.008
+2026-09-06 17:50:03,222 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:50:03] "GET /web/image/product.template/22/image_128?unique=1779255430000 HTTP/1.1" 200 - 6 0.005 0.009
+2026-09-06 17:50:03,223 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:50:03] "GET /web/image/product.template/13/image_128?unique=1779255430000 HTTP/1.1" 200 - 6 0.004 0.010
+2026-09-06 17:50:03,224 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:50:03] "GET /web/image/product.template/26/image_128?unique=1779255430000 HTTP/1.1" 200 - 6 0.004 0.009
+2026-09-06 17:50:04,657 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:50:04] "POST /web/dataset/call_kw/product.template/web_search_read HTTP/1.1" 200 - 32 0.024 0.054
+2026-09-06 17:50:18,962 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:50:18] "POST /web/action/load HTTP/1.1" 200 - 10 0.005 0.008
+2026-09-06 17:50:19,017 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:50:19] "POST /web/dataset/call_kw/stock.warehouse/get_views HTTP/1.1" 200 - 25 0.012 0.026
+2026-09-06 17:50:19,033 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:50:19] "POST /web/dataset/call_kw/stock.warehouse/web_search_read HTTP/1.1" 200 - 4 0.002 0.006
+2026-09-06 17:50:19,056 19664 INFO ? werkzeug: 127.0.0.1 - - [06/Sep/2026 17:50:19] "GET /web/static/img/openhand.cur HTTP/1.1" 200 - 0 0.000 0.002
+2026-09-06 17:50:21,254 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:50:21] "POST /web/action/load HTTP/1.1" 200 - 9 0.004 0.008
+2026-09-06 17:50:21,294 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:50:21] "POST /web/dataset/call_kw/stock.picking.type/get_views HTTP/1.1" 200 - 6 0.004 0.017
+2026-09-06 17:50:21,308 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:50:21] "POST /web/dataset/call_kw/stock.picking.type/web_search_read HTTP/1.1" 200 - 3 0.002 0.006
+2026-09-06 17:50:23,368 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:50:23] "POST /web/action/load HTTP/1.1" 200 - 11 0.006 0.009
+2026-09-06 17:50:23,421 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:50:23] "POST /web/dataset/call_kw/product.category/get_views HTTP/1.1" 200 - 19 0.009 0.025
+2026-09-06 17:50:23,433 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:50:23] "POST /web/dataset/call_kw/product.category/web_search_read HTTP/1.1" 200 - 3 0.002 0.003
+2026-09-06 17:50:29,366 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:50:29] "POST /web/action/load HTTP/1.1" 200 - 11 0.004 0.009
+2026-09-06 17:50:29,420 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:50:29] "POST /web/dataset/call_kw/product.product/get_views HTTP/1.1" 200 - 12 0.005 0.027
+2026-09-06 17:50:29,436 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:50:29] "POST /web/dataset/call_kw/stock.warehouse/get_current_warehouses HTTP/1.1" 200 - 2 0.001 0.006
+2026-09-06 17:50:29,443 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:50:29] "POST /web/dataset/call_kw/product.product/search_panel_select_multi_range HTTP/1.1" 200 - 4 0.006 0.006
+2026-09-06 17:50:29,480 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:50:29] "POST /web/dataset/call_kw/product.product/web_search_read HTTP/1.1" 200 - 22 0.025 0.016
+2026-09-06 17:50:40,023 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:50:40] "POST /web/action/load HTTP/1.1" 200 - 10 0.009 0.011
+2026-09-06 17:50:40,090 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:50:40] "POST /web/dataset/call_kw/stock.move.line/get_views HTTP/1.1" 200 - 33 0.015 0.032
+2026-09-06 17:50:40,138 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:50:40] "POST /web/dataset/call_kw/stock.move.line/web_search_read HTTP/1.1" 200 - 19 0.015 0.024
+2026-09-06 17:50:54,080 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:50:54] "POST /web/action/load HTTP/1.1" 200 - 12 0.020 0.015
+2026-09-06 17:50:54,105 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:50:54] "POST /web/action/run HTTP/1.1" 200 - 16 0.009 0.009
+2026-09-06 17:50:54,156 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:50:54] "POST /web/dataset/call_kw/stock.quant/get_views HTTP/1.1" 200 - 27 0.012 0.026
+2026-09-06 17:50:54,220 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:50:54] "POST /web/dataset/call_kw/stock.quant/web_search_read HTTP/1.1" 200 - 19 0.027 0.028
+2026-09-06 17:51:15,341 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:51:15] "POST /web/dataset/call_button/stock.quant/action_inventory_history HTTP/1.1" 200 - 4 0.001 0.004
+2026-09-06 17:51:15,362 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:51:15] "POST /web/dataset/call_kw/stock.move.line/get_views HTTP/1.1" 200 - 2 0.001 0.010
+2026-09-06 17:51:15,379 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:51:15] "POST /web/dataset/call_kw/product.product/read HTTP/1.1" 200 - 10 0.006 0.006
+2026-09-06 17:51:15,401 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:51:15] "POST /web/dataset/call_kw/stock.move.line/web_search_read HTTP/1.1" 200 - 16 0.008 0.009
+2026-09-06 17:51:21,706 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:51:21] "POST /web/action/load HTTP/1.1" 200 - 13 0.011 0.013
+2026-09-06 17:51:21,723 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:51:21] "POST /web/action/run HTTP/1.1" 200 - 14 0.005 0.007
+2026-09-06 17:51:21,788 19664 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:51:21] "POST /web/dataset/call_kw/stock.quant/web_search_read HTTP/1.1" 200 - 19 0.023 0.035
+2026-09-06 17:53:35,826 19803 INFO ? odoo: Odoo version 18.0 
+2026-09-06 17:53:35,826 19803 INFO ? odoo: Using configuration file at /Users/rohitkumar/IdeaProjects/odoo/odoo.conf 
+2026-09-06 17:53:35,826 19803 INFO ? odoo: addons paths: ['/Users/rohitkumar/IdeaProjects/odoo/odoo/addons', '/Users/rohitkumar/Library/Application Support/Odoo/addons/18.0', '/Users/rohitkumar/IdeaProjects/odoo/addons'] 
+2026-09-06 17:53:35,826 19803 INFO ? odoo: database: rohitkumar@localhost:5432 
+2026-09-06 17:53:35,933 19803 INFO ? odoo.addons.base.models.ir_actions_report: Will use the Wkhtmltopdf binary at /usr/local/bin/wkhtmltopdf 
+2026-09-06 17:53:36,003 19803 INFO ? odoo.addons.base.models.ir_actions_report: Will use the Wkhtmltoimage binary at /usr/local/bin/wkhtmltoimage 
+2026-09-06 17:53:36,190 19803 INFO ? odoo.service.server: HTTP service (werkzeug) running on Rohits-MacBook-Pro.local:8069 
+2026-09-06 17:53:36,205 19803 INFO odoo_db odoo.modules.loading: loading 1 modules... 
+2026-09-06 17:53:36,209 19803 INFO odoo_db odoo.modules.loading: 1 modules loaded in 0.00s, 0 queries (+0 extra) 
+2026-09-06 17:53:36,259 19803 INFO odoo_db odoo.modules.loading: loading 133 modules... 
+2026-09-06 17:53:36,959 19803 INFO odoo_db odoo.modules.loading: 133 modules loaded in 0.70s, 0 queries (+0 extra) 
+2026-09-06 17:53:37,111 19803 INFO odoo_db odoo.modules.loading: Modules loaded. 
+2026-09-06 17:53:37,115 19803 INFO odoo_db odoo.modules.registry: Registry loaded in 0.925s 
+2026-09-06 17:53:37,308 19803 INFO odoo_db odoo.addons.base.models.ir_http: Generating routing map for key None 
+2026-09-06 17:53:37,328 19803 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:53:37] "GET /websocket?version=18.0-2 HTTP/1.1" 101 - 6 0.004 0.017
+2026-09-06 17:54:29,433 19803 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:54:29] "POST /web/action/run HTTP/1.1" 200 - 27 0.032 0.161
+2026-09-06 17:54:29,524 19803 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:54:29] "POST /web/dataset/call_kw/stock.quant/web_search_read HTTP/1.1" 200 - 28 0.039 0.021
+2026-09-06 17:54:42,435 19803 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:54:42] "POST /web/dataset/call_kw/stock.quant/web_search_read HTTP/1.1" 200 - 19 0.018 0.035
+2026-09-06 17:54:43,755 19803 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:54:43] "POST /web/dataset/call_kw/stock.quant/web_search_read HTTP/1.1" 200 - 19 0.021 0.038
+2026-09-06 17:54:50,990 19803 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:54:50] "POST /web/action/load HTTP/1.1" 200 - 12 0.011 0.010
+2026-09-06 17:54:51,022 19803 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:54:51] "POST /web/action/run HTTP/1.1" 200 - 20 0.009 0.018
+2026-09-06 17:54:51,172 19803 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:54:51] "POST /web/dataset/call_kw/stock.picking/get_views HTTP/1.1" 200 - 103 0.051 0.086
+2026-09-06 17:54:51,213 19803 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:54:51] "POST /web/dataset/call_kw/stock.picking/web_search_read HTTP/1.1" 200 - 23 0.020 0.011
+2026-09-06 17:54:57,435 19803 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:54:57] "POST /web/action/load HTTP/1.1" 200 - 12 0.007 0.010
+2026-09-06 17:54:57,451 19803 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:54:57] "POST /web/action/run HTTP/1.1" 200 - 13 0.004 0.008
+2026-09-06 17:54:57,481 19803 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:54:57] "POST /web/dataset/call_kw/stock.picking/get_views HTTP/1.1" 200 - 3 0.002 0.022
+2026-09-06 17:54:57,521 19803 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:54:57] "POST /web/dataset/call_kw/stock.picking/web_search_read HTTP/1.1" 200 - 17 0.014 0.018
+2026-09-06 17:55:00,975 19803 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:55:00] "POST /web/action/run HTTP/1.1" 200 - 14 0.005 0.008
+2026-09-06 17:55:01,060 19803 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:55:01] "POST /web/dataset/call_kw/stock.quant/web_search_read HTTP/1.1" 200 - 19 0.020 0.034
+2026-09-06 17:56:38,191 19982 INFO ? odoo: Odoo version 18.0 
+2026-09-06 17:56:38,191 19982 INFO ? odoo: Using configuration file at /Users/rohitkumar/IdeaProjects/odoo/odoo.conf 
+2026-09-06 17:56:38,191 19982 INFO ? odoo: addons paths: ['/Users/rohitkumar/IdeaProjects/odoo/odoo/addons', '/Users/rohitkumar/Library/Application Support/Odoo/addons/18.0', '/Users/rohitkumar/IdeaProjects/odoo/addons'] 
+2026-09-06 17:56:38,191 19982 INFO ? odoo: database: rohitkumar@localhost:5432 
+2026-09-06 17:56:38,303 19982 INFO ? odoo.addons.base.models.ir_actions_report: Will use the Wkhtmltopdf binary at /usr/local/bin/wkhtmltopdf 
+2026-09-06 17:56:38,336 19982 INFO ? odoo.addons.base.models.ir_actions_report: Will use the Wkhtmltoimage binary at /usr/local/bin/wkhtmltoimage 
+2026-09-06 17:56:38,484 19982 INFO ? odoo.service.server: HTTP service (werkzeug) running on Rohits-MacBook-Pro.local:8069 
+2026-09-06 17:56:38,498 19982 INFO odoo_db odoo.modules.loading: loading 1 modules... 
+2026-09-06 17:56:38,501 19982 INFO odoo_db odoo.modules.loading: 1 modules loaded in 0.00s, 0 queries (+0 extra) 
+2026-09-06 17:56:38,547 19982 INFO odoo_db odoo.modules.loading: loading 133 modules... 
+2026-09-06 17:56:39,195 19982 INFO odoo_db odoo.modules.loading: 133 modules loaded in 0.65s, 0 queries (+0 extra) 
+2026-09-06 17:56:39,328 19982 INFO odoo_db odoo.modules.loading: Modules loaded. 
+2026-09-06 17:56:39,332 19982 INFO odoo_db odoo.modules.registry: Registry loaded in 0.848s 
+2026-09-06 17:56:39,773 19982 INFO odoo_db odoo.addons.base.models.ir_http: Generating routing map for key None 
+2026-09-06 17:56:39,806 19982 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:56:39] "GET /websocket?version=18.0-2 HTTP/1.1" 101 - 6 0.009 0.025
+2026-09-06 17:56:50,524 19982 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:56:50] "GET /odoo/physical-inventory HTTP/1.1" 200 - 105 0.135 0.294
+2026-09-06 17:56:50,557 19982 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:56:50] "GET /web/manifest.webmanifest HTTP/1.1" 200 - 9 0.005 0.003
+2026-09-06 17:56:50,884 19982 INFO ? odoo.addons.bus.models.bus: Bus.loop listen imbus on db postgres 
+2026-09-06 17:56:50,981 19982 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:56:50] "GET /web/webclient/translations/2737948b0b4519f137d1474d8046bcd8e44cc86f?lang=en_US HTTP/1.1" 200 - 1 0.001 0.430
+2026-09-06 17:56:50,985 19982 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:56:50] "GET /web/assets/b606b3e/web.assets_web.min.css HTTP/1.1" 200 - 3 0.004 0.430
+2026-09-06 17:56:50,985 19982 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:56:50] "GET /web/assets/b28c3e9/web.assets_web.min.js HTTP/1.1" 200 - 3 0.004 0.430
+2026-09-06 17:56:51,004 19982 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:56:51] "GET /web/assets/3c68f01/web.assets_web_print.min.css HTTP/1.1" 200 - 3 0.001 0.003
+2026-09-06 17:56:51,047 19982 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:56:51] "GET /web/webclient/load_menus/5339c2cdc3792327c0c4c05a486505e3ce4917363203225d27b91d9cd8f748b8 HTTP/1.1" 200 - 199 0.042 0.455
+2026-09-06 17:56:51,155 19982 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:56:51] "GET /web/webclient/translations/2737948b0b4519f137d1474d8046bcd8e44cc86f?lang=en_US HTTP/1.1" 200 - 1 0.000 0.001
+2026-09-06 17:56:51,227 19982 INFO ? werkzeug: 127.0.0.1 - - [06/Sep/2026 17:56:51] "GET /web/static/img/spin.svg HTTP/1.1" 200 - 0 0.000 0.001
+2026-09-06 17:56:51,235 19982 INFO ? werkzeug: 127.0.0.1 - - [06/Sep/2026 17:56:51] "GET /web/static/lib/odoo_ui_icons/fonts/odoo_ui_icons.woff2 HTTP/1.1" 200 - 0 0.000 0.002
+2026-09-06 17:56:51,235 19982 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:56:51] "GET /bus/websocket_worker_bundle?v=18.0-2 HTTP/1.1" 304 - 4 0.002 0.005
+2026-09-06 17:56:51,239 19982 INFO ? werkzeug: 127.0.0.1 - - [06/Sep/2026 17:56:51] "GET /web/static/src/libs/fontawesome/fonts/fontawesome-webfont.woff2?v=4.7.0 HTTP/1.1" 200 - 0 0.000 0.002
+2026-09-06 17:56:51,252 19982 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:56:51] "GET /websocket?version=18.0-2 HTTP/1.1" 101 - 1 0.001 0.004
+2026-09-06 17:56:51,256 19982 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:56:51] "POST /web/action/load HTTP/1.1" 200 - 13 0.017 0.006
+2026-09-06 17:56:51,260 19982 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:56:51] "GET /web/image/res.partner/3/avatar_128?unique=1781667883000 HTTP/1.1" 200 - 12 0.021 0.010
+2026-09-06 17:56:51,260 19982 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:56:51] "GET /web/image?model=res.users&field=avatar_128&id=2 HTTP/1.1" 200 - 16 0.022 0.009
+2026-09-06 17:56:51,272 19982 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:56:51] "POST /web/action/run HTTP/1.1" 200 - 19 0.008 0.005
+2026-09-06 17:56:51,332 19982 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:56:51] "POST /web/dataset/call_kw/stock.quant/get_views HTTP/1.1" 200 - 42 0.027 0.028
+2026-09-06 17:56:51,346 19982 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:56:51] "POST /web/dataset/call_kw/res.users/has_group HTTP/1.1" 200 - 1 0.001 0.002
+2026-09-06 17:56:51,357 19982 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:56:51] "POST /mail/action HTTP/1.1" 200 - 96 0.101 0.027
+2026-09-06 17:56:51,414 19982 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:56:51] "POST /web/dataset/call_kw/stock.quant/web_search_read HTTP/1.1" 200 - 41 0.046 0.025
+2026-09-06 17:56:51,541 19982 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:56:51] "GET /web/service-worker.js HTTP/1.1" 200 - 1 0.001 0.004
+2026-09-06 17:57:16,688 19982 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:57:16] "POST /web/action/load HTTP/1.1" 200 - 12 0.010 0.017
+2026-09-06 17:57:16,716 19982 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:57:16] "POST /web/action/run HTTP/1.1" 200 - 18 0.007 0.016
+2026-09-06 17:57:16,839 19982 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:57:16] "POST /web/dataset/call_kw/stock.picking/get_views HTTP/1.1" 200 - 91 0.040 0.065
+2026-09-06 17:57:16,886 19982 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:57:16] "POST /web/dataset/call_kw/stock.picking/web_search_read HTTP/1.1" 200 - 11 0.018 0.013
+2026-09-06 17:57:21,874 19982 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:57:21] "POST /web/action/load HTTP/1.1" 200 - 10 0.004 0.010
+2026-09-06 17:57:21,975 19982 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:57:21] "POST /web/dataset/call_kw/mrp.production/get_views HTTP/1.1" 200 - 75 0.025 0.055
+2026-09-06 17:57:22,045 19982 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:57:22] "POST /web/dataset/call_kw/mrp.production/web_search_read HTTP/1.1" 200 - 34 0.041 0.021
+2026-09-06 17:57:25,776 19982 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:57:25] "POST /web/action/load HTTP/1.1" 200 - 12 0.008 0.010
+2026-09-06 17:57:25,793 19982 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:57:25] "POST /web/action/run HTTP/1.1" 200 - 14 0.005 0.006
+2026-09-06 17:57:25,885 19982 INFO odoo_db werkzeug: 127.0.0.1 - - [06/Sep/2026 17:57:25] "POST /web/dataset/call_kw/stock.quant/web_search_read HTTP/1.1" 200 - 23 0.025 0.041

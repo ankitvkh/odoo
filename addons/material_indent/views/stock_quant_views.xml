@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Extend Inventory Adjustments / Operations List View (Operations -> Physical Inventory / Adjustments) ONLY -->
+    <record id="view_stock_quant_tree_inventory_editable_inherit_used_by" model="ir.ui.view">
+        <field name="name">stock.quant.inventory.list.editable.inherit.used.by</field>
+        <field name="model">stock.quant</field>
+        <field name="inherit_id" ref="stock.view_stock_quant_tree_inventory_editable"/>
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_uom_id']" position="after">
+                <field name="reserved_quantity" string="Reserved" optional="show"/>
+                <field name="reserved_used_by" string="Used By" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Extend Quant Search View -->
+    <record id="quant_search_view_inherit_used_by" model="ir.ui.view">
+        <field name="name">stock.quant.search.inherit.used.by</field>
+        <field name="model">stock.quant</field>
+        <field name="inherit_id" ref="stock.quant_search_view"/>
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_id']" position="before">
+                <field name="reserved_used_by" string="Used By / Reserving Document"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

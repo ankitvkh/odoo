@@ -205,7 +205,25 @@ class MaterialIndent(models.Model):
             raise UserError(_('Only approved indents can generate purchase orders.'))
         if not self.indent_line_ids:
             raise UserError(_('Cannot generate purchase orders from an empty indent.'))
-        return self._create_purchase_orders()
+        
+        created_pos = self._create_purchase_orders()
+        
+        if len(created_pos) == 1:
+            return {
+                'type': 'ir.actions.act_window',
+                'name': _('Purchase Order'),
+                'res_model': 'purchase.order',
+                'res_id': created_pos[0].id,
+                'view_mode': 'form',
+                'views': [(self.env.ref('purchase.purchase_order_form').id, 'form')],
+                'target': 'current',
+            }
+        elif len(created_pos) > 1:
+            action = self.env.ref('purchase.purchase_rfq').read()[0]
+            action['domain'] = [('id', 'in', [p.id for p in created_pos])]
+            return action
+        
+        return True
 
     def action_cancel(self):
         """Cancel the indent"""
@@ -282,22 +300,8 @@ class MaterialIndent(models.Model):
             )
         )
         
-        if len(created_pos) == 1:
-            return {
-                'type': 'ir.actions.act_window',
-                'name': _('Purchase Order'),
-                'res_model': 'purchase.order',
-                'res_id': created_pos[0].id,
-                'view_mode': 'form',
-                'views': [(self.env.ref('purchase.purchase_order_form').id, 'form')],
-                'target': 'current',
-            }
-        elif len(created_pos) > 1:
-            action = self.env.ref('purchase.purchase_rfq').read()[0]
-            action['domain'] = [('id', 'in', [p.id for p in created_pos])]
-            return action
-        
-        return True
+        self.invalidate_recordset(['purchase_order_ids', 'purchase_count'])
+        return created_pos
 
     def action_view_purchase_orders(self):
         """View related purchase orders"""

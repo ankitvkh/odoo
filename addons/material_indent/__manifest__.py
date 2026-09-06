@@ -27,6 +27,7 @@
         'views/product_template_views.xml',
         'views/purchase_order_views.xml',
         'views/sale_order_views.xml',
+        'views/stock_quant_views.xml',
         'report/sale_report_templates.xml'
     ],
     'demo': [],
