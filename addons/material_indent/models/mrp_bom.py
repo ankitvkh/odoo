@@ -290,35 +290,55 @@ class MrpBom(models.Model):
         }
     
     def action_generate_purchase_orders(self):
-        """Generate purchase orders from approved indent lines"""
+        """Generate purchase orders from approved material indents linked to this BOM"""
         self.ensure_one()
         
-        approved_lines = self.material_indent_line_ids.filtered(lambda l: l.state == 'approved')
-        if not approved_lines:
+        indents = self.env['material.indent'].search([
+            ('bom_id', '=', self.id),
+            ('state', '=', 'approved')
+        ])
+        
+        if not indents:
             return {
                 'type': 'ir.actions.client',
                 'tag': 'display_notification',
                 'params': {
-                    'message': 'No approved indent lines found. Please approve some lines first.',
+                    'message': _('No approved material indents found for this BOM. Please approve an indent first.'),
                     'type': 'warning',
                 }
             }
         
-        # Group by vendor and create POs
-        # This is a simplified version - you can enhance it
-        po_count = 0
-        for line in approved_lines:
-            # Create purchase order logic here
-            po_count += 1
-        
-        return {
-            'type': 'ir.actions.client',
-            'tag': 'display_notification',
-            'params': {
-                'message': f'Generated {po_count} purchase order(s)',
-                'type': 'success',
+        created_pos = []
+        for indent in indents:
+            if not indent.purchase_order_ids:
+                pos = indent._create_purchase_orders()
+                if isinstance(pos, list):
+                    created_pos.extend(pos)
+
+        if not created_pos:
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'message': _('Purchase orders have already been created for all approved indents linked to this BOM.'),
+                    'type': 'info',
+                }
             }
-        }
+
+        if len(created_pos) == 1:
+            return {
+                'type': 'ir.actions.act_window',
+                'name': _('Purchase Order'),
+                'res_model': 'purchase.order',
+                'res_id': created_pos[0].id,
+                'view_mode': 'form',
+                'views': [(self.env.ref('purchase.purchase_order_form').id, 'form')],
+                'target': 'current',
+            }
+        else:
+            action = self.env.ref('purchase.purchase_rfq').read()[0]
+            action['domain'] = [('id', 'in', [p.id for p in created_pos])]
+            return action
 
     def action_import_bom_template(self):
         """Import BOM from template and create material indent"""

@@ -11,7 +11,7 @@ class SaleOrder(models.Model):
     custom_ref_code = fields.Char(
         string='Reference Code',
         default='00000',
-        help='Custom reference code for quotation (XXXXX part of PTK/XXXXX/QTN-YY-YY/NNNN)'
+        help='Custom reference code for quotation (XXXXX part of RASP/XXXXX/QTN-YY-YY/NNNN)'
     )
     
     offer_type = fields.Selection([
@@ -109,10 +109,10 @@ class SaleOrder(models.Model):
     def _generate_custom_name(self, vals=None, use_original_seq=False, explicit_revision=None):
         """
         Generate custom quotation reference in format:
-        PTK/XXXXX/QTN-YY-YY/NNNN or PTK/XXXXX/QTN-YY-YY/NNNNA (for revisions)
+        RASP/XXXXX/QTN-YY-YY/NNNN or RASP/XXXXX/QTN-YY-YY/NNNNA (for revisions)
         """
         # Get components
-        prefix = "PTK"
+        prefix = "RASP"
         
         # Determine ref_code
         ref_code = "00000"

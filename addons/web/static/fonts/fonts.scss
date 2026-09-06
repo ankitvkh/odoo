@@ -7,9 +7,9 @@ $lato-font-path: './lato';
     // Cyrillic: U+0400-04FF, U+0500-052F
     @font-face {
         font-family: 'Odoo Unicode Support Noto';
-        src: url('https://fonts.odoocdn.com/fonts/noto/NotoSans-#{$type}.woff2') format('woff2'),
-             url('https://fonts.odoocdn.com/fonts/noto/NotoSans-#{$type}.woff') format('woff'),
-             url('https://fonts.odoocdn.com/fonts/noto/NotoSans-#{$type}.ttf') format('truetype');
+        src: url('https://fonts.odoocdn.com/fonts/noto/NotoSans-#{$type}.ttf') format('truetype'),
+             url('https://fonts.odoocdn.com/fonts/noto/NotoSans-#{$type}.woff2') format('woff2'),
+             url('https://fonts.odoocdn.com/fonts/noto/NotoSans-#{$type}.woff') format('woff');
         font-weight: $weight;
         font-style: $style;
         unicode-range: U+0400-04FF, U+0500-052F;
@@ -17,9 +17,9 @@ $lato-font-path: './lato';
     // Hebrew: U+0590-05FF, U+FB1D-FB4F
     @font-face {
         font-family: 'Odoo Unicode Support Noto';
-        src: url('https://fonts.odoocdn.com/fonts/noto/NotoSansHebrew-#{$type}.woff2') format('woff2'),
-             url('https://fonts.odoocdn.com/fonts/noto/NotoSansHebrew-#{$type}.woff') format('woff'),
-             url('https://fonts.odoocdn.com/fonts/noto/NotoSansHebrew-#{$type}.ttf') format('truetype');
+        src: url('https://fonts.odoocdn.com/fonts/noto/NotoSansHebrew-#{$type}.ttf') format('truetype'),
+             url('https://fonts.odoocdn.com/fonts/noto/NotoSansHebrew-#{$type}.woff2') format('woff2'),
+             url('https://fonts.odoocdn.com/fonts/noto/NotoSansHebrew-#{$type}.woff') format('woff');
         font-weight: $weight;
         font-style: $style;
         unicode-range: U+0590-05FF, U+FB1D-FB4F;
@@ -27,9 +27,9 @@ $lato-font-path: './lato';
     // Arabic: U+0600-06FF, U+0750-077F
     @font-face {
         font-family: 'Odoo Unicode Support Noto';
-        src: url('https://fonts.odoocdn.com/fonts/noto/NotoSansArabic-#{$type}.woff2') format('woff2'),
-             url('https://fonts.odoocdn.com/fonts/noto/NotoSansArabic-#{$type}.woff') format('woff'),
-             url('https://fonts.odoocdn.com/fonts/noto/NotoSansArabic-#{$type}.ttf') format('truetype');
+        src: url('https://fonts.odoocdn.com/fonts/noto/NotoSansArabic-#{$type}.ttf') format('truetype'),
+             url('https://fonts.odoocdn.com/fonts/noto/NotoSansArabic-#{$type}.woff2') format('woff2'),
+             url('https://fonts.odoocdn.com/fonts/noto/NotoSansArabic-#{$type}.woff') format('woff');
         font-weight: $weight;
         font-style: $style;
         unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF;
@@ -39,8 +39,8 @@ $lato-font-path: './lato';
         font-family: 'Lato';
         src: url('#{$lato-font-path}/Lato-#{$type}-webfont.eot');
         src: url('#{$lato-font-path}/Lato-#{$type}-webfont.eot?#iefix') format('embedded-opentype'),
-             url('#{$lato-font-path}/Lato-#{$type}-webfont.woff') format('woff'),
              url('#{$lato-font-path}/Lato-#{$type}-webfont.ttf') format('truetype'),
+             url('#{$lato-font-path}/Lato-#{$type}-webfont.woff') format('woff'),
              url('#{$lato-font-path}/Lato-#{$type}-webfont.svg#Lato') format('svg');
         font-weight: $weight;
         font-style: $style;
@@ -49,8 +49,8 @@ $lato-font-path: './lato';
         font-family: 'Lato-#{$type}';
         src: url('#{$lato-font-path}/Lato-#{$type}-webfont.eot');
         src: url('#{$lato-font-path}/Lato-#{$type}-webfont.eot?#iefix') format('embedded-opentype'),
-             url('#{$lato-font-path}/Lato-#{$type}-webfont.woff') format('woff'),
              url('#{$lato-font-path}/Lato-#{$type}-webfont.ttf') format('truetype'),
+             url('#{$lato-font-path}/Lato-#{$type}-webfont.woff') format('woff'),
              url('#{$lato-font-path}/Lato-#{$type}-webfont.svg#Roboto') format('svg');
     }
 }

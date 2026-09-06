@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============================================================
+         Dashboard Form View (KPI Tiles + Navigation)
+    ============================================================ -->
+    <record id="view_purchase_dashboard_form" model="ir.ui.view">
+        <field name="name">material.indent.purchase.dashboard.form</field>
+        <field name="model">material.indent.purchase.dashboard</field>
+        <field name="arch" type="xml">
+            <form string="Purchase Dashboard" create="false" edit="false" delete="false">
+                <sheet>
+                    <!-- ── Section 1: Material Indent KPIs ─────────────── -->
+                    <div class="o_hr_dashboard">
+                        <div class="o_section_title">
+                            <h2>Material Indents</h2>
+                        </div>
+
+                        <div class="row mt-2 mb-4">
+                            <!-- Draft -->
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <button name="action_view_draft_indents"
+                                        type="object"
+                                        class="btn btn-outline-secondary w-100 py-3 d-flex flex-column align-items-center">
+                                    <span class="fs-1 fw-bold text-muted">
+                                        <field name="indent_draft_count"/>
+                                    </span>
+                                    <span class="small text-uppercase mt-1">Draft</span>
+                                </button>
+                            </div>
+
+                            <!-- Submitted / Pending -->
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <button name="action_view_submitted_indents"
+                                        type="object"
+                                        class="btn btn-outline-warning w-100 py-3 d-flex flex-column align-items-center">
+                                    <span class="fs-1 fw-bold text-warning">
+                                        <field name="indent_submitted_count"/>
+                                    </span>
+                                    <span class="small text-uppercase mt-1">Pending Approval</span>
+                                </button>
+                            </div>
+
+                            <!-- Approved -->
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <button name="action_view_approved_indents"
+                                        type="object"
+                                        class="btn btn-outline-success w-100 py-3 d-flex flex-column align-items-center">
+                                    <span class="fs-1 fw-bold text-success">
+                                        <field name="indent_approved_count"/>
+                                    </span>
+                                    <span class="small text-uppercase mt-1">Approved</span>
+                                </button>
+                            </div>
+
+                            <!-- Cancelled -->
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <button class="btn btn-outline-danger w-100 py-3 d-flex flex-column align-items-center">
+                                    <span class="fs-1 fw-bold text-danger">
+                                        <field name="indent_cancel_count"/>
+                                    </span>
+                                    <span class="small text-uppercase mt-1">Cancelled</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- ── Section 2: Purchase Order KPIs ──────────── -->
+                        <div class="o_section_title">
+                            <h2>Purchase Orders</h2>
+                        </div>
+
+                        <div class="row mt-2 mb-4">
+                            <!-- RFQs -->
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <button name="action_view_rfqs"
+                                        type="object"
+                                        class="btn btn-outline-info w-100 py-3 d-flex flex-column align-items-center">
+                                    <span class="fs-1 fw-bold text-info">
+                                        <field name="rfq_count"/>
+                                    </span>
+                                    <span class="small text-uppercase mt-1">Requests for Quotation</span>
+                                </button>
+                            </div>
+
+                            <!-- To Approve -->
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <button name="action_view_to_approve"
+                                        type="object"
+                                        class="btn btn-outline-warning w-100 py-3 d-flex flex-column align-items-center">
+                                    <span class="fs-1 fw-bold text-warning">
+                                        <field name="po_to_approve_count"/>
+                                    </span>
+                                    <span class="small text-uppercase mt-1">To Approve</span>
+                                </button>
+                            </div>
+
+                            <!-- Confirmed POs -->
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <button name="action_view_purchase_orders"
+                                        type="object"
+                                        class="btn btn-outline-success w-100 py-3 d-flex flex-column align-items-center">
+                                    <span class="fs-1 fw-bold text-success">
+                                        <field name="po_count"/>
+                                    </span>
+                                    <span class="small text-uppercase mt-1">Purchase Orders</span>
+                                </button>
+                            </div>
+
+                            <!-- Waiting Bills -->
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <button name="action_view_waiting_bills"
+                                        type="object"
+                                        class="btn btn-outline-danger w-100 py-3 d-flex flex-column align-items-center">
+                                    <span class="fs-1 fw-bold text-danger">
+                                        <field name="waiting_bills_count"/>
+                                    </span>
+                                    <span class="small text-uppercase mt-1">Waiting Bills</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- ── Section 3: Spend Summary ─────────────────── -->
+                        <div class="o_section_title">
+                            <h2>Spend Summary</h2>
+                        </div>
+
+                        <div class="row mt-2 mb-4">
+                            <div class="col-lg-6 col-md-12">
+                                <div class="card border-0 bg-light p-4 text-center">
+                                    <div class="fs-4 fw-bold text-primary">
+                                        <field name="total_spend_this_month"
+                                               widget="monetary"
+                                               options="{'currency_field': 'currency_id'}"/>
+                                    </div>
+                                    <div class="small text-muted text-uppercase mt-1">Spend This Month</div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12">
+                                <div class="card border-0 bg-light p-4 text-center">
+                                    <div class="fs-4 fw-bold text-primary">
+                                        <field name="total_spend_all"
+                                               widget="monetary"
+                                               options="{'currency_field': 'currency_id'}"/>
+                                    </div>
+                                    <div class="small text-muted text-uppercase mt-1">Total Spend (All Time)</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ============================================================
+         Action — opens dashboard by creating a transient record
+    ============================================================ -->
+    <record id="action_material_indent_purchase_dashboard" model="ir.actions.act_window">
+        <field name="name">Purchase Dashboard</field>
+        <field name="res_model">material.indent.purchase.dashboard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_purchase_dashboard_form"/>
+        <field name="target">main</field>
+        <field name="context">{}</field>
+    </record>
+
+    <!-- ============================================================
+         Menu Items
+    ============================================================ -->
+
+    <!-- Top-level "Dashboard" entry under Purchase root menu -->
+    <menuitem id="menu_material_indent_purchase_dashboard"
+              name="Dashboard"
+              parent="purchase.menu_purchase_root"
+              action="action_material_indent_purchase_dashboard"
+              sequence="0"/>
+
+</odoo>

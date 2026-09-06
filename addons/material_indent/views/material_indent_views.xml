@@ -36,10 +36,16 @@
                   invisible="state != 'draft'"/>
           <button name="action_approve" 
                   type="object" 
-                  string="Approve &amp; Create PO" 
+                  string="Approve" 
                   class="oe_highlight"
                   invisible="state != 'submitted'"
                   groups="purchase.group_purchase_manager"/>
+          <button name="action_create_purchase_orders" 
+                  type="object" 
+                  string="Generate Purchase Orders" 
+                  class="btn-primary"
+                  invisible="state != 'approved' or purchase_count &gt; 0"
+                  groups="purchase.group_purchase_user,purchase.group_purchase_manager"/>
           <button name="action_cancel" 
                   type="object" 
                   string="Cancel"

@@ -7,7 +7,7 @@
         </xpath>
         
         <!-- Add Serial Number cell for product lines -->
-        <xpath expr="//td[@id='product']" position="before">
+        <xpath expr="//table[contains(@class, 'o_main_table')]//tbody//tr/t[@t-if='not line.display_type']/td[1]" position="before">
             <td name="td_serial" class="text-center">
                 <span t-out="line_index + 1"/>
             </td>

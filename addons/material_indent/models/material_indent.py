@@ -192,12 +192,20 @@ class MaterialIndent(models.Model):
             rec._sync_bom_indent_lines()
 
     def action_approve(self):
-        """Approve indent and create purchase orders"""
+        """Approve indent without automatically creating purchase orders"""
         for rec in self:
             rec.state = 'approved'
             rec.message_post(body=_('Indent approved'))
             rec._sync_bom_indent_lines()
-            rec._create_purchase_orders()
+
+    def action_create_purchase_orders(self):
+        """Explicitly generate purchase orders for approved indent"""
+        self.ensure_one()
+        if self.state != 'approved':
+            raise UserError(_('Only approved indents can generate purchase orders.'))
+        if not self.indent_line_ids:
+            raise UserError(_('Cannot generate purchase orders from an empty indent.'))
+        return self._create_purchase_orders()
 
     def action_cancel(self):
         """Cancel the indent"""
@@ -232,7 +240,7 @@ class MaterialIndent(models.Model):
         
         if missing_vendor_products:
             raise UserError(_(
-                "Cannot approve and create Purchase Orders. The following products do not have any vendor configured:\n\n%s\n\n"
+                "Cannot create Purchase Orders. The following products do not have any vendor configured:\n\n%s\n\n"
                 "Please configure a vendor on these products (under the Purchase tab) before proceeding."
             ) % "\n".join(f"- {p}" for p in missing_vendor_products))
         
@@ -268,10 +276,28 @@ class MaterialIndent(models.Model):
             created_pos.append(po)
         
         self.message_post(
-            body=_('Created %d Purchase Order(s)') % len(created_pos)
+            body=_('Created %d Purchase Order(s): %s') % (
+                len(created_pos),
+                ', '.join(po.name for po in created_pos)
+            )
         )
         
-        return created_pos
+        if len(created_pos) == 1:
+            return {
+                'type': 'ir.actions.act_window',
+                'name': _('Purchase Order'),
+                'res_model': 'purchase.order',
+                'res_id': created_pos[0].id,
+                'view_mode': 'form',
+                'views': [(self.env.ref('purchase.purchase_order_form').id, 'form')],
+                'target': 'current',
+            }
+        elif len(created_pos) > 1:
+            action = self.env.ref('purchase.purchase_rfq').read()[0]
+            action['domain'] = [('id', 'in', [p.id for p in created_pos])]
+            return action
+        
+        return True
 
     def action_view_purchase_orders(self):
         """View related purchase orders"""
