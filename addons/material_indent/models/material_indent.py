@@ -293,10 +293,11 @@ class MaterialIndent(models.Model):
             
             created_pos.append(po)
         
+        po_details = ', '.join(f"{po.name} ({po.partner_id.name})" for po in created_pos)
         self.message_post(
             body=_('Created %d Purchase Order(s): %s') % (
                 len(created_pos),
-                ', '.join(po.name for po in created_pos)
+                po_details
             )
         )
         

@@ -102,14 +102,18 @@ class PurchaseOrder(models.Model):
         return super(PurchaseOrder, self).create(vals_list)
         
     def write(self, vals):
+        # If partner_id is changing, unsubscribe previous vendor partner(s) to avoid multi-vendor offer leakage
+        if 'partner_id' in vals:
+            new_partner_id = vals.get('partner_id')
+            for order in self:
+                old_partner = order.partner_id
+                if old_partner and old_partner.id != new_partner_id:
+                    order.message_unsubscribe(partner_ids=[old_partner.id])
+
         # Update name if custom_ref_code is changed and order is in draft
         if 'custom_ref_code' in vals:
             for order in self:
                 if order.state == 'draft':
-                    # Prepare vals for generation
-                    # We can't really pass vals easily to _generate_custom_name for self,
-                    # but we can rely on the fact that we are writing to it.
-                    # Actually, easier to let super write first, then update name.
                     pass 
 
         result = super(PurchaseOrder, self).write(vals)
@@ -118,18 +122,45 @@ class PurchaseOrder(models.Model):
             for order in self:
                 if order.state == 'draft':
                     new_name = order._generate_custom_name(use_original_seq=bool(order.original_sequence))
-                    # Avoid recursion by using proper check or just directly writing if different
                     if new_name != order.name:
-                        # We need to preserve the prefix state (PO vs RFQ)
-                        # The generator defaults to RFQ.
-                        # If current name has PO, we should respect that?
-                        # But logic says ref code change is usually in draft where it is RFQ.
-                        # Check current state just in case
                         if '/PO/' in order.name:
                             new_name = new_name.replace('/RFQ/', '/PO/')
                         
                         order.sudo().write({'name': new_name})
         return result
+
+    def action_rfq_send(self):
+        """
+        Sanitize followers before opening email composer:
+        - Unsubscribe any external vendor partners other than current partner_id
+        - Pass context to prevent autofollow and prevent author duplicate notifications
+        """
+        for order in self:
+            if order.partner_id:
+                current_partner = order.partner_id
+                allowed_partner_ids = {current_partner.id}
+                if current_partner.child_ids:
+                    allowed_partner_ids.update(current_partner.child_ids.ids)
+                if current_partner.parent_id:
+                    allowed_partner_ids.add(current_partner.parent_id.id)
+                
+                followers_to_remove = []
+                for follower in order.message_follower_ids:
+                    f_partner = follower.partner_id
+                    # If follower is an external partner (not internal user) and not current vendor/contact
+                    if not f_partner.user_ids and f_partner.id not in allowed_partner_ids:
+                        followers_to_remove.append(f_partner.id)
+                
+                if followers_to_remove:
+                    order.message_unsubscribe(partner_ids=followers_to_remove)
+
+        res = super(PurchaseOrder, self).action_rfq_send()
+        if isinstance(res, dict) and 'context' in res:
+            res['context'].update({
+                'mail_post_autofollow': False,
+                'mail_notify_author': False,
+            })
+        return res
 
     def button_confirm(self):
         res = super(PurchaseOrder, self).button_confirm()
