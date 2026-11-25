@@ -28,6 +28,7 @@
                 <page string="Location &amp; Access" name="location_access">
                     <group>
                         <group string="Location Summary">
+                            <field name="location_id" options="{'no_create': True}"/>
                             <field name="total_location_count" readonly="1"/>
                             <field name="has_multiple_locations" invisible="1"/>
                         </group>
@@ -36,7 +37,7 @@
                                    invisible="total_location_count == 0" nolabel="1"/>
                         </group>
                     </group>
-                    <group string="Secondary Locations" invisible="not location_id">
+                    <group string="Secondary Locations">
                         <field name="secondary_location_ids" nolabel="1" 
                                widget="many2many"
                                options="{'no_create': True}"/>
