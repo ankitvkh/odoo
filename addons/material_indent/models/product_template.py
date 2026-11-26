@@ -5,6 +5,12 @@ from odoo import models, fields, api
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
+    name = fields.Char(
+        string='Name',
+        index='trigram',
+        required=True,
+        translate=False
+    )
     make = fields.Char(
         string='Make',
         help='Manufacturer or Brand of the product'

@@ -2,12 +2,12 @@
 
 -- Reset Purchase Order Custom Sequence
 UPDATE ir_sequence 
-SET number_next = 1460 
+SET number_next = 2159 
 WHERE code = 'purchase.order.custom';
 
 -- Reset Sale Order Custom Sequence
 UPDATE ir_sequence 
-SET number_next = 1460 
+SET number_next = 2619 
 WHERE code = 'sale.order.custom';
 
 -- If use_advisory_lock is true, we might need to reset the actual postgres sequence too
